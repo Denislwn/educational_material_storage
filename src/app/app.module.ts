@@ -8,6 +8,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UsersService} from './shared/services/users.service';
 import {SystemModule} from './system/system.module';
+import {CategoryService} from './shared/services/category.service';
 
 
 @NgModule({
@@ -21,7 +22,10 @@ import {SystemModule} from './system/system.module';
     AppRoutingModule,
     SystemModule,
   ],
-  providers: [UsersService],
+  providers: [
+    UsersService,
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
