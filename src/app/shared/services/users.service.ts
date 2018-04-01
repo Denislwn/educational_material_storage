@@ -5,16 +5,16 @@ import {User} from '../models/user.model';
 
 @Injectable()
 export class UsersService {
+  baseUrl = 'http://127.0.0.1:8000/api/';
 
   constructor(public http: HttpClient) {
   }
 
-  userLogin(username: string, password: string): Observable<Object> {
-    const user = {
-      username: username,
-      password: password
-    };
-    console.log(user);
-    return this.http.post('http://127.0.0.1:8000/api/login/', user);
+  userLogin(user: Object): Observable<Object> {
+    return this.http.post(this.baseUrl + 'login/', user);
+  }
+
+  createUser(user: Object): Observable<Object> {
+    return this.http.post(this.baseUrl + 'users/', user);
   }
 }

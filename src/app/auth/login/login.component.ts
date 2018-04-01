@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(form: NgForm) {
-    this.usersService.userLogin(form.form.value.username, form.form.value.password)
+    const userServer = {
+      username: form.form.value.username,
+      password: form.form.value.password
+    };
+    this.usersService.userLogin(userServer)
       .subscribe((user: User) => {
         console.log(user);
         localStorage.setItem('token', user.token);
