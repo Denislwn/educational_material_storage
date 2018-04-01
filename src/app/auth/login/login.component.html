@@ -1,3 +1,13 @@
-<p>
-  login works!
-</p>
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+  <input type="text"
+         ngModel
+         name="username"
+         #username="ngModel"
+         required>
+  <input type="password"
+         ngModel
+         name="password"
+         #password="ngModel"
+         required>
+  <button type="submit">Войти</button>
+</form>
