@@ -9,6 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {UsersService} from './shared/services/users.service';
 import {SystemModule} from './system/system.module';
 import {CategoryService} from './shared/services/category.service';
+import {BooksService} from './shared/services/books.service';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {CategoryService} from './shared/services/category.service';
   ],
   providers: [
     UsersService,
-    CategoryService
+    CategoryService,
+    BooksService
   ],
   bootstrap: [AppComponent]
 })

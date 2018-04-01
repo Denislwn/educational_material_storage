@@ -2,4 +2,12 @@
   <label>Новая категория</label>
   <input #categoryName type="text">
   <button (click)="addCategory(categoryName)">Добавить категорию</button>
+  <div>
+    <select>
+      <option *ngFor="let category of categories"
+              value="{{category.id}}">
+              {{category.name}}
+      </option>
+    </select>
+  </div>
 </div>

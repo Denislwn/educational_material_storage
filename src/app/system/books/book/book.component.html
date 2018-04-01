@@ -1,0 +1,10 @@
+<div>
+  <div>Book name: {{book?.name}}</div>
+  <div>Author: {{book?.author}}</div>
+  <div>Date: {{book?.auto_date}}</div>
+  <div>Categories:
+    <div *ngFor="let category of book?.categories">
+      <div>{{category.name}}</div>
+    </div>
+  </div>
+</div>

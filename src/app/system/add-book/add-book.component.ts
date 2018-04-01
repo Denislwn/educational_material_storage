@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../shared/services/category.service';
-import {Category} from '../../shared/models/category.model';
+import {Category} from '../../shared/models/category/category.model';
 import {Subscription} from 'rxjs/Subscription';
+import {CategoryPage} from '../../shared/models/category/category-page.model';
 
 @Component({
   selector: 'app-add-book',
@@ -14,6 +15,7 @@ export class AddBookComponent implements OnInit {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   addCategory(categoryName: HTMLInputElement) {
@@ -27,7 +29,10 @@ export class AddBookComponent implements OnInit {
   }
 
   getCategories() {
-
+    this.categoryService.getCategories()
+      .subscribe((categoriesPage: CategoryPage) => {
+        this.categories = categoriesPage.results;
+      });
   }
 
 }
