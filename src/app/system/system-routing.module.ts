@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {SystemComponent} from './system/system.component';
+import {SystemComponent} from './system.component';
 import {UserInfoComponent} from './user-info/user-info.component';
+import {AddBookComponent} from './add-book/add-book.component';
 
 const routes: Routes = [
     {
       path: 'system', component: SystemComponent, children: [
-        {path: 'user_info', component: UserInfoComponent}
+        {path: 'user_info', component: UserInfoComponent},
+        {path: 'add_book', component: AddBookComponent}
       ]
     }
   ];

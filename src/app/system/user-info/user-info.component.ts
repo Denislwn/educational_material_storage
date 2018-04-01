@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersService} from '../../shared/services/users.service';
+import {User} from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-user-info',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
+  user: User;
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.getUserInfo();
+  }
+
+  getUserInfo() {
+    this.usersService.getUserInfo(localStorage.getItem('userId'))
+      .subscribe((user: User) => {
+        this.user = user;
+      });
   }
 
 }
