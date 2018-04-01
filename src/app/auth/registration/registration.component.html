@@ -1,3 +1,52 @@
-<p>
-  registration works!
-</p>
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+  <div>
+    <label>Логин:</label>
+    <input type="text"
+           ngModel
+           name="username"
+           #username="ngModel"
+           required>
+  </div>
+  <div>
+    <label>Имя:</label>
+    <input type="text"
+           ngModel
+           name="firstName"
+           #firstName="ngModel"
+           required>
+  </div>
+  <div>
+    <label>Фамилия:</label>
+    <input type="text"
+           ngModel
+           name="lastName"
+           #lastName="ngModel"
+           required>
+  </div>
+  <div>
+    <label>Пароль:</label>
+    <input type="password"
+           ngModel
+           name="password"
+           #password="ngModel"
+           required>
+  </div>
+  <div>
+    <label>E-mail:</label>
+    <input type="email"
+           ngModel
+           name="email"
+           #email="ngModel"
+           required>
+  </div>
+  <div>
+    <select name="role"
+            ngModel
+            required
+            #select="ngModel">
+      <option value="0">Преподаватель</option>
+      <option value="1">Студент</option>
+    </select>
+  </div>
+  <button type="submit">Зарегистрироваться</button>
+</form>
