@@ -3,11 +3,42 @@
   <input #categoryName type="text">
   <button (click)="addCategory(categoryName)">Добавить категорию</button>
   <div>
-    <select>
-      <option *ngFor="let category of categories"
-              value="{{category.id}}">
-              {{category.name}}
-      </option>
-    </select>
+    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+      <div>
+        <label>Author</label>
+        <input type="text"
+               ngModel
+               name="author"
+               #author="ngModel"
+               required>
+      </div>
+      <div>
+        <label>Book Name</label>
+        <input type="text"
+               ngModel
+               name="bookName"
+               #bookName="ngModel"
+               required>
+      </div>
+      <div>
+        <select name="category"
+                ngModel
+                required
+                #category="ngModel">
+          <option *ngFor="let category of categories"
+                  value="{{category.id}}">
+            {{category.name}}
+          </option>
+        </select>
+      </div>
+      <div><input type="file"
+                  ngModel
+                  name="file"
+                  #file="ngModel"
+                  (change)="changeFile($event)"
+                  required>
+      </div>
+      <button type="submit">Добавить книгу</button>
+    </form>
   </div>
 </div>
