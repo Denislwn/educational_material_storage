@@ -18,17 +18,15 @@ export class BooksService extends BaseApi {
   createBook(book: NewBook): Observable<Object> {
     let finalData;
     const formData = new FormData();
-    const obj = {
-      name: book.name,
-      author: book.author,
-      categories: book.categories
-    };
     formData.append('name', book.name);
     formData.append('author', book.author);
     formData.append('categories', book.categories);
     formData.append('file', book.file[0]);
     finalData = formData;
-    console.log(finalData);
     return this.post(`books/`, finalData);
+  }
+
+  getFilterBooks(text: string): Observable<BookPage> {
+    return this.get(`books/search/?text=${text}`);
   }
 }

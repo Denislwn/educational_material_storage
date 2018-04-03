@@ -46,10 +46,9 @@ export class AddBookComponent implements OnInit {
     const author = form.form.value.author;
     const category = form.form.value.category;
     const newBook = new NewBook(name, author, this.file, category);
-    console.log(newBook);
     this.bookService.createBook(newBook)
       .subscribe((book) => {
-        console.log(book);
+        alert('Книга успешно добавлена');
       }, (err) => {
         console.log(err);
       });
