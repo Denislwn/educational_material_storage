@@ -12,4 +12,8 @@ export class SystemComponent implements OnInit {
   ngOnInit() {
   }
 
+  logOut() {
+    localStorage.removeItem('token');
+  }
+
 }

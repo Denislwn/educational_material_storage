@@ -4,4 +4,8 @@
   <div>FirstName: {{user?.first_name}}</div>
   <div>E-mail: {{user?.email}}</div>
   <div>Role: {{user?.role}}</div>
+  <div>Books</div>
+  <div *ngFor="let book of user?.books">
+    <app-book [book]="book"></app-book>
+  </div>
 </div>

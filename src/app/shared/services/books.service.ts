@@ -4,9 +4,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {BookPage} from '../models/book/book-page.model';
 import {NewBook} from '../models/book/new-book.model';
+import {Book} from '../models/book/book.model';
 
 @Injectable()
 export class BooksService extends BaseApi {
+  book: Book;
+
   constructor(public http: HttpClient) {
     super(http);
   }
@@ -28,5 +31,10 @@ export class BooksService extends BaseApi {
 
   getFilterBooks(text: string): Observable<BookPage> {
     return this.get(`books/search/?text=${text}`);
+  }
+
+  addToFavorites(bookId: number): Observable<Object> {
+    return this.post(`books/${bookId.toString()}/take/`);
+    // books/{id}/take/
   }
 }
