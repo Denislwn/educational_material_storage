@@ -23,8 +23,15 @@ export class BookDetailComponent implements OnInit {
 
   toFavorites() {
     this.booksService.addToFavorites(this.book.id)
-      .subscribe((book) => {
-        console.log(book);
+      .subscribe((responce) => {
+        console.log(responce);
+      });
+  }
+
+  fromFavorites() {
+    this.booksService.removeFromFavorites(this.book.id)
+      .subscribe((responce) => {
+        console.log(responce);
       });
   }
 

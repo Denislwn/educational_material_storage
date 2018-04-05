@@ -35,6 +35,9 @@ export class BooksService extends BaseApi {
 
   addToFavorites(bookId: number): Observable<Object> {
     return this.post(`books/${bookId.toString()}/take/`);
-    // books/{id}/take/
+  }
+
+  removeFromFavorites(bookId: number): Observable<Object> {
+    return this.post(`books/${bookId.toString()}/remove/`);
   }
 }

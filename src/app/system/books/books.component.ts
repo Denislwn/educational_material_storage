@@ -5,6 +5,9 @@ import {BookPage} from '../../shared/models/book/book-page.model';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import {CategoryService} from '../../shared/services/category.service';
+import {Category} from '../../shared/models/category/category.model';
+import {CategoryPage} from '../../shared/models/category/category-page.model';
 
 @Component({
   selector: 'app-books',
@@ -13,13 +16,16 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
+  categories: Category[];
   termBook$ = new Subject<string>();
 
-  constructor(private bookService: BooksService) {
+  constructor(private bookService: BooksService,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit() {
     this.getBooks();
+    this.getCategories();
     this.subOnInputSearchField();
   }
 
@@ -48,6 +54,15 @@ export class BooksComponent implements OnInit {
     } else {
       this.getBooks();
     }
+  }
+
+  getCategories() {
+    this.categoryService.getCategories()
+      .subscribe((categories: CategoryPage) => {
+        this.categories = categories.results;
+      }, (err) => {
+        console.log(err);
+      });
   }
 
 }
