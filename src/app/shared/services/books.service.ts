@@ -14,8 +14,8 @@ export class BooksService extends BaseApi {
     super(http);
   }
 
-  getBooks(): Observable<BookPage> {
-    return this.get(`books/`);
+  getBooks(page: number): Observable<BookPage> {
+    return this.get(`books/?page=${page.toString()}`);
   }
 
   createBook(book: NewBook): Observable<Object> {

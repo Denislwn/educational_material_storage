@@ -2,8 +2,7 @@
   <div>Категории</div>
   <form #checkBoxForm="ngForm" (ngSubmit)="filterByCategories(checkBoxForm)">
     <div *ngFor="let category of categories">
-      <input (click)="checkBox(category.id)"
-             [name]="category.id"
+      <input [name]="category.id"
              type="checkbox"
              ngModel>{{category.name}}
     </div>
@@ -11,7 +10,13 @@
   </form>
   <div>КНИГИ</div>
   <input type="text" (input)="termBook$.next($event.target.value)">
-  <div *ngFor="let book of books">
-    <app-book [book]="book"></app-book>
+  <div class="selector"
+       infiniteScroll
+       [infiniteScrollDistance]="0.1"
+       [infiniteScrollThrottle]="200"
+       (scrolled)="onScroll()">
+    <div *ngFor="let book of books">
+      <app-book [book]="book"></app-book>
+    </div>
   </div>
 </div>

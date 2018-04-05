@@ -8,12 +8,14 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { BooksComponent } from './books/books.component';
 import { BookComponent } from './books/book/book.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     SystemRoutingModule,
+    InfiniteScrollModule,
   ],
   declarations: [
     SystemComponent,

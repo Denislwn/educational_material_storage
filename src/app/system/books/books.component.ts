@@ -18,8 +18,10 @@ import {NgForm} from '@angular/forms';
 export class BooksComponent implements OnInit {
   books: Book[] = [];
   categories: Category[];
-  selectedCategories: number[] = [];
   termBook$ = new Subject<string>();
+  page: number;
+  isLoad: boolean;
+  lastPage: boolean;
 
   constructor(private bookService: BooksService,
               private categoryService: CategoryService) {
@@ -32,9 +34,17 @@ export class BooksComponent implements OnInit {
   }
 
   getBooks() {
-    this.bookService.getBooks()
+    this.page = 1;
+    this.isLoad = true;
+    this.lastPage = false;
+    this.bookService.getBooks(this.page)
       .subscribe((bookPage: BookPage) => {
         this.books = bookPage.results;
+        if (bookPage.next === null) {
+          this.lastPage = true;
+        }
+        this.isLoad = false;
+        console.log(this.books.length);
       });
   }
 
@@ -67,10 +77,6 @@ export class BooksComponent implements OnInit {
       });
   }
 
-  checkBox(categoryId: number) {
-    this.selectedCategories.push(categoryId);
-  }
-
   filterByCategories(form: NgForm) {
     const dict = Object.entries(form.form.value);
     let searchCategories = '';
@@ -86,6 +92,25 @@ export class BooksComponent implements OnInit {
       .subscribe((bookPage: BookPage) => {
         this.books = bookPage.results;
       });
+  }
+
+  onScroll() {
+    this.getNextBookPage();
+  }
+
+  getNextBookPage() {
+    if (!this.isLoad && !this.lastPage) {
+      this.isLoad = true;
+      this.page += 1;
+      this.bookService.getBooks(this.page)
+        .subscribe((bookPage: BookPage) => {
+          this.books = this.books.concat(bookPage.results);
+          if (bookPage.next === null) {
+            this.lastPage = true;
+          }
+          this.isLoad = false;
+        });
+    }
   }
 
 }
