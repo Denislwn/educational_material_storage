@@ -1,9 +1,14 @@
 <div>
   <div>Категории</div>
-  <div *ngFor="let category of categories">
-    <input type="checkbox" [value]="category.id">{{category.name}}
-  </div>
-  <button></button>
+  <form #checkBoxForm="ngForm" (ngSubmit)="filterByCategories(checkBoxForm)">
+    <div *ngFor="let category of categories">
+      <input (click)="checkBox(category.id)"
+             [name]="category.id"
+             type="checkbox"
+             ngModel>{{category.name}}
+    </div>
+    <button type="submit">Поиск</button>
+  </form>
   <div>КНИГИ</div>
   <input type="text" (input)="termBook$.next($event.target.value)">
   <div *ngFor="let book of books">

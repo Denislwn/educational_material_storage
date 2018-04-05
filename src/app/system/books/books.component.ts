@@ -8,6 +8,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
 import {CategoryPage} from '../../shared/models/category/category-page.model';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-books',
@@ -17,6 +18,7 @@ import {CategoryPage} from '../../shared/models/category/category-page.model';
 export class BooksComponent implements OnInit {
   books: Book[] = [];
   categories: Category[];
+  selectedCategories: number[] = [];
   termBook$ = new Subject<string>();
 
   constructor(private bookService: BooksService,
@@ -62,6 +64,27 @@ export class BooksComponent implements OnInit {
         this.categories = categories.results;
       }, (err) => {
         console.log(err);
+      });
+  }
+
+  checkBox(categoryId: number) {
+    this.selectedCategories.push(categoryId);
+  }
+
+  filterByCategories(form: NgForm) {
+    const dict = Object.entries(form.form.value);
+    let searchCategories = '';
+    for (let i = 0; i < dict.length; i++) {
+      if (dict[i][1] === true) {
+        searchCategories += 'category=' + dict[i][0];
+        if (i !== dict.length - 1) {
+          searchCategories += '&';
+        }
+      }
+    }
+    this.categoryService.getFilterCategories(searchCategories)
+      .subscribe((bookPage: BookPage) => {
+        this.books = bookPage.results;
       });
   }
 
