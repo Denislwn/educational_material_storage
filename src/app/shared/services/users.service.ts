@@ -6,7 +6,7 @@ import {BaseApi} from '../base/base-api';
 
 @Injectable()
 export class UsersService extends BaseApi {
-  baseUrl = 'http://46.229.213.200/api/';
+  baseUrl = '/api/';
 
   constructor(public http: HttpClient) {
     super(http);

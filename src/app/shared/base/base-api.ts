@@ -2,7 +2,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 export class BaseApi {
-  private url = 'http://46.229.213.200/api/';
+  private url = '/api/';
 
   constructor(public http: HttpClient) {
   }
