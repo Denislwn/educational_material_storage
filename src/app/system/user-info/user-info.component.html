@@ -4,7 +4,7 @@
     <div>{{user?.last_name}} {{user?.first_name}}</div>
     <div>{{user?.email}}</div>
     <div>{{user?.role | userRole}}</div>
-    <div class="my-books">Мои книги:</div>
+    <div class="important-text">Мои книги:</div>
     <div *ngFor="let book of user?.books">
       <app-book [book]="book"></app-book>
     </div>

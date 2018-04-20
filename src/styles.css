@@ -1,5 +1,10 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
+.row {
+  margin: 0;
+  padding: 0;
+}
+
 .hover-element {
   cursor: pointer;
 }
@@ -7,4 +12,8 @@
 .page-without-navbar {
   margin-top: 56px;
   padding: 0 15px;
+}
+
+.important-text {
+  color: red;
 }
