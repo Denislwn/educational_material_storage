@@ -1,7 +1,7 @@
-<div>
-  <span>Список категорий:</span>
+<div class="page-without-navbar">
+  <span class="category">Список категорий:</span>
   <div *ngFor="let cateory of categories">
-    <div>{{cateory.name}}</div>
+    <div>{{cateory?.name}}</div>
   </div>
   <label>Новая категория</label>
   <input #categoryName type="text">

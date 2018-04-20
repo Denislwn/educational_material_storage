@@ -1,0 +1,7 @@
+.hover-element {
+  padding-left: 10px;
+}
+
+.hover-element:hover {
+  background-color: #969992;
+}

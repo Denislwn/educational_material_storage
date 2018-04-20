@@ -10,6 +10,8 @@ import { BookComponent } from './books/book/book.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import {UserRolePipe} from '../shared/pipes/user-role.pipe';
+import {DateFormatPipe} from '../shared/pipes/date-format.pipe';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { AddCategoryComponent } from './add-category/add-category.component';
     BooksComponent,
     BookComponent,
     BookDetailComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    UserRolePipe,
+    DateFormatPipe
   ]
 })
 export class SystemModule {

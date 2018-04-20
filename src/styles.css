@@ -1,1 +1,10 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.hover-element {
+  cursor: pointer;
+}
+
+.page-without-navbar {
+  margin-top: 56px;
+  padding: 0 15px;
+}

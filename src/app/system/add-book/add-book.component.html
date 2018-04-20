@@ -1,7 +1,7 @@
-<div>
+<div class="page-without-navbar">
   <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
     <div>
-      <label>Author</label>
+      <label>Автор:</label>
       <input type="text"
              ngModel
              name="author"
@@ -9,7 +9,7 @@
              required>
     </div>
     <div>
-      <label>Book Name</label>
+      <label>Название:</label>
       <input type="text"
              ngModel
              name="bookName"
@@ -17,6 +17,7 @@
              required>
     </div>
     <div>
+      <label>Категория:</label>
       <select name="category"
               ngModel
               required
@@ -34,6 +35,7 @@
                 (change)="changeFile($event)"
                 required>
     </div>
-    <button type="submit">Добавить книгу</button>
+    <button type="submit"
+            class="btn btn-primary btn-lg">Добавить книгу</button>
   </form>
 </div>

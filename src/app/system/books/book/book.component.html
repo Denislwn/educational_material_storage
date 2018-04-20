@@ -1,9 +1,9 @@
 <br>
-<div (click)="openBookDetail()">
-  <div>Book name: {{book?.name}}</div>
-  <div>Author: {{book?.author}}</div>
-  <div>Date: {{book?.auto_date}}</div>
-  <div>Categories:
+<div (click)="openBookDetail()" class="hover-element">
+  <div>Название книги: {{book?.name}}</div>
+  <div>Автор: {{book?.author}}</div>
+  <div>Дата добавления: {{book?.auto_date | dateFormat}}</div>
+  <div>Категории:
     <div *ngFor="let category of book?.categories">
       <div>{{category.name}}</div>
     </div>
