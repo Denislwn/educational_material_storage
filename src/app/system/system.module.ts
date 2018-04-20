@@ -9,6 +9,7 @@ import { BooksComponent } from './books/books.component';
 import { BookComponent } from './books/book/book.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     AddBookComponent,
     BooksComponent,
     BookComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    AddCategoryComponent
   ]
 })
 export class SystemModule {

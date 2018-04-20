@@ -24,16 +24,6 @@ export class AddBookComponent implements OnInit {
     this.getCategories();
   }
 
-  addCategory(categoryName: HTMLInputElement) {
-    this.categoryService.newCategory(categoryName.value)
-      .subscribe((newCategory: Category) => {
-        this.categories.push(newCategory);
-        console.log(this.categories);
-      }, (err) => {
-        console.log(err);
-      });
-  }
-
   getCategories() {
     this.categoryService.getCategories()
       .subscribe((categoriesPage: CategoryPage) => {

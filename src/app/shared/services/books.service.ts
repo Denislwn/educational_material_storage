@@ -18,6 +18,10 @@ export class BooksService extends BaseApi {
     return this.get(`books/?page=${page.toString()}`);
   }
 
+  getBookById(bookId: number) {
+    return this.get(`books/${bookId.toString()}/`);
+  }
+
   createBook(book: NewBook): Observable<Object> {
     let finalData;
     const formData = new FormData();

@@ -10,4 +10,5 @@ export class Book {
   name: string;
   author: string;
   deleted: boolean;
+  elected: boolean;
 }

@@ -1,4 +1,3 @@
-ul li {
-  display: inline-block;
-  margin-right: 20px;
+.active-link {
+  background-color: blue!important;
 }

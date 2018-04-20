@@ -3,6 +3,5 @@
   <div>{{book?.name}}</div>
   <div>{{book?.author}}</div>
   <div>{{book?.file}}</div>
-  <button (click)="toFavorites()">В избранное</button>
-  <button (click)="fromFavorites()">Из избранного</button>
+  <button (click)="toElectedButton()">{{electedMessage}}</button>
 </div>

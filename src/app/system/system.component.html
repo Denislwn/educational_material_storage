@@ -1,9 +1,33 @@
 <div>
-  <ul>
-    <li routerLink="user_info" routerLinkActive="active">Мой профиль</li>
-    <li routerLink="add_book" routerLinkActive="active">Добавить книгу</li>
-    <li routerLink="books" routerLinkActive="active">Все книги</li>
-    <li routerLink="/login" (click)="logOut()">Выйти</li>
-  </ul>
+  <nav class="navbar navbar-dark bg-primary">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active"
+           routerLink="user_info"
+           routerLinkActive="active-link">Мой профиль</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active"
+           routerLink="add_book"
+           routerLinkActive="active-link">Добавить книгу</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link active"
+           routerLink="books"
+           routerLinkActive="active-link">Все книги</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link active"
+           routerLink="add_category"
+           routerLinkActive="active-link">Добавить категорию</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active"
+           routerLink="/login"
+           (click)="logOut()"
+           routerLinkActive="active-link">Выйти</a>
+      </li>
+    </ul>
+  </nav>
   <router-outlet></router-outlet>
 </div>

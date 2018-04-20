@@ -1,0 +1,9 @@
+<div>
+  <span>Список категорий:</span>
+  <div *ngFor="let cateory of categories">
+    <div>{{cateory.name}}</div>
+  </div>
+  <label>Новая категория</label>
+  <input #categoryName type="text">
+  <button (click)="addCategory(categoryName)">Добавить категорию</button>
+</div>
