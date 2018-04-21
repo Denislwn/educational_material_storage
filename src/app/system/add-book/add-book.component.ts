@@ -15,6 +15,8 @@ import {BooksService} from '../../shared/services/books.service';
 export class AddBookComponent implements OnInit {
   categories: Category[] = [];
   file: FileList;
+  categoriesList = [];
+  categoriesVisibleList = [];
 
   constructor(private categoryService: CategoryService,
               private bookService: BooksService) {
@@ -28,14 +30,15 @@ export class AddBookComponent implements OnInit {
     this.categoryService.getCategories()
       .subscribe((categoriesPage: CategoryPage) => {
         this.categories = categoriesPage.results;
+        this.categoriesVisibleList.push(this.categories[0].id);
+        this.categoriesList.push(this.categories[0].id);
       });
   }
 
   submitForm(form: NgForm) {
     const name = form.form.value.bookName;
     const author = form.form.value.author;
-    const category = form.form.value.category;
-    const newBook = new NewBook(name, author, this.file, category);
+    const newBook = new NewBook(name, author, this.file, this.categoriesList);
     this.bookService.createBook(newBook)
       .subscribe((book) => {
         alert('Книга успешно добавлена');
@@ -46,7 +49,16 @@ export class AddBookComponent implements OnInit {
 
   changeFile(event) {
     this.file = event.target.files;
-    console.log(this.file);
+  }
+
+  addCategory() {
+    this.categoriesVisibleList.push(this.categories[0].id);
+    this.categoriesList.push(this.categories[0].id);
+  }
+
+  changeCategory(categoryId: string, numberCategory: number) {
+    this.categoriesList[numberCategory] = Number(categoryId);
+    console.log(numberCategory);
   }
 
 }

@@ -16,18 +16,17 @@
              #bookName="ngModel"
              required>
     </div>
-    <div>
+    <div *ngFor="let list of categoriesVisibleList; let i = index">
       <label>Категория:</label>
-      <select name="category"
-              ngModel
-              required
-              #category="ngModel">
+      <select [value]="list"
+              (input)="changeCategory($event.target.value, i)">
         <option *ngFor="let category of categories"
                 value="{{category.id}}">
           {{category.name}}
         </option>
       </select>
     </div>
+    <div (click)="addCategory()">Добавить еще категорию</div>
     <div><input type="file"
                 ngModel
                 name="file"
@@ -36,6 +35,7 @@
                 required>
     </div>
     <button type="submit"
-            class="btn btn-primary btn-lg">Добавить книгу</button>
+            class="btn btn-primary btn-lg">Добавить книгу
+    </button>
   </form>
 </div>
