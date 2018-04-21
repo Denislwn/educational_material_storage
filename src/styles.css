@@ -17,3 +17,7 @@
 .important-text {
   color: red;
 }
+
+.pre-loader-container {
+  margin-top: calc(50vh - 25px);
+}

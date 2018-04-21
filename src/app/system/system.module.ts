@@ -12,6 +12,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import {UserRolePipe} from '../shared/pipes/user-role.pipe';
 import {DateFormatPipe} from '../shared/pipes/date-format.pipe';
+import {PreloaderComponent} from '../shared/components/preloader/preloader.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {DateFormatPipe} from '../shared/pipes/date-format.pipe';
     BookDetailComponent,
     AddCategoryComponent,
     UserRolePipe,
-    DateFormatPipe
+    DateFormatPipe,
+    PreloaderComponent
   ]
 })
 export class SystemModule {

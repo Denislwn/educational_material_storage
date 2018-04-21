@@ -1,0 +1,28 @@
+.pre-loader {
+  position: relative;
+  margin: auto;
+  width: 45px;
+  height: 45px;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45px;
+  height: 45px;
+  border: 7px solid #0000ff9e;
+  border-radius: 50%;
+  border-top-color: #d1ffb5;
+  transform: translate(-50%, -50%);
+  animation: 1s spin infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

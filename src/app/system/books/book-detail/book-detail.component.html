@@ -1,6 +1,9 @@
-<div class="page-without-navbar">
+<div *ngIf="book" class="page-without-navbar">
   <div>Название: {{book?.name}}</div>
   <div>Автор: {{book?.author}}</div>
   <button (click)="toElectedButton()">{{electedMessage}}</button>
   <button><a href="{{book?.file}}" target="_blank">Скачать</a></button>
+</div>
+<div *ngIf="!book" class="pre-loader-container">
+  <app-preloader></app-preloader>
 </div>
