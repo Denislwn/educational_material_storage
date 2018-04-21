@@ -1,9 +1,14 @@
 <div class="page-without-navbar">
+  <div class="row add-category-container">
+    <input type="text"
+           class="form-control add-input"
+           placeholder="Название категории"
+           #categoryName>
+    <button class="btn btn-primary add-button"
+            (click)="addCategory(categoryName)">Добавить</button>
+  </div>
   <span class="important-text">Список категорий:</span>
   <div *ngFor="let cateory of categories">
     <div>{{cateory?.name}}</div>
   </div>
-  <label>Новая категория</label>
-  <input #categoryName type="text">
-  <button (click)="addCategory(categoryName)">Добавить категорию</button>
 </div>

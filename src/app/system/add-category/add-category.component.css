@@ -1,1 +1,18 @@
+.page-without-navbar {
+  margin-top: 100px;
+}
 
+.add-category-container {
+  position: fixed;
+  background-color: white;
+  top: 60px;
+}
+
+.add-input {
+  width: 250px;
+}
+
+.add-button {
+  margin-left: 15px;
+  width: 100px;
+}
