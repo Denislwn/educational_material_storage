@@ -10,14 +10,12 @@ import {Subscription} from 'rxjs/Subscription';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  errorLogin = false;
   subOnUserLogin: Subscription;
 
   constructor(private usersService: UsersService,
               private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   submitForm(form: NgForm) {
@@ -32,7 +30,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/system/user_info']);
       }, (err) => {
         if (err.status === 400) {
-          alert('Неверный логин или пароль');
+          this.errorLogin = true;
         }
         console.log(err);
       }, () => {
