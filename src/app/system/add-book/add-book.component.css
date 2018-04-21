@@ -2,6 +2,15 @@
   margin-top: 60px;
 }
 
+.form {
+  margin: auto;
+  max-width: 620px;
+}
+
+.custom-file-label {
+  margin: 20px 15px;
+}
+
 .btn {
-  margin-top: 10px;
+  margin-top: 50px;
 }

@@ -1,24 +1,32 @@
-<div class="page-without-navbar">
-  <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
-    <div>
+<div class="page-without-navbar container">
+  <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" class="row form">
+    <div class="col-sm-10 form-group">
       <label>Автор:</label>
       <input type="text"
+             class="form-control"
              ngModel
              name="author"
              #author="ngModel"
              required>
     </div>
-    <div>
+    <div class="col-sm-10 form-group">
       <label>Название:</label>
       <input type="text"
+             class="form-control"
              ngModel
              name="bookName"
              #bookName="ngModel"
              required>
     </div>
-    <div *ngFor="let list of categoriesVisibleList; let i = index">
+    <div class="col-sm-10">
+      <span class="hover-element"
+            (click)="addCategory()">Добавить еще категорию</span>
+    </div>
+    <div *ngFor="let list of categoriesVisibleList; let i = index"
+         class="col-sm-10">
       <label>Категория:</label>
-      <select [value]="list"
+      <select class="custom-select"
+              [value]="list"
               (input)="changeCategory($event.target.value, i)">
         <option *ngFor="let category of categories"
                 value="{{category.id}}">
@@ -26,16 +34,20 @@
         </option>
       </select>
     </div>
-    <div (click)="addCategory()">Добавить еще категорию</div>
-    <div><input type="file"
-                ngModel
-                name="file"
-                #file="ngModel"
-                (change)="changeFile($event)"
-                required>
+    <div class="col-sm-10 custom-file">
+      <input type="file"
+             class="custom-file-input"
+             ngModel
+             name="file"
+             #file="ngModel"
+             (change)="changeFile($event)"
+             required>
+      <label class="custom-file-label">Выберите файл</label>
     </div>
-    <button type="submit"
-            class="btn btn-primary btn-lg">Добавить книгу
-    </button>
+    <div class="col-sm-12 text-right">
+      <button type="submit"
+              class="btn btn-primary btn-lg">Добавить книгу
+      </button>
+    </div>
   </form>
 </div>
