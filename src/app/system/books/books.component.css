@@ -1,7 +1,27 @@
-.page-without-navbar {
-  margin-top: 60px;
+/*.page-without-navbar {*/
+  /*margin-top: 80px;*/
+/*}*/
+
+.search-container {
+  height: 45px;
+  max-width: 600px;
+  background-color: white;
+  position: fixed;
+  top: 56px;
+}
+
+.input-search {
+  margin-top: 5px;
 }
 
 .categories-list {
-  position: fixed;
+  height: calc(100vh - 56px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.books-list {
+  height: calc(100vh - 56px);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

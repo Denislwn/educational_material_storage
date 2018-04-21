@@ -11,8 +11,11 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class AddCategoryComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
+  page: number;
+  isLoad: boolean;
+  lastPage: boolean;
   subOnAddCategory: Subscription;
-  subOnGetCatagories: Subscription;
+  subOnGetCategories: Subscription;
 
   constructor(private categoryService: CategoryService) {
   }
@@ -22,7 +25,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   }
 
   getCategories() {
-    this.subOnGetCatagories = this.categoryService.getCategories()
+    this.subOnGetCategories = this.categoryService.getCategories()
       .subscribe((categoriesPage: CategoryPage) => {
         this.categories = categoriesPage.results;
       });
@@ -40,9 +43,13 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
       });
   }
 
+  onScroll() {
+
+  }
+
   ngOnDestroy() {
-    if (this.subOnGetCatagories) {
-      this.subOnGetCatagories.unsubscribe();
+    if (this.subOnGetCategories) {
+      this.subOnGetCategories.unsubscribe();
     }
   }
 

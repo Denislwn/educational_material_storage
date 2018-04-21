@@ -12,9 +12,13 @@
       </form>
     </div>
   </div>
-  <div class="col-sm-10">
-    <span>Поиск: </span>
-    <input type="text" (input)="termBook$.next($event.target.value)">
+  <div class="col-sm-10 books-list">
+    <div class="col-sm-12 search-container">
+      <input type="text"
+             placeholder="Поиск..."
+             class="form-control input-search col-sm-7"
+             (input)="termBook$.next($event.target.value)">
+    </div>
     <div class="selector"
          infiniteScroll
          [infiniteScrollDistance]="0.1"

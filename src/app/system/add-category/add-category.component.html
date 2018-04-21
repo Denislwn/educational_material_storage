@@ -8,7 +8,14 @@
             (click)="addCategory(categoryName)">Добавить</button>
   </div>
   <span class="important-text">Список категорий:</span>
-  <div *ngFor="let cateory of categories">
-    <div>{{cateory?.name}}</div>
+  <div infiniteScroll
+       [infiniteScrollDistance]="0.1"
+       [infiniteScrollThrottle]="200"
+       (scrolled)="onScroll()">
+    <div *ngFor="let cateory of categories">
+      <div>{{cateory?.name}}</div>
+    </div>
+    <app-preloader [class.pre-loader-container]="categories.length===0"
+                   *ngIf="!lastPage"></app-preloader>
   </div>
 </div>
