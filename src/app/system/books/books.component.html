@@ -2,13 +2,13 @@
   <div class="col-sm-2">
     <div class="categories-list">
       <span class="important-text">Категории</span>
-      <form #checkBoxForm="ngForm" (ngSubmit)="filterByCategories(checkBoxForm)">
+      <form #checkBoxForm="ngForm" >
         <div *ngFor="let category of categories">
           <input [name]="category.id"
+                 (change)="filterByCategories(checkBoxForm)"
                  type="checkbox"
                  ngModel>{{category.name}}
         </div>
-        <button type="submit">Поиск</button>
       </form>
     </div>
   </div>

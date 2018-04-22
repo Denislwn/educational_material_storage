@@ -88,14 +88,19 @@ export class BooksComponent implements OnInit {
         }
       }
     }
+    this.isLoad = true;
+    this.page = 1;
     this.categoryService.getFilterCategories(searchCategories)
       .subscribe((bookPage: BookPage) => {
         this.books = bookPage.results;
+        if (bookPage.next === null) {
+          this.lastPage = true;
+        }
+        this.isLoad = false;
       });
   }
 
   onScroll() {
-    console.log('next');
     this.getNextBookPage();
   }
 
