@@ -7,10 +7,14 @@
   max-width: 620px;
 }
 
+.custom-file-input {
+  margin: 20px 0;
+}
+
 .custom-file-label {
   margin: 20px 15px;
 }
 
 .btn {
-  margin-top: 50px;
+  margin: 50px 0;
 }

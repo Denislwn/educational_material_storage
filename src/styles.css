@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+.detail-col {
+  padding: 0;
+}
+
 .hover-element {
   cursor: pointer;
 }

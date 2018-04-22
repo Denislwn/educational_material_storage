@@ -15,6 +15,5 @@ export class NewBook {
     }
     this.categories = this.categories.slice(0, this.categories.length - 1);
     this.categories += ']';
-    console.log(this.categories);
   }
 }

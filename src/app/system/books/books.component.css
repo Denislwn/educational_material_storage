@@ -1,6 +1,6 @@
-/*.page-without-navbar {*/
-  /*margin-top: 80px;*/
-/*}*/
+.page-without-navbar {
+  padding-right: 0;
+}
 
 .search-container {
   height: 45px;
@@ -21,7 +21,8 @@
 }
 
 .books-list {
-  height: calc(100vh - 56px);
+  margin-top: 45px;
+  height: calc(100vh - 101px);
   overflow-y: scroll;
   overflow-x: hidden;
 }

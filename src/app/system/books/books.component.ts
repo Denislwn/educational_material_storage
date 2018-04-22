@@ -95,6 +95,7 @@ export class BooksComponent implements OnInit {
   }
 
   onScroll() {
+    console.log('next');
     this.getNextBookPage();
   }
 

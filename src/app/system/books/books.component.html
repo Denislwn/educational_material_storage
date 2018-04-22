@@ -12,18 +12,19 @@
       </form>
     </div>
   </div>
-  <div class="col-sm-10 books-list">
+  <div class="col-sm-10 books-list"
+       infiniteScroll
+       [infiniteScrollDistance]="0.1"
+       [infiniteScrollThrottle]="200"
+       [scrollWindow]="false"
+       (scrolled)="onScroll()">
     <div class="col-sm-12 search-container">
       <input type="text"
              placeholder="Поиск..."
              class="form-control input-search col-sm-7"
              (input)="termBook$.next($event.target.value)">
     </div>
-    <div class="selector"
-         infiniteScroll
-         [infiniteScrollDistance]="0.1"
-         [infiniteScrollThrottle]="200"
-         (scrolled)="onScroll()">
+    <div>
       <div *ngFor="let book of books">
         <app-book [book]="book"></app-book>
       </div>
