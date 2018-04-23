@@ -17,8 +17,10 @@
   </button>
   <button *ngIf="deleteButton&&!book.deleted"
           class="btn btn-primary add-button"
-          (click)="removeBook()">Удалить
+          (click)="openDeleteDialog()">Удалить
   </button>
+  <app-delete-dialog [(visible)]="showDeleteDialog"
+                     (remove)="removeBook()"></app-delete-dialog>
 </div>
 <div *ngIf="!book" class="pre-loader-container">
   <app-preloader></app-preloader>

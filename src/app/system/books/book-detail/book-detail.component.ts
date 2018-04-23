@@ -13,6 +13,7 @@ export class BookDetailComponent implements OnInit {
   book: Book;
   electedMessage = 'Добавить в избранное';
   deleteButton = false;
+  showDeleteDialog = false;
   subOnToElected: Subscription;
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
@@ -69,6 +70,10 @@ export class BookDetailComponent implements OnInit {
       }, () => {
         this.subOnFromElected.unsubscribe();
       });
+  }
+
+  openDeleteDialog() {
+    this.showDeleteDialog = true;
   }
 
   removeBook() {
