@@ -2,6 +2,8 @@
   <div>Название: {{book?.name}}</div>
   <div>Автор: {{book?.author}}</div>
   <div>Дата: {{book?.auto_date}}</div>
+  <div>Книгу добавил: {{book?.owner?.username}}</div>
+  <div *ngIf="book.deleted">Книга была удалена</div>
   <div class="important-text">Категории:</div>
   <div *ngFor="let category of book?.categories">
     <div>{{category.name}}</div>
@@ -12,6 +14,10 @@
   <button class="btn btn-primary add-button">
     <a href="{{book?.file}}"
        target="_blank">Скачать</a>
+  </button>
+  <button *ngIf="deleteButton&&!book.deleted"
+          class="btn btn-primary add-button"
+          (click)="removeBook()">Удалить
   </button>
 </div>
 <div *ngIf="!book" class="pre-loader-container">

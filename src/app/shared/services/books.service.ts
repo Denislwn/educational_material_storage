@@ -44,4 +44,8 @@ export class BooksService extends BaseApi {
   removeFromFavorites(bookId: number): Observable<Object> {
     return this.post(`books/${bookId.toString()}/remove/`);
   }
+
+  removeBook(bookId: number): Observable<Object> {
+    return this.delete(`books/${bookId.toString()}/`);
+  }
 }
