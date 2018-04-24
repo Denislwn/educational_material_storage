@@ -6,6 +6,8 @@ import {CategoryPage} from '../../shared/models/category/category-page.model';
 import {NgForm} from '@angular/forms';
 import {NewBook} from '../../shared/models/book/new-book.model';
 import {BooksService} from '../../shared/services/books.service';
+import {Router} from '@angular/router';
+import {Book} from '../../shared/models/book/book.model';
 
 @Component({
   selector: 'app-add-book',
@@ -22,7 +24,8 @@ export class AddBookComponent implements OnInit {
   categoriesValid = true;
 
   constructor(private categoryService: CategoryService,
-              private bookService: BooksService) {
+              private bookService: BooksService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -43,8 +46,9 @@ export class AddBookComponent implements OnInit {
     const author = form.form.value.author;
     const newBook = new NewBook(name, author, this.file, this.categoriesList);
     this.bookService.createBook(newBook)
-      .subscribe((book) => {
-        alert('Книга успешно добавлена');
+      .subscribe((book: Book) => {
+        this.resetForm(form);
+        this.router.navigate([`/system/books/${book.id}`]);
       }, (err) => {
         console.log(err);
       });
@@ -73,7 +77,6 @@ export class AddBookComponent implements OnInit {
     });
     this.categoriesList.push(this.categories[k].id);
     this.categoriesVisibleList.push(this.categories[k].id);
-    console.log(this.categoriesList);
   }
 
   changeCategory(categoryId: string, numberCategory: number) {
@@ -94,7 +97,6 @@ export class AddBookComponent implements OnInit {
   checkCategories(categoryId: number) {
     for (const i of this.categoriesList) {
       if (i === categoryId) {
-        console.log('Я здесь' + ' ' + i + '===' + categoryId);
         this.categoriesValid = false;
         break;
       }
@@ -115,6 +117,18 @@ export class AddBookComponent implements OnInit {
         break;
       }
     }
+  }
+
+  resetForm(form: NgForm) {
+    form.reset();
+    this.fileValid = false;
+    this.categoriesValid = true;
+    this.categoriesList = [];
+    this.categoriesList.push(this.categories[0].id);
+    this.categoriesVisibleList = [];
+    this.categoriesVisibleList.push(this.categories[0].id);
+    this.file = null;
+    this.fileInputValue = 'Выберите файл';
   }
 
 }
