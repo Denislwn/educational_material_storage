@@ -26,8 +26,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   getCategories() {
     this.subOnGetCategories = this.categoryService.getCategories()
-      .subscribe((categoriesPage: CategoryPage) => {
-        this.categories = categoriesPage.results;
+      .subscribe((categoriesPage: Category[]) => {
+        this.categories = categoriesPage;
       });
   }
 

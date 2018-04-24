@@ -1,7 +1,7 @@
 <div *ngIf="book" class="page-without-navbar">
   <div>Название: {{book?.name}}</div>
   <div>Автор: {{book?.author}}</div>
-  <div>Дата: {{book?.auto_date}}</div>
+  <div>Дата: {{book?.auto_date | dateFormat}}</div>
   <div>Книгу добавил: {{book?.owner?.username}}</div>
   <div *ngIf="book.deleted">Книга была удалена</div>
   <div class="important-text">Категории:</div>

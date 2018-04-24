@@ -31,8 +31,8 @@ export class AddBookComponent implements OnInit {
 
   getCategories() {
     this.categoryService.getCategories()
-      .subscribe((categoriesPage: CategoryPage) => {
-        this.categories = categoriesPage.results;
+      .subscribe((categoriesPage: Category[]) => {
+        this.categories = categoriesPage;
         this.categoriesVisibleList.push(this.categories[0].id);
         this.categoriesList.push(this.categories[0].id);
       });
