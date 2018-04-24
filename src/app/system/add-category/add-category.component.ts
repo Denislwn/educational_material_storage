@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Category} from '../../shared/models/category/category.model';
 import {CategoryService} from '../../shared/services/category.service';
-import {CategoryPage} from '../../shared/models/category/category-page.model';
 import {Subscription} from 'rxjs/Subscription';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-category',
@@ -12,8 +12,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class AddCategoryComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   page: number;
-  isLoad: boolean;
-  lastPage: boolean;
+  @ViewChild('myForm') form: NgForm;
   subOnAddCategory: Subscription;
   subOnGetCategories: Subscription;
 
@@ -31,20 +30,17 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
       });
   }
 
-  addCategory(categoryName: HTMLInputElement) {
-    this.subOnAddCategory = this.categoryService.newCategory(categoryName.value)
+  addCategory() {
+    const categoryName = this.form.form.value.categoryName;
+    this.subOnAddCategory = this.categoryService.newCategory(categoryName)
       .subscribe((newCategory: Category) => {
         this.categories.push(newCategory);
-        console.log(this.categories);
+        this.form.reset();
       }, (err) => {
         console.log(err);
       }, () => {
         this.subOnAddCategory.unsubscribe();
       });
-  }
-
-  onScroll() {
-
   }
 
   ngOnDestroy() {
