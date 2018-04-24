@@ -90,7 +90,7 @@ export class BookDetailComponent implements OnInit {
   checkUserRights() {
     const userRole = Number(localStorage.getItem('userRole'));
     const userId = Number(localStorage.getItem('userId'));
-    if (userRole === 3 || userId === this.book.owner.id) {
+    if (userRole === 2 || userId === this.book.owner.id) {
       this.deleteButton = true;
     }
   }

@@ -76,8 +76,8 @@ export class BooksComponent implements OnInit {
 
   getCategories() {
     this.categoryService.getCategories()
-      .subscribe((categories: CategoryPage) => {
-        this.categories = categories.results;
+      .subscribe((categories: Category[]) => {
+        this.categories = categories;
       }, (err) => {
         console.log(err);
       });
@@ -96,7 +96,7 @@ export class BooksComponent implements OnInit {
     }
     this.isLoad = true;
     this.page = 1;
-    this.categoryService.getFilterCategories(searchCategories)
+    this.categoryService.getFilterBooksByCategories(searchCategories)
       .subscribe((bookPage: BookPage) => {
         this.books = bookPage.results;
         if (bookPage.next === null) {
