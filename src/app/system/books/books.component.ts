@@ -59,9 +59,15 @@ export class BooksComponent implements OnInit {
 
   search(text: string) {
     if (text !== '') {
+      this.page = 1;
+      this.isLoad = true;
+      this.lastPage = false;
       this.bookService.getFilterBooks(text)
         .subscribe((bookPage) => {
           this.books = bookPage.results;
+          if (bookPage.next === null) {
+            this.lastPage = true;
+          }
         });
     } else {
       this.getBooks();

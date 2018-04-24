@@ -1,0 +1,8 @@
+.modal {
+  display: block;
+}
+
+.modal-dialog {
+  margin: 0 auto;
+  top: calc(50vh - 104px);
+}
