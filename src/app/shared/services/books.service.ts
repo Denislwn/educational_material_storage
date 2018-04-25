@@ -8,7 +8,6 @@ import {Book} from '../models/book/book.model';
 
 @Injectable()
 export class BooksService extends BaseApi {
-  book: Book;
   books: Book[];
   lastPage: boolean;
   page: number;

@@ -1,5 +1,9 @@
 <div *ngIf="book" class="page-without-navbar">
-  <button routerLink="/system/books">Назад</button>
+  <div class="arrow-back-container hover-element"
+       routerLink="{{routeBack}}">
+    <img class="arrow-back" src="assets/images/arrow-back.png"/>
+    <span class="arrow-back-text">Назад к книгам</span>
+  </div>
   <div>Название: {{book?.name}}</div>
   <div>Автор: {{book?.author}}</div>
   <div>Дата: {{book?.auto_date | dateFormat}}</div>

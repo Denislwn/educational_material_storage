@@ -15,6 +15,7 @@ export class BookDetailComponent implements OnInit {
   deleteButton = false;
   showDeleteDialog = false;
   deleteObj: {title: string, message: string};
+  routeBack: string;
   subOnToElected: Subscription;
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
@@ -30,6 +31,7 @@ export class BookDetailComponent implements OnInit {
   getBook() {
     this.activatedRoute.params
       .subscribe((params) => {
+        this.getBackUrl();
         this.booksService.getBookById(params['book_id'])
           .subscribe((book: Book) => {
             this.book = book;
@@ -39,6 +41,14 @@ export class BookDetailComponent implements OnInit {
             }
           });
       });
+  }
+
+  getBackUrl () {
+    if (this.activatedRoute.snapshot.url[0].path === 'books') {
+      this.routeBack = '/system/books';
+    } else {
+      this.routeBack = '/system/user_info';
+    }
   }
 
   toElectedButton() {
