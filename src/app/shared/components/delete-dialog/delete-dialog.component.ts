@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class DeleteDialogComponent implements OnInit {
   @Input() visible: boolean;
+  @Input() deleteObj: {title: string, message: string};
   @Output() remove = new EventEmitter();
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 

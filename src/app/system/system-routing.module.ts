@@ -11,6 +11,7 @@ const routes: Routes = [
     {
       path: 'system', component: SystemComponent, children: [
         {path: 'user_info', component: UserInfoComponent},
+        {path: 'user_info/:book_id', component: BookDetailComponent},
         {path: 'add_book', component: AddBookComponent},
         {path: 'add_category', component: AddCategoryComponent},
         {path: 'books', component: BooksComponent},

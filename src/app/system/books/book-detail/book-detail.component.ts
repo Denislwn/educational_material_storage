@@ -14,6 +14,9 @@ export class BookDetailComponent implements OnInit {
   electedMessage = 'Добавить в избранное';
   deleteButton = false;
   showDeleteDialog = false;
+  deleteObj: {title: string, message: string};
+  routeBack: string;
+  messageBack: string;
   subOnToElected: Subscription;
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
@@ -29,6 +32,7 @@ export class BookDetailComponent implements OnInit {
   getBook() {
     this.activatedRoute.params
       .subscribe((params) => {
+        this.getBackUrl();
         this.booksService.getBookById(params['book_id'])
           .subscribe((book: Book) => {
             this.book = book;
@@ -38,6 +42,16 @@ export class BookDetailComponent implements OnInit {
             }
           });
       });
+  }
+
+  getBackUrl () {
+    if (this.activatedRoute.snapshot.url[0].path === 'books') {
+      this.routeBack = '/system/books';
+      this.messageBack = 'Назад к книгам';
+    } else {
+      this.routeBack = '/system/user_info';
+      this.messageBack = 'Назад к профилю';
+    }
   }
 
   toElectedButton() {
@@ -73,6 +87,8 @@ export class BookDetailComponent implements OnInit {
   }
 
   openDeleteDialog() {
+    const message = `книгу "${this.book.name}"`;
+    this.deleteObj = {title: 'книги', message: message};
     this.showDeleteDialog = true;
   }
 

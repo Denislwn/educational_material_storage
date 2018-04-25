@@ -8,18 +8,9 @@ import {BooksService} from '../../../shared/services/books.service';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookComponent implements OnInit {
+export class BookComponent {
   @Input() book: Book;
 
-  constructor(private router: Router,
-              private booksService: BooksService) { }
-
-  ngOnInit() {
+  constructor() {
   }
-
-  openBookDetail() {
-    this.booksService.book = this.book;
-    this.router.navigate([`/system/books/${this.book.id}`]);
-  }
-
 }

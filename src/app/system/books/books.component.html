@@ -2,7 +2,7 @@
   <div class="col-sm-2">
     <div class="categories-list">
       <span class="important-text">Категории</span>
-      <form #checkBoxForm="ngForm" >
+      <form #checkBoxForm="ngForm">
         <div *ngFor="let category of categories">
           <input [name]="category.id"
                  (change)="filterByCategories(checkBoxForm)"
@@ -12,12 +12,14 @@
       </form>
     </div>
   </div>
-  <div class="col-sm-10 books-list"
+  <div #booksList
+       class="col-sm-10 books-list"
        infiniteScroll
        [infiniteScrollDistance]="0.1"
        [infiniteScrollThrottle]="200"
        [scrollWindow]="false"
-       (scrolled)="onScroll()">
+       (scrolled)="onScroll()"
+       (scroll)="scrollPosition()">
     <div class="col-sm-12 search-container">
       <input type="text"
              placeholder="Поиск..."

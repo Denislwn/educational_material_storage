@@ -1,9 +1,9 @@
 <div *ngIf="visible" class="modal show overlay-dialog"
       (click)="close()">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Удаление</h5>
+        <h5 class="modal-title">Удаление {{deleteObj?.title}}</h5>
         <button type="button"
                 class="close"
                 (click)="close()">
@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Вы точно хотите удалить...?</p>
+        <p>Вы уверены, что хотите безвозвратно удалить {{deleteObj?.message}}?</p>
       </div>
       <div class="modal-footer">
         <button type="button"
