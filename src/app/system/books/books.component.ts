@@ -8,6 +8,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
 import {NgForm} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -25,6 +26,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   @ViewChild('booksList') booksList;
 
   constructor(private bookService: BooksService,
+              private activatedRoute: ActivatedRoute,
               private categoryService: CategoryService) {
   }
 

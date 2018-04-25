@@ -16,6 +16,7 @@ export class BookDetailComponent implements OnInit {
   showDeleteDialog = false;
   deleteObj: {title: string, message: string};
   routeBack: string;
+  messageBack: string;
   subOnToElected: Subscription;
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
@@ -46,8 +47,10 @@ export class BookDetailComponent implements OnInit {
   getBackUrl () {
     if (this.activatedRoute.snapshot.url[0].path === 'books') {
       this.routeBack = '/system/books';
+      this.messageBack = 'Назад к книгам';
     } else {
       this.routeBack = '/system/user_info';
+      this.messageBack = 'Назад к профилю';
     }
   }
 
