@@ -14,6 +14,7 @@ export class BookDetailComponent implements OnInit {
   electedMessage = 'Добавить в избранное';
   deleteButton = false;
   showDeleteDialog = false;
+  deleteObj: {title: string, message: string};
   subOnToElected: Subscription;
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
@@ -73,6 +74,8 @@ export class BookDetailComponent implements OnInit {
   }
 
   openDeleteDialog() {
+    const message = `книгу "${this.book.name}"`;
+    this.deleteObj = {title: 'книги', message: message};
     this.showDeleteDialog = true;
   }
 

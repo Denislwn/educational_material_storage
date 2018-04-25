@@ -21,6 +21,7 @@
           (click)="openDeleteDialog()">Удалить
   </button>
   <app-delete-dialog [(visible)]="showDeleteDialog"
+                     [deleteObj]="deleteObj"
                      (remove)="removeBook()"></app-delete-dialog>
 </div>
 <div *ngIf="!book" class="pre-loader-container">
