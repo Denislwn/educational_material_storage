@@ -1,4 +1,5 @@
 <div *ngIf="book" class="page-without-navbar">
+  <button routerLink="/system/books">Назад</button>
   <div>Название: {{book?.name}}</div>
   <div>Автор: {{book?.author}}</div>
   <div>Дата: {{book?.auto_date | dateFormat}}</div>

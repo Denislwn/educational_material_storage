@@ -7,6 +7,8 @@ import {Category} from '../models/category/category.model';
 
 @Injectable()
 export class CategoryService extends BaseApi {
+  categories: Category[];
+
   constructor(public http: HttpClient) {
     super(http);
   }

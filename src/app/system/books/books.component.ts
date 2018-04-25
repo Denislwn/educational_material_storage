@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Book} from '../../shared/models/book/book.model';
 import {BooksService} from '../../shared/services/books.service';
 import {BookPage} from '../../shared/models/book/book-page.model';
@@ -7,7 +7,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
-import {CategoryPage} from '../../shared/models/category/category-page.model';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -15,13 +14,15 @@ import {NgForm} from '@angular/forms';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })
-export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit, AfterViewInit {
   books: Book[] = [];
   categories: Category[];
   termBook$ = new Subject<string>();
   page: number;
   isLoad: boolean;
   lastPage: boolean;
+  scrollState = false;
+  @ViewChild('booksList') booksList;
 
   constructor(private bookService: BooksService,
               private categoryService: CategoryService) {
@@ -33,9 +34,32 @@ export class BooksComponent implements OnInit {
     this.subOnInputSearchField();
   }
 
+  ngAfterViewInit(): void {
+    if (this.scrollState) {
+      this.booksList.nativeElement.scrollTop = this.bookService.booksListScroll;
+    }
+    this.scrollState = false;
+  }
+
   getBooks() {
-    this.page = 1;
     this.isLoad = true;
+    if (this.bookService.books) {
+      this.getServiceBooks();
+    } else {
+      this.getServerBook();
+    }
+  }
+
+  getCategories() {
+    if (this.categoryService.categories) {
+      this.categories = this.categoryService.categories;
+    } else {
+      this.getServerCategories();
+    }
+  }
+
+  getServerBook() {
+    this.page = 1;
     this.lastPage = false;
     this.bookService.getBooks(this.page)
       .subscribe((bookPage: BookPage) => {
@@ -43,9 +67,19 @@ export class BooksComponent implements OnInit {
         if (bookPage.next === null) {
           this.lastPage = true;
         }
+        this.saveBooks();
         this.isLoad = false;
-        console.log(this.books.length);
+      }, (err) => {
+        console.log(err);
       });
+  }
+
+  getServiceBooks() {
+    this.books = this.bookService.books;
+    this.page = this.bookService.page;
+    this.lastPage = this.bookService.lastPage;
+    this.scrollState = true;
+    this.isLoad = false;
   }
 
   subOnInputSearchField() {
@@ -70,14 +104,15 @@ export class BooksComponent implements OnInit {
           }
         });
     } else {
-      this.getBooks();
+      this.getServerBook();
     }
   }
 
-  getCategories() {
+  getServerCategories() {
     this.categoryService.getCategories()
       .subscribe((categories: Category[]) => {
         this.categories = categories;
+        this.categoryService.categories = this.categories;
       }, (err) => {
         console.log(err);
       });
@@ -120,9 +155,20 @@ export class BooksComponent implements OnInit {
           if (bookPage.next === null) {
             this.lastPage = true;
           }
+          this.saveBooks();
           this.isLoad = false;
         });
     }
+  }
+
+  saveBooks() {
+    this.bookService.books = this.books;
+    this.bookService.lastPage = this.lastPage;
+    this.bookService.page = this.page;
+  }
+
+  scrollPosition() {
+    this.bookService.booksListScroll = this.booksList.nativeElement.scrollTop;
   }
 
 }
