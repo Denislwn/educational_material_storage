@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user.model';
+import {StoreService} from '../../shared/services/store.service';
 
 @Component({
   selector: 'app-user-info',
@@ -10,7 +11,8 @@ import {User} from '../../shared/models/user.model';
 export class UserInfoComponent implements OnInit {
   user: User;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService) {
+  }
 
   ngOnInit() {
     this.getUserInfo();

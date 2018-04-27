@@ -9,6 +9,7 @@ import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import {StoreService} from '../../shared/services/store.service';
 
 @Component({
   selector: 'app-books',
@@ -27,7 +28,8 @@ export class BooksComponent implements OnInit, AfterViewInit {
 
   constructor(private bookService: BooksService,
               private activatedRoute: ActivatedRoute,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private storeService: StoreService) {
   }
 
   ngOnInit() {
@@ -38,18 +40,19 @@ export class BooksComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.scrollState) {
-      this.booksList.nativeElement.scrollTop = this.bookService.booksListScroll;
+      this.booksList.nativeElement.scrollTop = this.storeService.booksListScroll;
     }
     this.scrollState = false;
   }
 
   getBooks() {
     this.isLoad = true;
-    if (this.bookService.books) {
+    if (this.storeService.books) {
       this.getServiceBooks();
     } else {
       this.getServerBook();
     }
+    this.storeService.storeReset();
   }
 
   getCategories() {
@@ -69,7 +72,6 @@ export class BooksComponent implements OnInit, AfterViewInit {
         if (bookPage.next === null) {
           this.lastPage = true;
         }
-        this.saveBooks();
         this.isLoad = false;
       }, (err) => {
         console.log(err);
@@ -77,9 +79,9 @@ export class BooksComponent implements OnInit, AfterViewInit {
   }
 
   getServiceBooks() {
-    this.books = this.bookService.books;
-    this.page = this.bookService.page;
-    this.lastPage = this.bookService.lastPage;
+    this.books = this.storeService.books;
+    this.page = this.storeService.page;
+    this.lastPage = this.storeService.lastPage;
     this.scrollState = true;
     this.isLoad = false;
   }
@@ -157,20 +159,16 @@ export class BooksComponent implements OnInit, AfterViewInit {
           if (bookPage.next === null) {
             this.lastPage = true;
           }
-          this.saveBooks();
           this.isLoad = false;
         });
     }
   }
 
-  saveBooks() {
-    this.bookService.books = this.books;
-    this.bookService.lastPage = this.lastPage;
-    this.bookService.page = this.page;
-  }
-
-  scrollPosition() {
-    this.bookService.booksListScroll = this.booksList.nativeElement.scrollTop;
+  clickOnBook() {
+    this.storeService.books = this.books;
+    this.storeService.lastPage = this.lastPage;
+    this.storeService.page = this.page;
+    this.storeService.booksListScroll = this.booksList.nativeElement.scrollTop;
   }
 
 }
