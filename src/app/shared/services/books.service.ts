@@ -4,14 +4,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {BookPage} from '../models/book/book-page.model';
 import {NewBook} from '../models/book/new-book.model';
-import {Book} from '../models/book/book.model';
 
 @Injectable()
 export class BooksService extends BaseApi {
-  books: Book[];
-  lastPage: boolean;
-  page: number;
-  booksListScroll: number;
 
   constructor(public http: HttpClient) {
     super(http);

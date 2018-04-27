@@ -12,8 +12,16 @@ export class SystemComponent implements OnInit {
   ngOnInit() {
   }
 
+  phoneMenu() {
+    let arr = document.getElementsByTagName('li');
+    console.log(arr[0]);
+    for (let i = 0; i < arr.length; i++) {
+      arr[i].className += ' menu-class';
+    }
+  }
+
   logOut() {
-    localStorage.removeItem('token');
+    localStorage.clear();
   }
 
 }

@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user.model';
 import {Router} from '@angular/router';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-registration',
@@ -10,6 +11,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  login$ = new Subject();
+  loginValid: true;
 
   constructor(private usersService: UsersService,
               private router: Router) {

@@ -1,3 +1,21 @@
 .active-link {
-  background-color: blue!important;
+  background-color: blue !important;
+}
+
+.nav-phone-button {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .nav-phone-button {
+    display: block;
+  }
+
+  ul li {
+    display: none;
+  }
+}
+
+.menu-class {
+  display: block!important;
 }
