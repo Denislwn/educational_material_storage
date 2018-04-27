@@ -22,6 +22,7 @@ export class AddBookComponent implements OnInit {
   fileInputValue = 'Выберите файл';
   fileValid = false;
   categoriesValid = true;
+  isRequest = false;
 
   constructor(private categoryService: CategoryService,
               private bookService: BooksService,
@@ -42,6 +43,7 @@ export class AddBookComponent implements OnInit {
   }
 
   submitForm(form: NgForm) {
+    this.isRequest = true;
     const name = form.form.value.bookName;
     const author = form.form.value.author;
     const newBook = new NewBook(name, author, this.file, this.categoriesList);
@@ -51,6 +53,8 @@ export class AddBookComponent implements OnInit {
         this.router.navigate([`/system/books/${book.id}`]);
       }, (err) => {
         console.log(err);
+      }, () => {
+        this.isRequest = true;
       });
   }
 

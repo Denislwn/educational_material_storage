@@ -10,6 +10,7 @@ import {StoreService} from '../../shared/services/store.service';
 })
 export class UserInfoComponent implements OnInit {
   user: User;
+  lastPage = false;
 
   constructor(private usersService: UsersService) {
   }

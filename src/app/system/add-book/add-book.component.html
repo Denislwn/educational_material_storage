@@ -53,9 +53,10 @@
     </div>
     <div class="col-sm-12 text-right">
       <button type="submit"
-              [disabled]="!myForm.valid||!fileValid||!categoriesValid"
+              [disabled]="!myForm.valid||!fileValid||!categoriesValid||isRequest"
               class="btn btn-primary btn-lg">Добавить книгу
       </button>
+      <app-preloader *ngIf="isRequest"></app-preloader>
     </div>
   </form>
 </div>

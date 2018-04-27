@@ -30,8 +30,10 @@
         <app-book [book]="book"
                   (clickOnBook)="clickOnBook()"></app-book>
       </div>
-      <app-preloader [class.pre-loader-container]="books.length===0"
-                     *ngIf="!lastPage"></app-preloader>
+      <div [class.pre-loader-container]="books.length===0"
+           *ngIf="!lastPage">
+        <app-preloader></app-preloader>
+      </div>
     </div>
   </div>
 </div>
