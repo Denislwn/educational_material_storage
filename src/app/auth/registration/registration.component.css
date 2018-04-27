@@ -1,0 +1,45 @@
+form {
+  max-width: 470px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.my-fade {
+  background-color: #969992;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media (min-width: 768px) {
+  form {
+    top: calc(50% - 210px);
+  }
+}
+
+@media (max-width: 768px) {
+  form {
+    height: 100%;
+    overflow: auto;
+    border-radius: 0;
+  }
+}
+
+.form-group {
+  margin-top: 15px;
+}
+
+.header {
+  margin-top: 10px;
+}
+
+.btn {
+  margin-bottom: 15px;
+}
