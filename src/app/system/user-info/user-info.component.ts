@@ -20,6 +20,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   getUserInfo() {
+    console.log(localStorage.getItem('userId'));
     this.usersService.getUserInfo(localStorage.getItem('userId'))
       .subscribe((user: User) => {
         this.user = user;

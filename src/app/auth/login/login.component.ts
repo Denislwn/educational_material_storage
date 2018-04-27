@@ -25,6 +25,7 @@ export class LoginComponent {
     };
     this.subOnUserLogin = this.usersService.userLogin(userServer)
       .subscribe((user: User) => {
+        console.log(user);
         localStorage.setItem('token', user.token);
         localStorage.setItem('userId', user.id.toString());
         localStorage.setItem('userRole', user.role.toString());
