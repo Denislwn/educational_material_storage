@@ -29,11 +29,11 @@
     <div class="form-group row">
       <div class="col-sm-12 text-right">
         <span class="text-left" *ngIf="errorLogin">Неверный логин или пароль</span>
-        <button routerLink="/registration"
-                class="btn btn-primary pull-right">Регистрация</button>
         <button type="submit"
                 [disabled]="!myForm.valid"
                 class="btn btn-primary pull-right">Войти</button>
+        <button routerLink="/registration"
+                class="btn btn-primary pull-right">Регистрация</button>
       </div>
     </div>
   </form>

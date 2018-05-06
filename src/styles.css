@@ -14,8 +14,8 @@
 }
 
 .page-without-navbar {
-  margin-top: 56px;
-  padding: 0 15px;
+  padding-top: 56px;
+  min-height: 100vh;
 }
 
 .important-text {

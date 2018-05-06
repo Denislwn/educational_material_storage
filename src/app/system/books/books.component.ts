@@ -21,6 +21,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   categories: Category[];
   termBook$ = new Subject<string>();
   page: number;
+  isPhone = false;
   isLoad: boolean;
   lastPage: boolean;
   scrollState = false;
@@ -33,6 +34,9 @@ export class BooksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    if (this.booksList.nativeElement.clientWidth < 768) {
+      this.isPhone = true;
+    }
     this.getBooks();
     this.getCategories();
     this.subOnInputSearchField();

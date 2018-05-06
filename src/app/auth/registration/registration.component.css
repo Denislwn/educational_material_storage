@@ -10,7 +10,7 @@ form {
 }
 
 .my-fade {
-  background-color: #969992;
+  background: url("../../../assets/images/background.png");
   width: 100%;
   height: 100%;
   position: fixed;
