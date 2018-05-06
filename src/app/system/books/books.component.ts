@@ -44,7 +44,11 @@ export class BooksComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.scrollState) {
-      this.booksList.nativeElement.scrollTop = this.storeService.booksListScroll;
+      if (!this.isPhone) {
+        this.booksList.nativeElement.scrollTop = this.storeService.booksListScroll;
+      } else {
+        document.getElementsByTagName('html')[0].scrollTop = this.storeService.booksListScroll;
+      }
     }
     this.scrollState = false;
   }
@@ -172,7 +176,10 @@ export class BooksComponent implements OnInit, AfterViewInit {
     this.storeService.books = this.books;
     this.storeService.lastPage = this.lastPage;
     this.storeService.page = this.page;
-    this.storeService.booksListScroll = this.booksList.nativeElement.scrollTop;
+    if (!this.isPhone) {
+      this.storeService.booksListScroll = this.booksList.nativeElement.scrollTop;
+    } else {
+      this.storeService.booksListScroll = document.getElementsByTagName('html')[0].scrollTop;
+    }
   }
-
 }
