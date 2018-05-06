@@ -11,6 +11,10 @@
   margin: 20px 15px;
 }
 
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: 'Просмотр';
+}
+
 .btn {
   margin: 50px 0;
 }

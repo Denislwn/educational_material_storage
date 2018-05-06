@@ -1,87 +1,87 @@
-<div class="my-fade">
-  <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
-    <h4 class="text-center header">Регистрация</h4>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Логин:</label>
-      <div class="col-sm-10">
-        <input type="text"
-               placeholder="Введите логин"
-               class="form-control"
-               ngModel
-               name="username"
-               #username="ngModel"
-               required>
-      </div>
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+  <h4 class="text-center header">Регистрация</h4>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Логин:</label>
+    <div class="col-sm-10">
+      <input type="text"
+             placeholder="Введите логин"
+             class="form-control"
+             ngModel
+             name="username"
+             #username="ngModel"
+             required>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Имя:</label>
-      <div class="col-sm-10">
-        <input type="text"
-               placeholder="Введите имя"
-               class="form-control"
-               ngModel
-               name="firstName"
-               #firstName="ngModel"
-               required>
-      </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Имя:</label>
+    <div class="col-sm-10">
+      <input type="text"
+             placeholder="Введите имя"
+             class="form-control"
+             ngModel
+             name="firstName"
+             #firstName="ngModel"
+             required>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Фамилия:</label>
-      <div class="col-sm-10">
-        <input type="text"
-               placeholder="Введите фамлию"
-               class="form-control"
-               ngModel
-               name="lastName"
-               #lastName="ngModel"
-               required>
-      </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Фамилия:</label>
+    <div class="col-sm-10">
+      <input type="text"
+             placeholder="Введите фамлию"
+             class="form-control"
+             ngModel
+             name="lastName"
+             #lastName="ngModel"
+             required>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Пароль:</label>
-      <div class="col-sm-10">
-        <input type="password"
-               placeholder="Введите пароль"
-               class="form-control"
-               ngModel
-               name="password"
-               #password="ngModel"
-               required>
-      </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Пароль:</label>
+    <div class="col-sm-10">
+      <input type="password"
+             placeholder="Введите пароль"
+             class="form-control"
+             ngModel
+             name="password"
+             #password="ngModel"
+             required>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">E-mail:</label>
-      <div class="col-sm-10">
-        <input type="email"
-               placeholder="Введите e-mail"
-               class="form-control"
-               ngModel
-               name="email"
-               #email="ngModel"
-               required>
-      </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">E-mail:</label>
+    <div class="col-sm-10">
+      <input type="email"
+             placeholder="Введите e-mail"
+             class="form-control"
+             ngModel
+             name="email"
+             #email="ngModel"
+             required>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Роль:</label>
-      <div class="col-sm-10">
-        <select name="role"
-                ngModel
-                required
-                #select="ngModel">
-          <option value="0">Преподаватель</option>
-          <option value="1">Студент</option>
-          <option value="2">Админ</option>
-        </select>
-      </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Роль:</label>
+    <div class="col-sm-10">
+      <select name="role"
+              ngModel
+              required
+              #select="ngModel">
+        <option value="0">Преподаватель</option>
+        <option value="1">Студент</option>
+        <option value="2">Админ</option>
+      </select>
     </div>
-    <div class="form-group row">
-      <div class="col-sm-12 text-right">
-        <button routerLink="/login"
-                class="btn btn-primary pull-right">Авторизация</button>
-        <button type="submit"
-                [disabled]="!myForm.valid"
-                class="btn btn-primary pull-right">Зарегистрироваться</button>
-      </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12 text-right">
+      <button routerLink="/login"
+              class="btn btn-primary pull-right">Авторизация
+      </button>
+      <button type="submit"
+              [disabled]="!myForm.valid"
+              class="btn btn-primary pull-right">Зарегистрироваться
+      </button>
     </div>
-  </form>
-</div>
+  </div>
+</form>

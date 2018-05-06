@@ -9,15 +9,6 @@ form {
   background-color: #fff;
 }
 
-.my-fade {
-  background: url("../../../assets/images/background.png");
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 @media (min-width: 768px) {
   form {
     top: calc(50% - 107px);

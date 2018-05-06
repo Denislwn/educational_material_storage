@@ -3,7 +3,6 @@ import {Observable} from 'rxjs/Observable';
 
 export class BaseApi {
   private url = 'http://46.229.213.200/api/';
-  headers = new HttpHeaders().set('Authorization', 'token ' + this.token());
 
   constructor(public http: HttpClient) {
   }
@@ -15,7 +14,7 @@ export class BaseApi {
   get(url: string): Observable<any> {
     return this.http.get(
       this.getUrl(url), {
-        headers: this.headers
+        headers: new HttpHeaders().set('Authorization', 'token ' + this.token())
       });
   }
 
@@ -23,14 +22,16 @@ export class BaseApi {
     return this.http.post(
       this.getUrl(url),
       data,
-      {headers: this.headers}
+      {headers: new HttpHeaders().set('Authorization', 'token ' + this.token())
+      }
     );
   }
 
   delete(url: string): Observable<any> {
     return this.http.delete(
       this.getUrl(url),
-      {headers: this.headers}
+      {headers: new HttpHeaders().set('Authorization', 'token ' + this.token())
+      }
     );
   }
 
