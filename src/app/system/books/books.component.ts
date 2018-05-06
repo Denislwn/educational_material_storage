@@ -34,8 +34,10 @@ export class BooksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    if (this.booksList.nativeElement.clientWidth < 768) {
+    if (document.getElementsByTagName('html')[0].clientWidth < 768) {
       this.isPhone = true;
+    } else {
+      this.isPhone = false;
     }
     this.getBooks();
     this.getCategories();
