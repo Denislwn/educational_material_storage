@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user.model';
-import {StoreService} from '../../shared/services/store.service';
 
 @Component({
   selector: 'app-user-info',
@@ -20,7 +19,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   getUserInfo() {
-    console.log(localStorage.getItem('userId'));
     this.usersService.getUserInfo(localStorage.getItem('userId'))
       .subscribe((user: User) => {
         this.user = user;

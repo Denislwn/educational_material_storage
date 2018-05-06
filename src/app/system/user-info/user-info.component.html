@@ -4,9 +4,12 @@
     <div>{{user?.last_name}} {{user?.first_name}}</div>
     <div>{{user?.email}}</div>
     <div>{{user?.role | userRole}}</div>
-    <div class="important-text">Мои книги:</div>
-    <div *ngFor="let book of user?.books">
-      <app-book [book]="book"></app-book>
+    <span class="important-text">Мои книги:</span>
+    <div class="row">
+      <div *ngFor="let book of user?.books"
+           class="col-12 col-sm-6">
+        <app-book [book]="book"></app-book>
+      </div>
     </div>
     <div [class.pre-loader-container]="!user"
          *ngIf="!lastPage">

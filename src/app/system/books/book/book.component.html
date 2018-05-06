@@ -1,11 +1,19 @@
-<br>
-<div routerLink="{{book.id}}" (click)="bookClick()" class="hover-element">
-  <div>Название книги: {{book?.name}}</div>
-  <div>Автор: {{book?.author}}</div>
-  <div>Дата добавления: {{book?.auto_date | dateFormat}}</div>
-  <div>Категории:
-    <div *ngFor="let category of book?.categories">
-      <div>{{category.name}}</div>
+<div routerLink="{{book.id}}"
+     (click)="bookClick()"
+     class="col-sm-12 hover-element book-container">
+  <div class="row">
+    <div class="col-5 col-sm-5 align-self-center">
+      <img class="book-img" src="../../../../assets/images/presentation.png">
+    </div>
+    <div class="col-7 col-sm-7">
+      <h5>{{book?.name}}</h5>
+      <div class="book-author">{{book?.author}}</div>
+      <div>Категории:
+        <span *ngFor="let category of book?.categories">
+          <span class="book-category">{{category.name}}</span>
+        </span>
+      </div>
+      <div class="book-date">Добавлено: {{book?.auto_date | dateFormat}}</div>
     </div>
   </div>
 </div>

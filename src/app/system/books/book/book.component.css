@@ -1,7 +1,32 @@
-.hover-element {
-  padding-left: 10px;
+.book-container {
+  border-radius: 3px;
+  background: #F4E9CB;
+  position: relative;
+  border: 2px solid #fff;
+  background-size: cover;
+  min-height: 100px;
+  margin-bottom: 20px;
 }
 
-.hover-element:hover {
-  background-color: #969992;
+.book-container:hover {
+  background-color: #F0E0B6;
+}
+
+.book-author {
+  font-size: 14px;
+}
+
+.book-category {
+  font-size: 12px;
+  border-bottom: 1px dotted;
+}
+
+.book-img {
+  padding: 10px;
+  max-height: 200px;
+  width: 100%;
+}
+
+.book-date {
+  font-size: 12px;
 }

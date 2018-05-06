@@ -21,6 +21,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   categories: Category[];
   termBook$ = new Subject<string>();
   page: number;
+  isPhone = false;
   isLoad: boolean;
   lastPage: boolean;
   scrollState = false;
@@ -33,6 +34,11 @@ export class BooksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    if (document.getElementsByTagName('html')[0].clientWidth < 768) {
+      this.isPhone = true;
+    } else {
+      this.isPhone = false;
+    }
     this.getBooks();
     this.getCategories();
     this.subOnInputSearchField();
@@ -40,7 +46,11 @@ export class BooksComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.scrollState) {
-      this.booksList.nativeElement.scrollTop = this.storeService.booksListScroll;
+      if (!this.isPhone) {
+        this.booksList.nativeElement.scrollTop = this.storeService.booksListScroll;
+      } else {
+        document.getElementsByTagName('html')[0].scrollTop = this.storeService.booksListScroll;
+      }
     }
     this.scrollState = false;
   }
@@ -168,7 +178,10 @@ export class BooksComponent implements OnInit, AfterViewInit {
     this.storeService.books = this.books;
     this.storeService.lastPage = this.lastPage;
     this.storeService.page = this.page;
-    this.storeService.booksListScroll = this.booksList.nativeElement.scrollTop;
+    if (!this.isPhone) {
+      this.storeService.booksListScroll = this.booksList.nativeElement.scrollTop;
+    } else {
+      this.storeService.booksListScroll = document.getElementsByTagName('html')[0].scrollTop;
+    }
   }
-
 }

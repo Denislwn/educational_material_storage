@@ -1,4 +1,4 @@
-<div class="page-without-navbar">
+<div class="col-sm-12 page-without-navbar">
   <form #myForm="ngForm" (ngSubmit)="addCategory()">
     <div class="row add-category-container">
       <input class="form-control add-input"
@@ -12,12 +12,10 @@
       </button>
     </div>
   </form>
-  <span class="important-text">Список категорий:</span>
-  <div>
+  <div class="categories-list">
+    <span class="important-text">Список категорий:</span>
     <div *ngFor="let cateory of categories">
       <div>{{cateory?.name}}</div>
     </div>
-    <!--<app-preloader [class.pre-loader-container]="categories.length===0"-->
-    <!--*ngIf="!lastPage"></app-preloader>-->
   </div>
 </div>

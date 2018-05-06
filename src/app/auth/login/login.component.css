@@ -9,15 +9,6 @@ form {
   background-color: #fff;
 }
 
-.my-fade {
-  background-color: #969992;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 @media (min-width: 768px) {
   form {
     top: calc(50% - 107px);
@@ -26,7 +17,9 @@ form {
 
 @media (max-width: 768px) {
   form {
-    top: calc(50% - 220px);
+    height: 100%;
+    overflow: auto;
+    border-radius: 0;
   }
 }
 

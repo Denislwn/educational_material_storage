@@ -1,25 +1,33 @@
-<div>
-  <nav class="navbar fixed-top navbar-dark bg-primary">
-    <div class="nav-phone-button" (click)="phoneMenu()">Телефон</div>
-    <ul class="nav nav-pills">
+<div #appPage class="app-page">
+  <nav class="col-sm-12 navbar fixed-top navbar-dark bg-primary">
+    <span class="col-sm-12">
+      <img src="../../assets/images/phone-menu.png"
+           class="nav-phone-button"
+           (click)="phoneMenu()">
+    </span>
+    <ul #navList class="col-sm-12 nav nav-pills">
       <li class="nav-item">
         <a class="nav-link active"
            routerLink="user_info"
+           (click)="clickMenuElement()"
            routerLinkActive="active-link">Мой профиль</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active"
            routerLink="add_book"
+           (click)="clickMenuElement()"
            routerLinkActive="active-link">Добавить книгу</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link active"
            routerLink="books"
+           (click)="clickMenuElement()"
            routerLinkActive="active-link">Все книги</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link active"
            routerLink="add_category"
+           (click)="clickMenuElement()"
            routerLinkActive="active-link">Добавить категорию</a>
       </li>
       <li class="nav-item">

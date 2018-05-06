@@ -1,5 +1,5 @@
 <div class="row page-without-navbar">
-  <div class="col-sm-2">
+  <div class="col-12 col-md-3">
     <div class="categories-list">
       <span class="important-text">Категории</span>
       <form #checkBoxForm="ngForm">
@@ -13,11 +13,11 @@
     </div>
   </div>
   <div #booksList
-       class="col-sm-10 books-list"
+       class="col 12 col-md-9 books-container"
        infiniteScroll
        [infiniteScrollDistance]="0.1"
        [infiniteScrollThrottle]="200"
-       [scrollWindow]="false"
+       [scrollWindow]="isPhone"
        (scrolled)="onScroll()">
     <div class="col-sm-12 search-container">
       <input type="text"
@@ -25,15 +25,15 @@
              class="form-control input-search col-sm-7"
              (input)="termBook$.next($event.target.value)">
     </div>
-    <div>
-      <div *ngFor="let book of books">
+    <div class="row books-list">
+      <div *ngFor="let book of books" class="col-12 col-sm-6">
         <app-book [book]="book"
                   (clickOnBook)="clickOnBook()"></app-book>
       </div>
-      <div [class.pre-loader-container]="books.length===0"
-           *ngIf="!lastPage">
-        <app-preloader></app-preloader>
-      </div>
+    </div>
+    <div [class.pre-loader-container]="books.length===0"
+         *ngIf="!lastPage">
+      <app-preloader></app-preloader>
     </div>
   </div>
 </div>
