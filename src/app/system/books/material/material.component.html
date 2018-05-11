@@ -1,4 +1,4 @@
-<div routerLink="{{book.id}}"
+<div routerLink="{{material.id}}"
      (click)="bookClick()"
      class="col-sm-12 hover-element book-container">
   <div class="row">
@@ -6,14 +6,14 @@
       <img class="book-img" src="../../../../assets/images/presentation.png">
     </div>
     <div class="col-7 col-sm-7">
-      <h5>{{book?.name}}</h5>
-      <div class="book-author">{{book?.author}}</div>
+      <h5>{{material?.name}}</h5>
+      <div class="book-author">{{material?.author}}</div>
       <div>Категории:
-        <span *ngFor="let category of book?.categories">
+        <span *ngFor="let category of material?.categories">
           <span class="book-category">{{category.name}}</span>
         </span>
       </div>
-      <div class="book-date">Добавлено: {{book?.auto_date | dateFormat}}</div>
+      <div class="book-date">Добавлено: {{material?.auto_date | dateFormat}}</div>
     </div>
   </div>
 </div>

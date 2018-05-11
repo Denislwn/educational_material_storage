@@ -1,8 +1,8 @@
-import {Book} from './book.model';
+import {Material} from './material.model';
 
 export class BookPage {
   count: number;
   next: string;
   previous: string;
-  results: Book[];
+  results: Material[];
 }

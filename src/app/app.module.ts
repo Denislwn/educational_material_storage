@@ -9,7 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {UsersService} from './shared/services/users.service';
 import {SystemModule} from './system/system.module';
 import {CategoryService} from './shared/services/category.service';
-import {BooksService} from './shared/services/books.service';
+import {MaterialsService} from './shared/services/materials.service';
 import {StoreService} from './shared/services/store.service';
 
 
@@ -27,7 +27,7 @@ import {StoreService} from './shared/services/store.service';
   providers: [
     UsersService,
     CategoryService,
-    BooksService,
+    MaterialsService,
     StoreService
   ],
   bootstrap: [AppComponent]

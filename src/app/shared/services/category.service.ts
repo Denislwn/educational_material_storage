@@ -21,7 +21,7 @@ export class CategoryService extends BaseApi {
     return this.get(`categories/`);
   }
 
-  getFilterBooksByCategories(categories: string): Observable<BookPage> {
+  getFilterMaterialsByCategories(categories: string): Observable<BookPage> {
     return this.get(`books/?${categories}`);
   }
 }

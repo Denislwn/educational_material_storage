@@ -1,14 +1,15 @@
 import {User} from '../user.model';
 import {Category} from '../category/category.model';
 
-export class Book {
+export class Material {
   id: number;
-  owner: User;
-  categories: Category[];
-  file: string;
   auto_date: string;
+  owner: User;
   name: string;
   author: string;
+  file: string;
+  type: number;
   deleted: boolean;
+  categories: Category[];
   elected: boolean;
 }

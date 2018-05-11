@@ -12,7 +12,7 @@
       </form>
     </div>
   </div>
-  <div #booksList
+  <div #materialsList
        class="col 12 col-md-9 books-container"
        infiniteScroll
        [infiniteScrollDistance]="0.1"
@@ -23,15 +23,15 @@
       <input type="text"
              placeholder="Поиск..."
              class="form-control input-search col-sm-7"
-             (input)="termBook$.next($event.target.value)">
+             (input)="termMaterial$.next($event.target.value)">
     </div>
     <div class="row books-list">
-      <div *ngFor="let book of books" class="col-12 col-sm-6">
-        <app-book [book]="book"
-                  (clickOnBook)="clickOnBook()"></app-book>
+      <div *ngFor="let material of materials" class="col-12 col-sm-6">
+        <app-material [material]="material"
+                      (clickOnBook)="clickOnMaterial()"></app-material>
       </div>
     </div>
-    <div [class.pre-loader-container]="books.length===0"
+    <div [class.pre-loader-container]="materials.length===0"
          *ngIf="!lastPage">
       <app-preloader></app-preloader>
     </div>

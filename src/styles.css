@@ -59,3 +59,8 @@
 .arrow-back-container:focus {
   outline: none;
 }
+
+.required-area-dialog::after {
+  color: red;
+  content: ' *';
+}

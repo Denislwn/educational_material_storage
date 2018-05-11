@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Book} from '../models/book/book.model';
+import {Material} from '../models/book/material.model';
 
 @Injectable()
 export class StoreService {
-  books: Book[];
-  userBooks: Book[];
+  materials: Material[];
+  userMaterials: Material[];
   lastPage: boolean;
   page: number;
-  booksListScroll: number;
+  materialsListScroll: number;
 
   storeReset() {
-    this.books = null;
+    this.materials = null;
     this.lastPage = null;
     this.page = null;
   }

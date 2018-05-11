@@ -16,11 +16,19 @@ export class UsersService extends BaseApi {
     return this.http.post(this.baseUrl + 'login/', user);
   }
 
-  createUser(user: Object): Observable<Object> {
-    return this.http.post(this.baseUrl + 'users/', user);
+  registrationUser(user: Object): Observable<Object> {
+    return this.http.post(this.baseUrl + 'registration/', user);
   }
 
-  getUserInfo(userId: string): Observable<User> {
+  getUserInfo(userId: string): Observable<Object> {
     return this.get(`users/${userId}/`);
+  }
+
+  checkUserLogin(data: Object): Observable<Object> {
+    return this.post(`users/check_username/`, data);
+  }
+
+  checkUserEmail(data: Object): Observable<Object> {
+    return this.post(`users/check_email/`, data);
   }
 }

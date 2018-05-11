@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {Book} from '../../../shared/models/book/book.model';
-import {BooksService} from '../../../shared/services/books.service';
+import {Material} from '../../../shared/models/book/material.model';
+import {MaterialsService} from '../../../shared/services/materials.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.css']
+  selector: 'app-material-detail',
+  templateUrl: './material-detail.component.html',
+  styleUrls: ['./material-detail.component.css']
 })
-export class BookDetailComponent implements OnInit {
-  book: Book;
+export class MaterialDetailComponent implements OnInit {
+  material: Material;
   electedMessage = 'Добавить в избранное';
   deleteButton = false;
   showDeleteDialog = false;
@@ -21,7 +21,7 @@ export class BookDetailComponent implements OnInit {
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
 
-  constructor(private booksService: BooksService,
+  constructor(private booksService: MaterialsService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -33,11 +33,11 @@ export class BookDetailComponent implements OnInit {
     this.activatedRoute.params
       .subscribe((params) => {
         this.getBackUrl();
-        this.booksService.getBookById(params['book_id'])
-          .subscribe((book: Book) => {
-            this.book = book;
+        this.booksService.getMaterialById(params['book_id'])
+          .subscribe((book: Material) => {
+            this.material = book;
             this.checkUserRights();
-            if (this.book.elected) {
+            if (this.material.elected) {
               this.electedMessage = 'Убрать из избранного';
             }
           });
@@ -55,7 +55,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   toElectedButton() {
-    if (this.book.elected) {
+    if (this.material.elected) {
       this.fromElected();
     } else {
       this.toElected();
@@ -63,9 +63,9 @@ export class BookDetailComponent implements OnInit {
   }
 
   toElected() {
-    this.subOnToElected = this.booksService.addToFavorites(this.book.id)
+    this.subOnToElected = this.booksService.addToFavorites(this.material.id)
       .subscribe((responce) => {
-        this.book.elected = true;
+        this.material.elected = true;
         this.electedMessage = 'Убрать из избранного';
       }, (err) => {
         console.log(err);
@@ -75,9 +75,9 @@ export class BookDetailComponent implements OnInit {
   }
 
   fromElected() {
-    this.subOnFromElected = this.booksService.removeFromFavorites(this.book.id)
+    this.subOnFromElected = this.booksService.removeFromFavorites(this.material.id)
       .subscribe((responce) => {
-        this.book.elected = false;
+        this.material.elected = false;
         this.electedMessage = 'Добавить в избранное';
       }, (err) => {
         console.log(err);
@@ -87,13 +87,13 @@ export class BookDetailComponent implements OnInit {
   }
 
   openDeleteDialog() {
-    const message = `книгу "${this.book.name}"`;
+    const message = `книгу "${this.material.name}"`;
     this.deleteObj = {title: 'книги', message: message};
     this.showDeleteDialog = true;
   }
 
   removeBook() {
-    this.subOnRemoveBook = this.booksService.removeBook(this.book.id)
+    this.subOnRemoveBook = this.booksService.removeMaterial(this.material.id)
       .subscribe(() =>  {
         alert('Книга успешно удалена!');
       }, (err) => {
@@ -106,7 +106,7 @@ export class BookDetailComponent implements OnInit {
   checkUserRights() {
     const userRole = Number(localStorage.getItem('userRole'));
     const userId = Number(localStorage.getItem('userId'));
-    if (userRole === 2 || userId === this.book.owner.id) {
+    if (userRole === 4 || userId === this.material.owner.id) {
       this.deleteButton = true;
     }
   }

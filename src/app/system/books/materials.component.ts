@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Book} from '../../shared/models/book/book.model';
-import {BooksService} from '../../shared/services/books.service';
+import {Material} from '../../shared/models/book/material.model';
+import {MaterialsService} from '../../shared/services/materials.service';
 import {BookPage} from '../../shared/models/book/book-page.model';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
@@ -12,22 +12,22 @@ import {ActivatedRoute} from '@angular/router';
 import {StoreService} from '../../shared/services/store.service';
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  selector: 'app-materials',
+  templateUrl: './materials.component.html',
+  styleUrls: ['./materials.component.css']
 })
-export class BooksComponent implements OnInit, AfterViewInit {
-  books: Book[] = [];
+export class MaterialsComponent implements OnInit, AfterViewInit {
+  materials: Material[] = [];
   categories: Category[];
-  termBook$ = new Subject<string>();
+  termMaterial$ = new Subject<string>();
   page: number;
   isPhone = false;
   isLoad: boolean;
   lastPage: boolean;
   scrollState = false;
-  @ViewChild('booksList') booksList;
+  @ViewChild('materialsList') materialsList;
 
-  constructor(private bookService: BooksService,
+  constructor(private materialsService: MaterialsService,
               private activatedRoute: ActivatedRoute,
               private categoryService: CategoryService,
               private storeService: StoreService) {
@@ -39,7 +39,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
     } else {
       this.isPhone = false;
     }
-    this.getBooks();
+    this.getMaterials();
     this.getCategories();
     this.subOnInputSearchField();
   }
@@ -47,20 +47,20 @@ export class BooksComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.scrollState) {
       if (!this.isPhone) {
-        this.booksList.nativeElement.scrollTop = this.storeService.booksListScroll;
+        this.materialsList.nativeElement.scrollTop = this.storeService.materialsListScroll;
       } else {
-        document.getElementsByTagName('html')[0].scrollTop = this.storeService.booksListScroll;
+        document.getElementsByTagName('html')[0].scrollTop = this.storeService.materialsListScroll;
       }
     }
     this.scrollState = false;
   }
 
-  getBooks() {
+  getMaterials() {
     this.isLoad = true;
-    if (this.storeService.books) {
-      this.getServiceBooks();
+    if (this.storeService.materials) {
+      this.getServiceMaterials();
     } else {
-      this.getServerBook();
+      this.getServerMaterial();
     }
     this.storeService.storeReset();
   }
@@ -73,13 +73,13 @@ export class BooksComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getServerBook() {
+  getServerMaterial() {
     this.page = 1;
     this.lastPage = false;
-    this.bookService.getBooks(this.page)
-      .subscribe((bookPage: BookPage) => {
-        this.books = bookPage.results;
-        if (bookPage.next === null) {
+    this.materialsService.getMaterials(this.page)
+      .subscribe((materials: Material[]) => {
+        this.materials = materials;
+        if (materials.length === 0) {
           this.lastPage = true;
         }
         this.isLoad = false;
@@ -88,8 +88,8 @@ export class BooksComponent implements OnInit, AfterViewInit {
       });
   }
 
-  getServiceBooks() {
-    this.books = this.storeService.books;
+  getServiceMaterials() {
+    this.materials = this.storeService.materials;
     this.page = this.storeService.page;
     this.lastPage = this.storeService.lastPage;
     this.scrollState = true;
@@ -97,7 +97,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   }
 
   subOnInputSearchField() {
-    this.termBook$
+    this.termMaterial$
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe((term) => {
@@ -110,15 +110,15 @@ export class BooksComponent implements OnInit, AfterViewInit {
       this.page = 1;
       this.isLoad = true;
       this.lastPage = false;
-      this.bookService.getFilterBooks(text)
+      this.materialsService.getFilterMaterials(text)
         .subscribe((bookPage) => {
-          this.books = bookPage.results;
+          this.materials = bookPage.results;
           if (bookPage.next === null) {
             this.lastPage = true;
           }
         });
     } else {
-      this.getServerBook();
+      this.getServerMaterial();
     }
   }
 
@@ -145,9 +145,9 @@ export class BooksComponent implements OnInit, AfterViewInit {
     }
     this.isLoad = true;
     this.page = 1;
-    this.categoryService.getFilterBooksByCategories(searchCategories)
+    this.categoryService.getFilterMaterialsByCategories(searchCategories)
       .subscribe((bookPage: BookPage) => {
-        this.books = bookPage.results;
+        this.materials = bookPage.results;
         if (bookPage.next === null) {
           this.lastPage = true;
         }
@@ -156,17 +156,17 @@ export class BooksComponent implements OnInit, AfterViewInit {
   }
 
   onScroll() {
-    this.getNextBookPage();
+    this.getNextMaterialPage();
   }
 
-  getNextBookPage() {
+  getNextMaterialPage() {
     if (!this.isLoad && !this.lastPage) {
       this.isLoad = true;
       this.page += 1;
-      this.bookService.getBooks(this.page)
-        .subscribe((bookPage: BookPage) => {
-          this.books = this.books.concat(bookPage.results);
-          if (bookPage.next === null) {
+      this.materialsService.getMaterials(this.page)
+        .subscribe((materials: Material[]) => {
+          this.materials = this.materials.concat(materials);
+          if (materials.length === 0) {
             this.lastPage = true;
           }
           this.isLoad = false;
@@ -174,14 +174,14 @@ export class BooksComponent implements OnInit, AfterViewInit {
     }
   }
 
-  clickOnBook() {
-    this.storeService.books = this.books;
+  clickOnMaterial() {
+    this.storeService.materials = this.materials;
     this.storeService.lastPage = this.lastPage;
     this.storeService.page = this.page;
     if (!this.isPhone) {
-      this.storeService.booksListScroll = this.booksList.nativeElement.scrollTop;
+      this.storeService.materialsListScroll = this.materialsList.nativeElement.scrollTop;
     } else {
-      this.storeService.booksListScroll = document.getElementsByTagName('html')[0].scrollTop;
+      this.storeService.materialsListScroll = document.getElementsByTagName('html')[0].scrollTop;
     }
   }
 }

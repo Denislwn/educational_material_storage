@@ -9,13 +9,13 @@ form {
   background-color: #fff;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   form {
     top: calc(50% - 107px);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   form {
     height: 100%;
     overflow: auto;
