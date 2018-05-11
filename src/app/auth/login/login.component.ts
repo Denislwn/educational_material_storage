@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UsersService} from '../../shared/services/users.service';
-import {User} from '../../shared/models/user.model';
+import {User} from '../../shared/models/user/user.model';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 

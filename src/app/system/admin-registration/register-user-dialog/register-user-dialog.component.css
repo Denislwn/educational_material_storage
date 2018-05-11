@@ -1,0 +1,4 @@
+.modal-show {
+  top: calc(50vh - 155px);
+  left: calc(50vw - 223px);
+}

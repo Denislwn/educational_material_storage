@@ -1,0 +1,20 @@
+<div class="page-without-navbar">
+  <div class="col-12">
+    <h4>Пользователи, ожидающие подтверждения регистрации</h4>
+    <div *ngFor="let user of users; let i = index">
+      <div class="user-card">
+        <div>{{user.username}}</div>
+        <div>{{user.email}}</div>
+        <div>{{user.first_name}} {{user.last_name}}</div>
+      </div>
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="openRegisterDialog(i)">Разрешить регистрацию
+      </button>
+    </div>
+    <div *ngIf="users?.length === 0">Новых пользователей больше нет</div>
+  </div>
+</div>
+<app-register-user-dialog [(visible)]="showRegisterDialog"
+                          [user]="user"
+                          (successRegisterUser)="registerUser($event)"></app-register-user-dialog>

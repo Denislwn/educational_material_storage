@@ -46,6 +46,6 @@ export class MaterialsService extends BaseApi {
   }
 
   removeMaterial(materialId: number): Observable<Object> {
-    return this.delete(`books/${materialId.toString()}/`);
+    return this.delete(`materials/${materialId.toString()}/`);
   }
 }

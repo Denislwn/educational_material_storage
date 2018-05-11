@@ -14,6 +14,8 @@ import {UserRolePipe} from '../shared/pipes/user-role.pipe';
 import {DateFormatPipe} from '../shared/pipes/date-format.pipe';
 import {PreloaderComponent} from '../shared/components/preloader/preloader.component';
 import {DeleteDialogComponent} from '../shared/components/delete-dialog/delete-dialog.component';
+import { AdminRegistrationComponent } from './admin-registration/admin-registration.component';
+import { RegisterUserDialogComponent } from './admin-registration/register-user-dialog/register-user-dialog.component';
 
 @NgModule({
   imports: [
@@ -33,7 +35,9 @@ import {DeleteDialogComponent} from '../shared/components/delete-dialog/delete-d
     UserRolePipe,
     DateFormatPipe,
     PreloaderComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AdminRegistrationComponent,
+    RegisterUserDialogComponent
   ]
 })
 export class SystemModule {

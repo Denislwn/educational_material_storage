@@ -1,3 +1,4 @@
-.modal {
-  display: block;
+.modal-show {
+  top: calc(50vh - 116px);
+  left: calc(50vw - 250px);
 }

@@ -1,5 +1,4 @@
-<div *ngIf="visible" class="modal show overlay-dialog"
-      (click)="close()">
+<div *ngIf="visible" class="modal-show">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -16,12 +15,14 @@
       <div class="modal-footer">
         <button type="button"
                 (click)="close()"
-                class="btn btn-secondary">Отмена</button>
+                class="btn btn-secondary">Отмена
+        </button>
         <button type="button"
                 (click)="removeElement()"
-                class="btn btn-primary">Удалить</button>
+                class="btn btn-primary">Удалить
+        </button>
       </div>
     </div>
   </div>
 </div>
-<div *ngIf="visible" ></div>
+<div *ngIf="visible" class="overlay-dialog" (click)="close()"></div>

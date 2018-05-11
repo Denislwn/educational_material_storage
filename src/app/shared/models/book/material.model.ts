@@ -1,4 +1,4 @@
-import {User} from '../user.model';
+import {User} from '../user/user.model';
 import {Category} from '../category/category.model';
 
 export class Material {

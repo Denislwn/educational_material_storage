@@ -6,6 +6,7 @@ import {AddMaterialComponent} from './add-material/add-material.component';
 import {MaterialsComponent} from './books/materials.component';
 import {MaterialDetailComponent} from './books/material-detail/material-detail.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
+import {AdminRegistrationComponent} from './admin-registration/admin-registration.component';
 
 const routes: Routes = [
     {
@@ -15,7 +16,8 @@ const routes: Routes = [
         {path: 'add_book', component: AddMaterialComponent},
         {path: 'add_category', component: AddCategoryComponent},
         {path: 'books', component: MaterialsComponent},
-        {path: 'books/:book_id', component: MaterialDetailComponent}
+        {path: 'books/:book_id', component: MaterialDetailComponent},
+        {path: 'admin_registration', component: AdminRegistrationComponent}
       ]
     }
   ];

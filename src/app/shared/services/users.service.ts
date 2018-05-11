@@ -1,8 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {User} from '../models/user.model';
 import {BaseApi} from '../base/base-api';
+import {UserPage} from '../models/user/user-page.model';
+import {User} from '../models/user/user.model';
 
 @Injectable()
 export class UsersService extends BaseApi {
@@ -30,5 +31,13 @@ export class UsersService extends BaseApi {
 
   checkUserEmail(data: Object): Observable<Object> {
     return this.post(`users/check_email/`, data);
+  }
+
+  getRegistrationUsers(page: number): Observable<UserPage> {
+    return this.get(`registration/?page=${page.toString()}`);
+  }
+
+  createUser(data: Object): Observable<Object> {
+    return this.post(`users/`, data);
   }
 }
