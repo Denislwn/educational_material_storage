@@ -7,15 +7,19 @@ export class UserRolePipe implements PipeTransform {
   transform(role: number): string {
     let userRole = '';
     switch (role) {
-      case 0: {
-        userRole = 'Преподаватель';
-        break;
-      }
       case 1: {
         userRole = 'Студент';
         break;
       }
       case 2: {
+        userRole = 'Преподаватель';
+        break;
+      }
+      case 3: {
+        userRole = 'Модератор';
+        break;
+      }
+      case 4: {
         userRole = 'Админ';
         break;
       }

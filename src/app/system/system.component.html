@@ -12,23 +12,35 @@
            (click)="clickMenuElement()"
            routerLinkActive="active-link">Мой профиль</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link active"
-           routerLink="add_book"
+           routerLink="my_materials"
            (click)="clickMenuElement()"
-           routerLinkActive="active-link">Добавить книгу</a>
+           routerLinkActive="active-link">Мои книги</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link active"
-           routerLink="books"
+           routerLink="materials"
            (click)="clickMenuElement()"
            routerLinkActive="active-link">Все книги</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link active"
+           routerLink="users"
+           (click)="clickMenuElement()"
+           routerLinkActive="active-link">Пользователи</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link active"
            routerLink="add_category"
            (click)="clickMenuElement()"
-           routerLinkActive="active-link">Добавить категорию</a>
+           routerLinkActive="active-link">Категории</a>
+      </li>
+      <li *ngIf="getUserRole() === 4" class="nav-item" routerLinkActive="active">
+        <a class="nav-link active"
+           routerLink="admin_registration"
+           (click)="clickMenuElement()"
+           routerLinkActive="active-link">Админка</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active"

@@ -1,0 +1,47 @@
+<div class="row page-without-navbar">
+  <div class="col-12 col-md-3">
+    <div class="categories-list">
+      <span class="important-text">Категории</span>
+      <form #checkBoxForm="ngForm">
+        <div *ngFor="let category of categories" class="form-group form-check">
+          <input type="checkbox"
+                 class="form-check-input" [name]="category.id"
+                 id="{{category.id}}"
+                 (change)="filterByCategories(checkBoxForm)"
+                 ngModel>
+          <label class="form-check-label"
+                 for="{{category.id}}">{{category.name}}
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div #materialsList
+       class="col 12 col-md-9 books-container"
+       infiniteScroll
+       [infiniteScrollDistance]="0.1"
+       [infiniteScrollThrottle]="200"
+       [scrollWindow]="isPhone"
+       (scrolled)="onScroll()">
+    <div class="col-sm-12 search-container">
+      <div class="row">
+        <input type="text"
+               placeholder="Поиск..."
+               class="form-control input-search col-sm-7"
+               (input)="termMaterial$.next($event.target.value)">
+      </div>
+    </div>
+    <div class="row materials-list">
+      <div *ngFor="let material of materials" class="col-12 col-sm-6">
+        <app-material [material]="material"
+                      (clickOnBook)="clickOnMaterial()"></app-material>
+      </div>
+    </div>
+    <div [class.pre-loader-container]="materials.length===0"
+         *ngIf="!lastPage">
+      <app-preloader></app-preloader>
+    </div>
+  </div>
+</div>
+<div class="add-button"
+     routerLink="add_material">+</div>

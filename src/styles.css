@@ -26,6 +26,17 @@
   margin-top: calc(50vh - 136px);
 }
 
+.materials-list {
+  margin-top: 20px;
+}
+
+/*----------Модалки--------------*/
+.modal-show {
+  display: block;
+  position: fixed;
+  z-index: 1050;
+}
+
 .overlay-dialog {
   position: fixed;
   top: 0;
@@ -35,6 +46,12 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1031;
 }
+
+.modal-dialog {
+  margin: 0 !important;
+}
+
+/*-----------------------------*/
 
 .arrow-back-container {
   height: 25px;
@@ -58,4 +75,9 @@
 
 .arrow-back-container:focus {
   outline: none;
+}
+
+.required-area-dialog::after {
+  color: red;
+  content: ' *';
 }

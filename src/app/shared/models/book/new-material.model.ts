@@ -1,8 +1,10 @@
-export class NewBook {
+export class NewMaterial {
   public categories: string;
 
   constructor(public name: string,
               public author: string,
+              public type: string,
+              public is_open: string,
               public file: FileList,
               categories: string[]) {
     this.categoriesFormat(categories);

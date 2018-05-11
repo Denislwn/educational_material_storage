@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../shared/services/users.service';
-import {User} from '../../shared/models/user.model';
+import {User} from '../../shared/models/user/user.model';
+import {Material} from '../../shared/models/book/material.model';
+import {MaterialPage} from '../../shared/models/book/material-page.model';
 
 @Component({
   selector: 'app-user-info',
@@ -9,6 +11,7 @@ import {User} from '../../shared/models/user.model';
 })
 export class UserInfoComponent implements OnInit {
   user: User;
+  materials: Material[];
   lastPage = false;
 
   constructor(private usersService: UsersService) {
@@ -16,12 +19,20 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.getUserQuickToolBar();
   }
 
   getUserInfo() {
     this.usersService.getUserInfo(localStorage.getItem('userId'))
       .subscribe((user: User) => {
-        this.user = user;
+         this.user = user;
+      });
+  }
+
+  getUserQuickToolBar() {
+    this.usersService.getUserQuickToolBar()
+      .subscribe((materialPage: MaterialPage) => {
+        this.materials = materialPage.results;
       });
   }
 

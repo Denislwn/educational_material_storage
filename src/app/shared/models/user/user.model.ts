@@ -7,5 +7,4 @@ export class User {
   email: string;
   token: string;
   blocked: boolean;
-  books: Object[];
 }

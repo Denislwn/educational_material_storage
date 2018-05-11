@@ -1,19 +1,19 @@
-<div routerLink="{{book.id}}"
-     (click)="bookClick()"
+<div routerLink="{{material.id}}"
+     (click)="materialClick()"
      class="col-sm-12 hover-element book-container">
   <div class="row">
     <div class="col-5 col-sm-5 align-self-center">
       <img class="book-img" src="../../../../assets/images/presentation.png">
     </div>
     <div class="col-7 col-sm-7">
-      <h5>{{book?.name}}</h5>
-      <div class="book-author">{{book?.author}}</div>
+      <h5>{{material?.name}}</h5>
+      <div class="book-author">{{material?.author}}</div>
       <div>Категории:
-        <span *ngFor="let category of book?.categories">
+        <span *ngFor="let category of material?.categories">
           <span class="book-category">{{category.name}}</span>
         </span>
       </div>
-      <div class="book-date">Добавлено: {{book?.auto_date | dateFormat}}</div>
+      <div class="book-date">Добавлено: {{material?.auto_date | dateFormat}}</div>
     </div>
   </div>
 </div>

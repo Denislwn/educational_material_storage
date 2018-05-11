@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UsersService} from '../../shared/services/users.service';
-import {User} from '../../shared/models/user.model';
+import {User} from '../../shared/models/user/user.model';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -25,7 +25,6 @@ export class LoginComponent {
     };
     this.subOnUserLogin = this.usersService.userLogin(userServer)
       .subscribe((user: User) => {
-        console.log(user);
         localStorage.setItem('token', user.token);
         localStorage.setItem('userId', user.id.toString());
         localStorage.setItem('userRole', user.role.toString());

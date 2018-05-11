@@ -1,33 +1,38 @@
-<div *ngIf="book" class="page-without-navbar">
+<div *ngIf="material" class="page-without-navbar">
   <div class="arrow-back-container hover-element"
        routerLink="{{routeBack}}">
     <img class="arrow-back" src="assets/images/arrow-back.png"/>
     <span class="arrow-back-text">{{messageBack}}</span>
   </div>
-  <div>Название: {{book?.name}}</div>
-  <div>Автор: {{book?.author}}</div>
-  <div>Дата: {{book?.auto_date | dateFormat}}</div>
-  <div>Книгу добавил: {{book?.owner?.username}}</div>
-  <div *ngIf="book.deleted">Книга была удалена</div>
+  <div>Название: {{material?.name}}</div>
+  <div>Автор: {{material?.author}}</div>
+  <div>Дата: {{material?.auto_date | dateFormat}}</div>
+  <div>Формат: {{material?.extension}}</div>
+  <div>Книгу добавил: {{material?.owner?.username}}</div>
+  <div *ngIf="material.deleted">Книга была удалена</div>
   <div class="important-text">Категории:</div>
-  <div *ngFor="let category of book?.categories">
+  <div *ngFor="let category of material?.categories">
     <div>{{category.name}}</div>
   </div>
   <button class="btn btn-primary add-button"
           (click)="toElectedButton()">{{electedMessage}}
   </button>
   <button class="btn btn-primary add-button">
-    <a href="{{book?.file}}"
+    <a href="{{material?.file}}"
        target="_blank">Скачать</a>
   </button>
-  <button *ngIf="deleteButton&&!book.deleted"
+  <button *ngIf="deleteButton&&!material.deleted"
           class="btn btn-primary add-button"
           (click)="openDeleteDialog()">Удалить
+  </button>
+  <button *ngIf="material.elected"
+          class="btn btn-primary add-button"
+          (click)="toQuickToolbarButton()">{{quickToolBarMessage}}
   </button>
   <app-delete-dialog [(visible)]="showDeleteDialog"
                      [deleteObj]="deleteObj"
                      (remove)="removeBook()"></app-delete-dialog>
 </div>
-<div *ngIf="!book" class="pre-loader-container">
+<div *ngIf="!material" class="pre-loader-container">
   <app-preloader></app-preloader>
 </div>

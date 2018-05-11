@@ -3,6 +3,12 @@
   max-width: 620px;
 }
 
+.form-check {
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 0;
+}
+
 .custom-file-input {
   margin: 20px 0;
 }

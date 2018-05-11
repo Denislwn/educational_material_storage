@@ -6,14 +6,14 @@
     <div>{{user?.role | userRole}}</div>
     <span class="important-text">Мои книги:</span>
     <div class="row">
-      <div *ngFor="let book of user?.books"
+      <div *ngFor="let material of materials"
            class="col-12 col-sm-6">
-        <app-book [book]="book"></app-book>
+        <app-material [material]="material"></app-material>
       </div>
     </div>
-    <div [class.pre-loader-container]="!user"
-         *ngIf="!lastPage">
-      <app-preloader></app-preloader>
-    </div>
+    <!--<div [class.pre-loader-container]="!user"-->
+         <!--*ngIf="!lastPage">-->
+      <!--<app-preloader></app-preloader>-->
+    <!--</div>-->
   </div>
 </div>

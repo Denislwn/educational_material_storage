@@ -2,7 +2,7 @@ import {BaseApi} from '../base/base-api';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {BookPage} from '../models/book/book-page.model';
+import {MaterialPage} from '../models/book/material-page.model';
 import {Category} from '../models/category/category.model';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class CategoryService extends BaseApi {
     return this.get(`categories/`);
   }
 
-  getFilterBooksByCategories(categories: string): Observable<BookPage> {
+  getFilterMaterialsByCategories(categories: string): Observable<MaterialPage> {
     return this.get(`books/?${categories}`);
   }
 }

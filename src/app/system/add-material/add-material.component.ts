@@ -1,20 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
-import {Subscription} from 'rxjs/Subscription';
-import {CategoryPage} from '../../shared/models/category/category-page.model';
 import {NgForm} from '@angular/forms';
-import {NewBook} from '../../shared/models/book/new-book.model';
-import {BooksService} from '../../shared/services/books.service';
+import {NewMaterial} from '../../shared/models/book/new-material.model';
+import {MaterialsService} from '../../shared/services/materials.service';
 import {Router} from '@angular/router';
-import {Book} from '../../shared/models/book/book.model';
+import {Material} from '../../shared/models/book/material.model';
 
 @Component({
-  selector: 'app-add-book',
-  templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.css']
+  selector: 'app-add-material',
+  templateUrl: './add-material.component.html',
+  styleUrls: ['./add-material.component.css']
 })
-export class AddBookComponent implements OnInit {
+export class AddMaterialComponent implements OnInit {
   categories: Category[] = [];
   file: FileList;
   categoriesList = [];
@@ -23,9 +21,10 @@ export class AddBookComponent implements OnInit {
   fileValid = false;
   categoriesValid = true;
   isRequest = false;
+  fileTypes = ['Документ', 'Аудио', 'Видео', 'Презентация', 'Фото', 'Другое'];
 
   constructor(private categoryService: CategoryService,
-              private bookService: BooksService,
+              private bookService: MaterialsService,
               private router: Router) {
   }
 
@@ -44,13 +43,15 @@ export class AddBookComponent implements OnInit {
 
   submitForm(form: NgForm) {
     this.isRequest = true;
-    const name = form.form.value.bookName;
+    const name = form.form.value.materialName;
     const author = form.form.value.author;
-    const newBook = new NewBook(name, author, this.file, this.categoriesList);
-    this.bookService.createBook(newBook)
-      .subscribe((book: Book) => {
+    const type = form.form.value.materialType;
+    const isOpen = form.form.value.materialIsOpen.toString();
+    const newMaterial = new NewMaterial(name, author, type, isOpen, this.file, this.categoriesList);
+    this.bookService.createMaterial(newMaterial)
+      .subscribe((material: Material) => {
         this.resetForm(form);
-        this.router.navigate([`/system/books/${book.id}`]);
+        this.router.navigate([`/my_materials`]);
       }, (err) => {
         console.log(err);
       }, () => {

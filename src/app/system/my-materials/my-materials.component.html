@@ -1,0 +1,8 @@
+<div class="page-without-navbar">
+  <div class="row materials-list">
+    <div *ngFor="let material of materials"
+         class="col-12 col-sm-4">
+      <app-material [material]="material"></app-material>
+    </div>
+  </div>
+</div>

@@ -54,6 +54,10 @@ export class SystemComponent implements OnInit {
     }
   }
 
+  getUserRole() {
+    return Number(localStorage.getItem('userRole'));
+  }
+
   logOut() {
     localStorage.clear();
   }
