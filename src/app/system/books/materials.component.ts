@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Material} from '../../shared/models/book/material.model';
 import {MaterialsService} from '../../shared/services/materials.service';
-import {BookPage} from '../../shared/models/book/book-page.model';
+import {MaterialPage} from '../../shared/models/book/material-page.model';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -77,9 +77,9 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     this.page = 1;
     this.lastPage = false;
     this.materialsService.getMaterials(this.page)
-      .subscribe((materials: Material[]) => {
-        this.materials = materials;
-        if (materials.length === 0) {
+      .subscribe((materialPage: MaterialPage) => {
+        this.materials = materialPage.results;
+        if (materialPage.next_page === null) {
           this.lastPage = true;
         }
         this.isLoad = false;
@@ -111,9 +111,9 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.isLoad = true;
       this.lastPage = false;
       this.materialsService.getFilterMaterials(text)
-        .subscribe((bookPage) => {
-          this.materials = bookPage.results;
-          if (bookPage.next === null) {
+        .subscribe((materialPage: MaterialPage) => {
+          this.materials = materialPage.results;
+          if (materialPage.next_page === null) {
             this.lastPage = true;
           }
         });
@@ -146,9 +146,9 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     this.isLoad = true;
     this.page = 1;
     this.categoryService.getFilterMaterialsByCategories(searchCategories)
-      .subscribe((bookPage: BookPage) => {
-        this.materials = bookPage.results;
-        if (bookPage.next === null) {
+      .subscribe((materialPage: MaterialPage) => {
+        this.materials = materialPage.results;
+        if (materialPage.next_page === null) {
           this.lastPage = true;
         }
         this.isLoad = false;
@@ -164,9 +164,9 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.isLoad = true;
       this.page += 1;
       this.materialsService.getMaterials(this.page)
-        .subscribe((materials: Material[]) => {
-          this.materials = this.materials.concat(materials);
-          if (materials.length === 0) {
+        .subscribe((materialPage: MaterialPage) => {
+          this.materials = this.materials.concat(materialPage.results);
+          if (materialPage.next_page === null) {
             this.lastPage = true;
           }
           this.isLoad = false;

@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {BaseApi} from '../base/base-api';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {BookPage} from '../models/book/book-page.model';
+import {MaterialPage} from '../models/book/material-page.model';
 import {NewMaterial} from '../models/book/new-material.model';
-import {Material} from '../models/book/material.model';
 
 @Injectable()
 export class MaterialsService extends BaseApi {
@@ -13,7 +12,7 @@ export class MaterialsService extends BaseApi {
     super(http);
   }
 
-  getMaterials(page: number): Observable<Material[]> {
+  getMaterials(page: number): Observable<MaterialPage> {
     return this.get(`materials/?page=${page.toString()}`);
   }
 
@@ -29,11 +28,12 @@ export class MaterialsService extends BaseApi {
     formData.append('author', material.author);
     formData.append('categories', material.categories);
     formData.append('file', material.file[0]);
+    formData.append('is_open', material.is_open);
     finalData = formData;
     return this.post(`materials/`, finalData);
   }
 
-  getFilterMaterials(text: string): Observable<BookPage> {
+  getFilterMaterials(text: string): Observable<MaterialPage> {
     return this.get(`books/search/?text=${text}`);
   }
 

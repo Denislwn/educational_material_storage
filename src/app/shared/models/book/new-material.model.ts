@@ -4,6 +4,7 @@ export class NewMaterial {
   constructor(public name: string,
               public author: string,
               public type: string,
+              public is_open: string,
               public file: FileList,
               categories: string[]) {
     this.categoriesFormat(categories);

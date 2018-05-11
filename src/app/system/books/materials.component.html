@@ -3,11 +3,15 @@
     <div class="categories-list">
       <span class="important-text">Категории</span>
       <form #checkBoxForm="ngForm">
-        <div *ngFor="let category of categories">
-          <input [name]="category.id"
+        <div *ngFor="let category of categories" class="form-group form-check">
+          <input type="checkbox"
+                 class="form-check-input" [name]="category.id"
+                 id="{{category.id}}"
                  (change)="filterByCategories(checkBoxForm)"
-                 type="checkbox"
-                 ngModel>{{category.name}}
+                 ngModel>
+          <label class="form-check-label"
+                 for="{{category.id}}">{{category.name}}
+          </label>
         </div>
       </form>
     </div>

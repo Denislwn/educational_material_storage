@@ -21,6 +21,7 @@ export class AddMaterialComponent implements OnInit {
   fileValid = false;
   categoriesValid = true;
   isRequest = false;
+  fileTypes = ['Документ', 'Аудио', 'Видео', 'Презентация', 'Фото', 'Другое'];
 
   constructor(private categoryService: CategoryService,
               private bookService: MaterialsService,
@@ -45,7 +46,8 @@ export class AddMaterialComponent implements OnInit {
     const name = form.form.value.materialName;
     const author = form.form.value.author;
     const type = form.form.value.materialType;
-    const newMaterial = new NewMaterial(name, author, type, this.file, this.categoriesList);
+    const isOpen = form.form.value.materialIsOpen.toString();
+    const newMaterial = new NewMaterial(name, author, type, isOpen, this.file, this.categoriesList);
     this.bookService.createMaterial(newMaterial)
       .subscribe((material: Material) => {
         this.resetForm(form);
