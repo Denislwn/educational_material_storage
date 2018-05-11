@@ -12,6 +12,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class MaterialDetailComponent implements OnInit {
   material: Material;
   electedMessage = 'Добавить в избранное';
+  quickToolBarMessage = 'Добавить на панель быстрого доступа';
   deleteButton = false;
   showDeleteDialog = false;
   deleteObj: {title: string, message: string};
@@ -21,7 +22,7 @@ export class MaterialDetailComponent implements OnInit {
   subOnFromElected: Subscription;
   subOnRemoveBook: Subscription;
 
-  constructor(private booksService: MaterialsService,
+  constructor(private materialsService: MaterialsService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -33,20 +34,23 @@ export class MaterialDetailComponent implements OnInit {
     this.activatedRoute.params
       .subscribe((params) => {
         this.getBackUrl();
-        this.booksService.getMaterialById(params['book_id'])
+        this.materialsService.getMaterialById(params['materialId'])
           .subscribe((book: Material) => {
             this.material = book;
             this.checkUserRights();
             if (this.material.elected) {
               this.electedMessage = 'Убрать из избранного';
             }
+            if (this.material.quick_toolbar) {
+              this.quickToolBarMessage = 'Удалить из панели быстрого доступа';
+            }
           });
       });
   }
 
   getBackUrl () {
-    if (this.activatedRoute.snapshot.url[0].path === 'books') {
-      this.routeBack = '/system/books';
+    if (this.activatedRoute.snapshot.url[0].path === 'materials') {
+      this.routeBack = '/system/materials';
       this.messageBack = 'Назад к книгам';
     } else {
       this.routeBack = '/system/user_info';
@@ -63,7 +67,7 @@ export class MaterialDetailComponent implements OnInit {
   }
 
   toElected() {
-    this.subOnToElected = this.booksService.addToFavorites(this.material.id)
+    this.subOnToElected = this.materialsService.addToFavorites(this.material.id)
       .subscribe((responce) => {
         this.material.elected = true;
         this.electedMessage = 'Убрать из избранного';
@@ -75,7 +79,7 @@ export class MaterialDetailComponent implements OnInit {
   }
 
   fromElected() {
-    this.subOnFromElected = this.booksService.removeFromFavorites(this.material.id)
+    this.subOnFromElected = this.materialsService.removeFromFavorites(this.material.id)
       .subscribe((responce) => {
         this.material.elected = false;
         this.electedMessage = 'Добавить в избранное';
@@ -93,7 +97,7 @@ export class MaterialDetailComponent implements OnInit {
   }
 
   removeBook() {
-    this.subOnRemoveBook = this.booksService.removeMaterial(this.material.id)
+    this.subOnRemoveBook = this.materialsService.removeMaterial(this.material.id)
       .subscribe(() =>  {
         alert('Книга успешно удалена!');
       }, (err) => {
@@ -111,4 +115,27 @@ export class MaterialDetailComponent implements OnInit {
     }
   }
 
+  toQuickToolbarButton() {
+    if (this.material.quick_toolbar) {
+      this.removeFromQuickToolBar();
+    } else {
+      this.addToQuickToolbar();
+    }
+  }
+
+  addToQuickToolbar() {
+    this.materialsService.addToQuickToolBar(this.material.id)
+      .subscribe(() => {
+        this.material.quick_toolbar = true;
+        this.quickToolBarMessage = 'Удалить из панели быстрого доступа';
+      });
+  }
+
+  removeFromQuickToolBar() {
+    this.materialsService.removeFromQuickToolBar(this.material.id)
+      .subscribe(() => {
+        this.material.quick_toolbar = false;
+        this.quickToolBarMessage = 'Добавить на панель быстрого доступа';
+      });
+  }
 }

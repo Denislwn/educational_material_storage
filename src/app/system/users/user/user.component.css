@@ -1,0 +1,11 @@
+.user-card {
+  background-color: white;
+  margin-top: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  box-shadow: 0 0 5px 2px;
+}

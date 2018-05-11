@@ -38,11 +38,11 @@ export class MaterialsService extends BaseApi {
   }
 
   addToFavorites(materialId: number): Observable<Object> {
-    return this.post(`books/${materialId.toString()}/take/`);
+    return this.post(`materials/${materialId.toString()}/add/`);
   }
 
   removeFromFavorites(materialId: number): Observable<Object> {
-    return this.post(`books/${materialId.toString()}/remove/`);
+    return this.post(`materials/${materialId.toString()}/remove/`);
   }
 
   removeMaterial(materialId: number): Observable<Object> {
@@ -51,5 +51,13 @@ export class MaterialsService extends BaseApi {
 
   getUserMaterials(userId: string): Observable<MaterialPage> {
     return this.get(`materials/?user=${userId}`);
+  }
+
+  addToQuickToolBar(materialId: number): Observable<Object> {
+    return this.post(`materials/${materialId.toString()}/quick_toolbar/`);
+  }
+
+  removeFromQuickToolBar(materialId: number): Observable<Object> {
+    return this.post(`materials/${materialId.toString()}/remove_quick_toolbar/`);
   }
 }

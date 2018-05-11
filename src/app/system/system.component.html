@@ -26,6 +26,12 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link active"
+           routerLink="users"
+           (click)="clickMenuElement()"
+           routerLinkActive="active-link">Пользователи</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link active"
            routerLink="add_category"
            (click)="clickMenuElement()"
            routerLinkActive="active-link">Категории</a>

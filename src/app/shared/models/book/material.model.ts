@@ -9,7 +9,9 @@ export class Material {
   author: string;
   file: string;
   type: number;
+  extension: string;
   deleted: boolean;
   categories: Category[];
+  quick_toolbar: boolean;
   elected: boolean;
 }

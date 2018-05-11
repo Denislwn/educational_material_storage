@@ -8,18 +8,22 @@ import {MaterialDetailComponent} from './books/material-detail/material-detail.c
 import {AddCategoryComponent} from './add-category/add-category.component';
 import {AdminRegistrationComponent} from './admin-registration/admin-registration.component';
 import {MyMaterialsComponent} from './my-materials/my-materials.component';
+import {UsersComponent} from './users/users.component';
 
 const routes: Routes = [
     {
       path: 'system', component: SystemComponent, children: [
         {path: 'user_info', component: UserInfoComponent},
-        {path: 'user_info/:book_id', component: MaterialDetailComponent},
+        {path: 'user_info/:materialId', component: MaterialDetailComponent},
         {path: 'add_category', component: AddCategoryComponent},
         {path: 'materials', component: MaterialsComponent},
         {path: 'materials/add_material', component: AddMaterialComponent},
-        {path: 'materials/:book_id', component: MaterialDetailComponent},
+        {path: 'materials/:materialId', component: MaterialDetailComponent},
         {path: 'admin_registration', component: AdminRegistrationComponent},
-        {path: 'my_materials', component: MyMaterialsComponent}
+        {path: 'my_materials', component: MyMaterialsComponent},
+        {path: 'my_materials/:materialId', component: MaterialDetailComponent},
+        {path: 'users', component: UsersComponent},
+        {path: 'users/:userId', component: MyMaterialsComponent},
       ]
     }
   ];

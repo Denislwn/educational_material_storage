@@ -5,15 +5,15 @@
     <div>{{user?.email}}</div>
     <div>{{user?.role | userRole}}</div>
     <span class="important-text">Мои книги:</span>
-    <!--<div class="row">-->
-      <!--<div *ngFor="let material of user?.books"-->
-           <!--class="col-12 col-sm-6">-->
-        <!--<app-material [material]="material"></app-material>-->
-      <!--</div>-->
-    <!--</div>-->
-    <div [class.pre-loader-container]="!user"
-         *ngIf="!lastPage">
-      <app-preloader></app-preloader>
+    <div class="row">
+      <div *ngFor="let material of materials"
+           class="col-12 col-sm-6">
+        <app-material [material]="material"></app-material>
+      </div>
     </div>
+    <!--<div [class.pre-loader-container]="!user"-->
+         <!--*ngIf="!lastPage">-->
+      <!--<app-preloader></app-preloader>-->
+    <!--</div>-->
   </div>
 </div>

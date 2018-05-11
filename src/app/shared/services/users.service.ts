@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {BaseApi} from '../base/base-api';
 import {UserPage} from '../models/user/user-page.model';
 import {User} from '../models/user/user.model';
+import {MaterialPage} from '../models/book/material-page.model';
 
 @Injectable()
 export class UsersService extends BaseApi {
@@ -37,7 +38,15 @@ export class UsersService extends BaseApi {
     return this.get(`registration/?page=${page.toString()}`);
   }
 
-  createUser(data: Object): Observable<Object> {
+  createUser(data: Object): Observable<MaterialPage> {
     return this.post(`users/`, data);
+  }
+
+  getUsers(): Observable<UserPage> {
+    return this.get(`users/`);
+  }
+
+  getUserQuickToolBar(): Observable<MaterialPage> {
+    return this.get(`materials/quick_toolbar/`);
   }
 }

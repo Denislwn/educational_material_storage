@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Material} from '../../shared/models/book/material.model';
 import {MaterialsService} from '../../shared/services/materials.service';
 import {MaterialPage} from '../../shared/models/book/material-page.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-my-materials',
@@ -11,7 +12,8 @@ import {MaterialPage} from '../../shared/models/book/material-page.model';
 export class MyMaterialsComponent implements OnInit {
   materials: Material[];
 
-  constructor(public materialsService: MaterialsService) {
+  constructor(public materialsService: MaterialsService,
+              public activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -19,9 +21,18 @@ export class MyMaterialsComponent implements OnInit {
   }
 
   getUserMaterials() {
-    this.materialsService.getUserMaterials(localStorage.getItem('userId'))
-      .subscribe((materialPage: MaterialPage) => {
-        this.materials = materialPage.results;
+    this.activatedRoute.params
+      .subscribe((params) => {
+        let userId;
+        if (params['userId']) {
+          userId = params['userId'];
+        } else {
+          userId = localStorage.getItem('userId');
+        }
+        this.materialsService.getUserMaterials(userId)
+          .subscribe((materialPage: MaterialPage) => {
+            this.materials = materialPage.results;
+          });
       });
   }
 

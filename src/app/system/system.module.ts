@@ -14,9 +14,12 @@ import {UserRolePipe} from '../shared/pipes/user-role.pipe';
 import {DateFormatPipe} from '../shared/pipes/date-format.pipe';
 import {PreloaderComponent} from '../shared/components/preloader/preloader.component';
 import {DeleteDialogComponent} from '../shared/components/delete-dialog/delete-dialog.component';
-import { AdminRegistrationComponent } from './admin-registration/admin-registration.component';
-import { RegisterUserDialogComponent } from './admin-registration/register-user-dialog/register-user-dialog.component';
-import { MyMaterialsComponent } from './my-materials/my-materials.component';
+import {AdminRegistrationComponent} from './admin-registration/admin-registration.component';
+import {RegisterUserDialogComponent} from './admin-registration/register-user-dialog/register-user-dialog.component';
+import {MyMaterialsComponent} from './my-materials/my-materials.component';
+import {UsersComponent} from './users/users.component';
+import {UserComponent} from './users/user/user.component';
+import {UserBlockedPipe} from '../shared/pipes/user-blocked.pipe';
 
 @NgModule({
   imports: [
@@ -39,7 +42,10 @@ import { MyMaterialsComponent } from './my-materials/my-materials.component';
     DeleteDialogComponent,
     AdminRegistrationComponent,
     RegisterUserDialogComponent,
-    MyMaterialsComponent
+    MyMaterialsComponent,
+    UsersComponent,
+    UserComponent,
+    UserBlockedPipe
   ]
 })
 export class SystemModule {
