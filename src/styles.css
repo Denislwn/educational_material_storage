@@ -26,6 +26,10 @@
   margin-top: calc(50vh - 136px);
 }
 
+.materials-list {
+  margin-top: 20px;
+}
+
 /*----------Модалки--------------*/
 .modal-show {
   display: block;

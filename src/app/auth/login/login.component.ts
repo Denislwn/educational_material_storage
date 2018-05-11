@@ -27,6 +27,7 @@ export class LoginComponent {
       .subscribe((user: User) => {
         localStorage.setItem('token', user.token);
         localStorage.setItem('userId', user.id.toString());
+        localStorage.setItem('userRole', user.role.toString());
         this.router.navigate(['/system/user_info']);
       }, (err) => {
         if (err.status === 400) {

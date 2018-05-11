@@ -48,4 +48,8 @@ export class MaterialsService extends BaseApi {
   removeMaterial(materialId: number): Observable<Object> {
     return this.delete(`materials/${materialId.toString()}/`);
   }
+
+  getUserMaterials(userId: string): Observable<MaterialPage> {
+    return this.get(`materials/?user=${userId}`);
+  }
 }

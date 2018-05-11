@@ -13,7 +13,7 @@ export class BookComponent {
   constructor() {
   }
 
-  bookClick() {
+  materialClick() {
     this.clickOnBook.emit();
   }
 

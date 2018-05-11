@@ -24,12 +24,14 @@
        [scrollWindow]="isPhone"
        (scrolled)="onScroll()">
     <div class="col-sm-12 search-container">
-      <input type="text"
-             placeholder="Поиск..."
-             class="form-control input-search col-sm-7"
-             (input)="termMaterial$.next($event.target.value)">
+      <div class="row">
+        <input type="text"
+               placeholder="Поиск..."
+               class="form-control input-search col-sm-7"
+               (input)="termMaterial$.next($event.target.value)">
+      </div>
     </div>
-    <div class="row books-list">
+    <div class="row materials-list">
       <div *ngFor="let material of materials" class="col-12 col-sm-6">
         <app-material [material]="material"
                       (clickOnBook)="clickOnMaterial()"></app-material>
@@ -41,3 +43,5 @@
     </div>
   </div>
 </div>
+<div class="add-button"
+     routerLink="add_material">+</div>

@@ -16,6 +16,7 @@ import {PreloaderComponent} from '../shared/components/preloader/preloader.compo
 import {DeleteDialogComponent} from '../shared/components/delete-dialog/delete-dialog.component';
 import { AdminRegistrationComponent } from './admin-registration/admin-registration.component';
 import { RegisterUserDialogComponent } from './admin-registration/register-user-dialog/register-user-dialog.component';
+import { MyMaterialsComponent } from './my-materials/my-materials.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { RegisterUserDialogComponent } from './admin-registration/register-user-
     PreloaderComponent,
     DeleteDialogComponent,
     AdminRegistrationComponent,
-    RegisterUserDialogComponent
+    RegisterUserDialogComponent,
+    MyMaterialsComponent
   ]
 })
 export class SystemModule {

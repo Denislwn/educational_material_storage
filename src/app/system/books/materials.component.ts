@@ -3,13 +3,14 @@ import {Material} from '../../shared/models/book/material.model';
 import {MaterialsService} from '../../shared/services/materials.service';
 import {MaterialPage} from '../../shared/models/book/material-page.model';
 import {Subject} from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {StoreService} from '../../shared/services/store.service';
+
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'app-materials',
