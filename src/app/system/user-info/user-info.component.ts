@@ -13,6 +13,7 @@ export class UserInfoComponent implements OnInit {
   user: User;
   materials: Material[];
   lastPage = false;
+  showChangePasswordDialog = false;
 
   constructor(private usersService: UsersService) {
   }
@@ -34,6 +35,10 @@ export class UserInfoComponent implements OnInit {
       .subscribe((materialPage: MaterialPage) => {
         this.materials = materialPage.results;
       });
+  }
+
+  openChangePasswordDialog() {
+    this.showChangePasswordDialog = true;
   }
 
 }

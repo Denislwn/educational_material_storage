@@ -1,12 +1,18 @@
-<div class="col-sm-12 page-without-navbar">
-  <h4 class="important-text">Список категорий:</h4>
-  <div *ngFor="let cateory of categories; let i = index">
-    <div class="category-container">
-      <span>{{cateory?.name}}</span>
-      <span *ngIf="getUserRole() !== 1"
-            (click)="openEditCategoryDialog(i)"
-            class="edit-category hover-element">Редактировать</span>
+<div class="col-sm-12 page-without-navbar detail-col">
+  <div class="col-sm-7">
+    <app-search-field [pageName]="'Все категории'"
+                      (out)="termCategories$.next($event)"></app-search-field>
+  </div>
+  <div class="col 12 detail-col categories-container">
+    <div *ngFor="let cateory of categories; let i = index">
+      <div class="category-container">
+        <span>{{cateory?.name}}</span>
+        <span *ngIf="getUserRole() !== 1"
+              (click)="openEditCategoryDialog(i)"
+              class="edit-category hover-element">Редактировать</span>
+      </div>
     </div>
+    <div *ngIf="searchText&&categories.length === 0">По вашему запросу ничего не найдено</div>
   </div>
   <app-add-category [(visible)]="showAddCategoryDialog"
                     (newCategory)="addNewCategory($event)"></app-add-category>

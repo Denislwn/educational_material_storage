@@ -1,0 +1,53 @@
+<div *ngIf="visible" class="modal-show">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Изменение пароля</h5>
+        <button type="button"
+                class="close"
+                (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #myForm="ngForm">
+        <div class="modal-body">
+          <input class="form-control"
+                 type="password"
+                 placeholder="Пароль"
+                 ngModel
+                 [class.is-invalid]="!isPasswordValid||(password.invalid && password.touched)"
+                 [class.is-valid]="isPasswordValid && password.touched"
+                 (input)="userPassword($event.target.value)"
+                 name="password"
+                 #password="ngModel"
+                 required>
+          <input class="form-control"
+                 type="password"
+                 placeholder="Повторите пароль"
+                 ngModel
+                 [class.is-invalid]="!isPasswordValid||(password.invalid && password.touched)"
+                 [class.is-valid]="isPasswordValid && secondPassword.touched"
+                 (input)="checkUserPassword($event.target.value)"
+                 name="secondPassword"
+                 #secondPassword="ngModel"
+                 required>
+          <span *ngIf="!isPasswordValid" class="invalid-feedback">
+            Пароли не совпадают
+          </span>
+        </div>
+        <div class="modal-footer">
+          <button type="button"
+                  (click)="close()"
+                  class="btn btn-secondary">Отмена
+          </button>
+          <button type="submit"
+                  [disabled]="!myForm.valid || !isPasswordValid"
+                  (click)="changePassword()"
+                  class="btn btn-primary">Изменить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay-dialog" (click)="close()"></div>

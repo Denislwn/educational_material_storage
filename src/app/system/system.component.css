@@ -6,6 +6,18 @@
   display: block;
 }
 
+.dropdown-menu {
+  background-color: #007bff!important;
+}
+
+.dropdown-menu a {
+  color: white;
+}
+
+.dropdown-menu a:hover {
+  background-color: transparent;
+}
+
 .active-link {
   background-color: blue !important;
 }

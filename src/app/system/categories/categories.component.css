@@ -2,6 +2,13 @@
   padding-top: 56px;
 }
 
+.categories-container {
+  height: calc(100vh - 145px);
+  padding-left: 25px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .category-container {
   display: inline-block;
 }

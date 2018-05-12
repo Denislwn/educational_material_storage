@@ -6,17 +6,20 @@
     <span class="arrow-back-text">{{messageBack}}</span>
   </div>
   <div class="col-12 col-md-3">
-    <app-categories-list (categoriesOut)="filterByCategories($event)"></app-categories-list>
+    <div class="filters-list">
+      <app-categories-list></app-categories-list>
+      <app-file-type-list></app-file-type-list>
+    </div>
   </div>
   <div class="col 12 col-md-9 detail-col">
     <div class="col-12 col-md-12 search-container">
-      <app-search-field [pageName]="materialsName"
-                        (out)="termMaterial$.next($event)"></app-search-field>
+      <app-search-field [pageName]="materialsName"></app-search-field>
     </div>
-  <div class="row materials-list">
-    <div *ngFor="let material of materials"
-         class="col-12 col-sm-6">
-      <app-material [material]="material"></app-material>
+    <div class="row materials-list">
+      <div *ngFor="let material of materials"
+           class="col-12 col-sm-6">
+        <app-material [material]="material"></app-material>
+      </div>
     </div>
   </div>
 </div>

@@ -53,4 +53,8 @@ export class UsersService extends BaseApi {
   getFilterUsers(url: string): Observable<UserPage> {
     return this.get(url);
   }
+
+  changeUserPassword(userId: string, password): Observable<Object> {
+    return this.post(`users/${userId}/change_password/`, {password});
+  }
 }

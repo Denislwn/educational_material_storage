@@ -12,7 +12,7 @@ import {Subject} from 'rxjs/Subject';
 export class UsersComponent implements OnInit {
   users: User[];
   blockUser: User;
-  termMaterial$ = new Subject<string>();
+  termUsers$ = new Subject<string>();
   searchText = '';
   searchByRoles = '';
   blockUserNumber: number;
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
   }
 
   subOnInputSearchField() {
-    this.termMaterial$
+    this.termUsers$
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe((term) => {
@@ -49,7 +49,6 @@ export class UsersComponent implements OnInit {
 
   filterByRoles(roles: string) {
     this.searchByRoles = roles;
-    console.log(roles);
     const url = this.getUrlForFilterUsers();
     this.getFilterUsers(url);
   }

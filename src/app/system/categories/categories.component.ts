@@ -3,6 +3,7 @@ import {Category} from '../../shared/models/category/category.model';
 import {CategoryService} from '../../shared/services/category.service';
 import {Subscription} from 'rxjs/Subscription';
 import {NgForm} from '@angular/forms';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-categories',
@@ -12,6 +13,8 @@ import {NgForm} from '@angular/forms';
 export class CategoriesComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   editCategory: Category;
+  termCategories$ = new Subject<string>();
+  searchText = '';
   page: number;
   editCategoryNumber: number;
   showEditCategoryDialog = false;
@@ -24,12 +27,30 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getCategories();
+    this.subOnInputSearchField();
   }
 
   getCategories() {
     this.subOnGetCategories = this.categoryService.getCategories()
       .subscribe((categoriesPage: Category[]) => {
         this.categories = categoriesPage;
+      });
+  }
+
+  subOnInputSearchField() {
+    this.termCategories$
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe((term) => {
+        this.searchText = term;
+        this.getFilterCategories();
+      });
+  }
+
+  getFilterCategories() {
+    this.categoryService.getFilterCategories(this.searchText)
+      .subscribe((categories: Category[]) => {
+        this.categories = categories;
       });
   }
 

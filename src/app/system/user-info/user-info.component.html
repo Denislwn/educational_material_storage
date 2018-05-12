@@ -4,6 +4,9 @@
     <div>{{user?.last_name}} {{user?.first_name}}</div>
     <div>{{user?.email}}</div>
     <div>{{user?.role | userRole}}</div>
+    <button class="btn btn-primary add-button"
+            (click)="openChangePasswordDialog()">Сменить пароль
+    </button>
     <span class="important-text">Мои книги:</span>
     <div class="row">
       <div *ngFor="let material of materials"
@@ -11,6 +14,7 @@
         <app-material [material]="material"></app-material>
       </div>
     </div>
+    <app-change-passwor-dialog [(visible)]="showChangePasswordDialog"></app-change-passwor-dialog>
     <!--<div [class.pre-loader-container]="!user"-->
          <!--*ngIf="!lastPage">-->
       <!--<app-preloader></app-preloader>-->

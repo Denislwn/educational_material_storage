@@ -21,11 +21,11 @@ export class CategoryService extends BaseApi {
     return this.get(`categories/`);
   }
 
-  getFilterMaterialsByCategories(categories: string): Observable<MaterialPage> {
-    return this.get(`materials/?${categories}/`);
-  }
-
   editCategory(categoryId: number, name: string): Observable<Category> {
     return this.patch(`categories/${categoryId.toString()}/`, {name});
+  }
+
+  getFilterCategories(text: string): Observable<Category[]> {
+    return this.get(`categories/search/?text=${text}`);
   }
 }

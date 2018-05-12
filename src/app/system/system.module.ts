@@ -30,6 +30,7 @@ import {SearchFieldComponent} from '../shared/components/search-field/search-fie
 import {CategoriesListComponent} from '../shared/components/categories-list/categories-list.component';
 import {FileTypeListComponent} from '../shared/components/file-type-list/file-type-list.component';
 import {UserRoleListComponent} from '../shared/components/user-role-list/user-role-list.component';
+import {ChangePassworDialogComponent} from './user-info/change-passwor-dialog/change-passwor-dialog.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import {UserRoleListComponent} from '../shared/components/user-role-list/user-ro
     SearchFieldComponent,
     CategoriesListComponent,
     FileTypeListComponent,
-    UserRoleListComponent
+    UserRoleListComponent,
+    ChangePassworDialogComponent
   ]
 })
 export class SystemModule {
