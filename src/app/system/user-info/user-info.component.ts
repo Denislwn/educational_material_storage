@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user/user.model';
-import {Material} from '../../shared/models/book/material.model';
-import {MaterialPage} from '../../shared/models/book/material-page.model';
+import {Material} from '../../shared/models/material/material.model';
+import {MaterialPage} from '../../shared/models/material/material-page.model';
 
 @Component({
   selector: 'app-user-info',

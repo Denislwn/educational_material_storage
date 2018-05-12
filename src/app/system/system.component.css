@@ -2,6 +2,10 @@
   background: url("../../assets/images/background.png");
 }
 
+.dropdown:focus .dropdown-menu {
+  display: block;
+}
+
 .active-link {
   background-color: blue !important;
 }

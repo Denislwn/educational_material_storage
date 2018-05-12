@@ -2,7 +2,7 @@ import {BaseApi} from '../base/base-api';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {MaterialPage} from '../models/book/material-page.model';
+import {MaterialPage} from '../models/material/material-page.model';
 import {Category} from '../models/category/category.model';
 
 @Injectable()

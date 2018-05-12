@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Блокировка пользователя</h5>
+        <h5 class="modal-title">Разблокировать пользователя</h5>
         <button type="button"
                 class="close"
                 (click)="close()">
@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Вы уверены, что хотите заблокировать пользователя с логином "{{user?.username}}"?</p>
+        <p>Вы уверены, что хотите разблокировать пользователя с логином "{{user?.username}}"?</p>
       </div>
       <div class="modal-footer">
         <button type="button"
@@ -18,8 +18,8 @@
                 class="btn btn-secondary">Отмена
         </button>
         <button type="button"
-                (click)="blockUser()"
-                class="btn btn-primary">Заблокировать
+                (click)="unblockUser()"
+                class="btn btn-primary">Разблокировать
         </button>
       </div>
     </div>

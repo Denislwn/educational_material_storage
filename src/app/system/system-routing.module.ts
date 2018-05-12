@@ -3,12 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {SystemComponent} from './system.component';
 import {UserInfoComponent} from './user-info/user-info.component';
 import {AddMaterialComponent} from './add-material/add-material.component';
-import {MaterialsComponent} from './books/materials.component';
-import {MaterialDetailComponent} from './books/material-detail/material-detail.component';
+import {MaterialsComponent} from './materials/materials.component';
+import {MaterialDetailComponent} from './materials/material-detail/material-detail.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
-import {AdminRegistrationComponent} from './admin-registration/admin-registration.component';
+import {AdminRegistrationComponent} from './admin/admin-registration/admin-registration.component';
 import {MyMaterialsComponent} from './my-materials/my-materials.component';
 import {UsersComponent} from './users/users.component';
+import {BlockedUsersComponent} from './admin/blocked-users/blocked-users.component';
 
 const routes: Routes = [
     {
@@ -19,7 +20,8 @@ const routes: Routes = [
         {path: 'materials', component: MaterialsComponent},
         {path: 'materials/add_material', component: AddMaterialComponent},
         {path: 'materials/:materialId', component: MaterialDetailComponent},
-        {path: 'admin_registration', component: AdminRegistrationComponent},
+        {path: 'admin/admin_registration', component: AdminRegistrationComponent},
+        {path: 'admin/blocked_users', component: BlockedUsersComponent},
         {path: 'my_materials', component: MyMaterialsComponent},
         {path: 'my_materials/add_material', component: AddMaterialComponent},
         {path: 'my_materials/:materialId', component: MaterialDetailComponent},

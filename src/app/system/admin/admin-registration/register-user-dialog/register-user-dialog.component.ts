@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {User} from '../../../shared/models/user/user.model';
-import {UsersService} from '../../../shared/services/users.service';
+import {User} from '../../../../shared/models/user/user.model';
+import {UsersService} from '../../../../shared/services/users.service';
 
 @Component({
   selector: 'app-register-user-dialog',

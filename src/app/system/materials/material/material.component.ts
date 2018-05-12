@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Material} from '../../../shared/models/book/material.model';
+import {Material} from '../../../shared/models/material/material.model';
 
 @Component({
   selector: 'app-material',

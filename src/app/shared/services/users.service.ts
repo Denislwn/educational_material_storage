@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {BaseApi} from '../base/base-api';
 import {UserPage} from '../models/user/user-page.model';
 import {User} from '../models/user/user.model';
-import {MaterialPage} from '../models/book/material-page.model';
+import {MaterialPage} from '../models/material/material-page.model';
 
 @Injectable()
 export class UsersService extends BaseApi {
@@ -48,9 +48,5 @@ export class UsersService extends BaseApi {
 
   getUserQuickToolBar(): Observable<MaterialPage> {
     return this.get(`materials/quick_toolbar/`);
-  }
-
-  blockedUser(userId: number): Observable<Object> {
-    return this.post(`users/${userId.toString()}/block/`);
   }
 }

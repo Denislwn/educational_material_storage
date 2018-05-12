@@ -10,9 +10,9 @@ import {UserPage} from '../../shared/models/user/user-page.model';
 })
 export class UsersComponent implements OnInit {
   users: User[];
-  blockedUser: User;
-  blockedUserNumber: number;
-  showUserBlockedDialog = false;
+  blockUser: User;
+  blockUserNumber: number;
+  showUserBlockDialog = false;
 
   constructor(public usersService: UsersService) { }
 
@@ -28,14 +28,14 @@ export class UsersComponent implements OnInit {
   }
 
   openBlockedDialog(blockedUserNumber: number) {
-    this.blockedUserNumber = blockedUserNumber;
-    this.blockedUser = this.users[this.blockedUserNumber];
-    this.showUserBlockedDialog = true;
+    this.blockUserNumber = blockedUserNumber;
+    this.blockUser = this.users[this.blockUserNumber];
+    this.showUserBlockDialog = true;
   }
 
   userBlocked() {
-    this.users.splice(this.blockedUserNumber, 1);
-    this.showUserBlockedDialog = true;
+    this.users.splice(this.blockUserNumber, 1);
+    this.showUserBlockDialog = false;
   }
 
 }

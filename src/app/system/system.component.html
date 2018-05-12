@@ -36,11 +36,20 @@
            (click)="clickMenuElement()"
            routerLinkActive="active-link">Категории</a>
       </li>
-      <li *ngIf="getUserRole() === 4" class="nav-item" routerLinkActive="active">
-        <a class="nav-link active"
-           routerLink="admin_registration"
-           (click)="clickMenuElement()"
-           routerLinkActive="active-link">Админка</a>
+      <li *ngIf="getUserRole() === 4"
+          class="nav-item dropdown hover-element show"
+          (click)="clickAdmin()">
+        <div class="nav-link dropdown-toggle">
+          Админ
+        </div>
+        <div #dropMenu class="dropdown-menu">
+          <a class="dropdown-item"
+             routerLinkActive="active-link"
+             routerLink="admin/admin_registration">Регистрация</a>
+          <a class="dropdown-item"
+             routerLinkActive="active-link"
+             routerLink="admin/blocked_users">Заблокированные пользователи</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link active"

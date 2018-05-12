@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Material} from '../models/book/material.model';
+import {Material} from '../models/material/material.model';
 
 @Injectable()
 export class StoreService {

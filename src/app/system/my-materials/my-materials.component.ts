@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Material} from '../../shared/models/book/material.model';
+import {Material} from '../../shared/models/material/material.model';
 import {MaterialsService} from '../../shared/services/materials.service';
-import {MaterialPage} from '../../shared/models/book/material-page.model';
+import {MaterialPage} from '../../shared/models/material/material-page.model';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

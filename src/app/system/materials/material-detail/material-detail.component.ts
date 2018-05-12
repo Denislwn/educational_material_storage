@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Material} from '../../../shared/models/book/material.model';
+import {Material} from '../../../shared/models/material/material.model';
 import {MaterialsService} from '../../../shared/services/materials.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';

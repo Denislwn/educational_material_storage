@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {BaseApi} from '../base/base-api';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {MaterialPage} from '../models/book/material-page.model';
-import {NewMaterial} from '../models/book/new-material.model';
+import {MaterialPage} from '../models/material/material-page.model';
+import {NewMaterial} from '../models/material/new-material.model';
 
 @Injectable()
 export class MaterialsService extends BaseApi {

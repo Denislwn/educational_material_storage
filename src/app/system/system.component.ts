@@ -9,6 +9,7 @@ export class SystemComponent implements OnInit {
   isPhone: boolean;
   @ViewChild('navList') navList: ElementRef;
   @ViewChild('appPage') appPage;
+  @ViewChild('dropMenu') dropMenu: ElementRef;
 
   constructor() {
   }
@@ -51,6 +52,15 @@ export class SystemComponent implements OnInit {
         }
         this.navList.nativeElement.className += arr[i];
       }
+    }
+  }
+
+  clickAdmin() {
+    const arr = this.dropMenu.nativeElement.className.split(' ');
+    if (arr[arr.length - 1] === 'show') {
+      this.dropMenu.nativeElement.className = 'dropdown-menu';
+    } else {
+      this.dropMenu.nativeElement.className += ' show';
     }
   }
 

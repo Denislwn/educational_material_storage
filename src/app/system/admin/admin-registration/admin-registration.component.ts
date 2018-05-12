@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from '../../shared/services/users.service';
-import {User} from '../../shared/models/user/user.model';
-import {UserPage} from '../../shared/models/user/user-page.model';
+import {UsersService} from '../../../shared/services/users.service';
+import {User} from '../../../shared/models/user/user.model';
+import {UserPage} from '../../../shared/models/user/user-page.model';
 
 @Component({
   selector: 'app-admin-registration',

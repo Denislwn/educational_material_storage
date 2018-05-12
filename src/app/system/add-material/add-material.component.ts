@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
 import {NgForm} from '@angular/forms';
-import {NewMaterial} from '../../shared/models/book/new-material.model';
+import {NewMaterial} from '../../shared/models/material/new-material.model';
 import {MaterialsService} from '../../shared/services/materials.service';
 import {Router} from '@angular/router';
-import {Material} from '../../shared/models/book/material.model';
+import {Material} from '../../shared/models/material/material.model';
 
 @Component({
   selector: 'app-add-material',

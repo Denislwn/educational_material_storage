@@ -11,6 +11,7 @@ import {SystemModule} from './system/system.module';
 import {CategoryService} from './shared/services/category.service';
 import {MaterialsService} from './shared/services/materials.service';
 import {StoreService} from './shared/services/store.service';
+import {AdminService} from './shared/services/admin.service';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {StoreService} from './shared/services/store.service';
     UsersService,
     CategoryService,
     MaterialsService,
-    StoreService
+    StoreService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

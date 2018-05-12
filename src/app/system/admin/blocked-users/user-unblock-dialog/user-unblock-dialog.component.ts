@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {User} from '../../../shared/models/user/user.model';
-import {AdminService} from '../../../shared/services/admin.service';
+import {User} from '../../../../shared/models/user/user.model';
+import {AdminService} from '../../../../shared/services/admin.service';
 
 @Component({
-  selector: 'app-user-block-dialog',
-  templateUrl: './user-block-dialog.component.html',
-  styleUrls: ['./user-block-dialog.component.css']
+  selector: 'app-user-unblock-dialog',
+  templateUrl: './user-unblock-dialog.component.html',
+  styleUrls: ['./user-unblock-dialog.component.css']
 })
-export class UserBlockDialogComponent implements OnInit {
+export class UserUnblockDialogComponent {
   @Input() visible: boolean;
   @Input() user: User;
   @Output() blocked = new EventEmitter();
@@ -16,21 +16,19 @@ export class UserBlockDialogComponent implements OnInit {
   constructor(private adminService: AdminService) {
   }
 
-  ngOnInit() {
-  }
-
   close() {
     this.visible = !this.visible;
     this.visibleChange.emit();
   }
 
-  blockUser() {
-    this.adminService.blockUser(this.user.id)
+  unblockUser() {
+    this.adminService.unBlockUser(this.user.id)
       .subscribe(() => {
         this.visible = !this.visible;
         this.visibleChange.emit();
         this.blocked.emit();
       });
   }
+
 
 }
