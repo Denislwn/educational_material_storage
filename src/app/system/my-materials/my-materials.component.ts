@@ -11,6 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class MyMaterialsComponent implements OnInit {
   materials: Material[];
+  routeBack: string;
+  messageBack: string;
 
   constructor(public materialsService: MaterialsService,
               public activatedRoute: ActivatedRoute) {
@@ -26,6 +28,8 @@ export class MyMaterialsComponent implements OnInit {
         let userId;
         if (params['userId']) {
           userId = params['userId'];
+          this.routeBack = `/system/users`;
+          this.messageBack = 'Назад к пользователям';
         } else {
           userId = localStorage.getItem('userId');
         }

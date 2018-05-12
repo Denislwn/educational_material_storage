@@ -1,4 +1,10 @@
 <div class="page-without-navbar">
+  <div *ngIf="routeBack"
+       class="arrow-back-container hover-element"
+       routerLink="{{routeBack}}">
+    <img class="arrow-back" src="assets/images/arrow-back.png"/>
+    <span class="arrow-back-text">{{messageBack}}</span>
+  </div>
   <div class="row materials-list">
     <div *ngFor="let material of materials"
          class="col-12 col-sm-4">
