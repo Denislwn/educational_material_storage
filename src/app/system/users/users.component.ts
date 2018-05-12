@@ -10,6 +10,9 @@ import {UserPage} from '../../shared/models/user/user-page.model';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  blockedUser: User;
+  blockedUserNumber: number;
+  showUserBlockedDialog = false;
 
   constructor(public usersService: UsersService) { }
 
@@ -22,6 +25,17 @@ export class UsersComponent implements OnInit {
       .subscribe((userPage: UserPage) => {
         this.users = userPage.results;
       });
+  }
+
+  openBlockedDialog(blockedUserNumber: number) {
+    this.blockedUserNumber = blockedUserNumber;
+    this.blockedUser = this.users[this.blockedUserNumber];
+    this.showUserBlockedDialog = true;
+  }
+
+  userBlocked() {
+    this.users.splice(this.blockedUserNumber, 1);
+    this.showUserBlockedDialog = true;
   }
 
 }

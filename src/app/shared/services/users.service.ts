@@ -49,4 +49,8 @@ export class UsersService extends BaseApi {
   getUserQuickToolBar(): Observable<MaterialPage> {
     return this.get(`materials/quick_toolbar/`);
   }
+
+  blockedUser(userId: number): Observable<Object> {
+    return this.post(`users/${userId.toString()}/block/`);
+  }
 }

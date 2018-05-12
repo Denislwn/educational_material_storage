@@ -20,6 +20,7 @@ import {MyMaterialsComponent} from './my-materials/my-materials.component';
 import {UsersComponent} from './users/users.component';
 import {UserComponent} from './users/user/user.component';
 import {UserBlockedPipe} from '../shared/pipes/user-blocked.pipe';
+import { UserBlockDialogComponent } from './users/user-block-dialog/user-block-dialog.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import {UserBlockedPipe} from '../shared/pipes/user-blocked.pipe';
     MyMaterialsComponent,
     UsersComponent,
     UserComponent,
-    UserBlockedPipe
+    UserBlockedPipe,
+    UserBlockDialogComponent
   ]
 })
 export class SystemModule {

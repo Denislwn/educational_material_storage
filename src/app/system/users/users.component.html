@@ -1,8 +1,17 @@
 <div class="page-without-navbar">
   <h4 class="col-12">Все пользователи</h4>
   <div class="row">
-    <div *ngFor="let user of users" class="col-sm-4 col-12">
+    <div *ngFor="let user of users; let i = index"
+         class="col-sm-4 col-12">
       <app-user [user]="user"></app-user>
+      <button *ngIf="user?.role !== 4"
+        type="button"
+              class="btn btn-secondary"
+              (click)="openBlockedDialog(i)">Заблокировать пользователя
+      </button>
     </div>
   </div>
+  <app-user-block-dialog [(visible)]="showUserBlockedDialog"
+                         [user]="blockedUser"
+                         (blocked)="userBlocked()"></app-user-block-dialog>
 </div>
