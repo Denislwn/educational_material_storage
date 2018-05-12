@@ -11,8 +11,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class MyMaterialsComponent implements OnInit {
   materials: Material[];
+  userId: number;
   routeBack: string;
   messageBack: string;
+  materialsName: string;
 
   constructor(public materialsService: MaterialsService,
               public activatedRoute: ActivatedRoute) {
@@ -25,15 +27,16 @@ export class MyMaterialsComponent implements OnInit {
   getUserMaterials() {
     this.activatedRoute.params
       .subscribe((params) => {
-        let userId;
         if (params['userId']) {
-          userId = params['userId'];
+          this.userId = params['userId'];
           this.routeBack = `/system/users`;
           this.messageBack = 'Назад к пользователям';
+          this.materialsName = 'Материалы пользователя';
         } else {
-          userId = localStorage.getItem('userId');
+          this.userId = Number(localStorage.getItem('userId'));
+          this.materialsName = 'Мои материалы';
         }
-        this.materialsService.getUserMaterials(userId)
+        this.materialsService.getUserMaterials(this.userId)
           .subscribe((materialPage: MaterialPage) => {
             this.materials = materialPage.results;
           });

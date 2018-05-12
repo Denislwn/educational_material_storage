@@ -1,6 +1,9 @@
 <div class="row page-without-navbar">
   <div class="col-12 col-md-3">
-    <app-categories-list (categoriesOut)="filterByCategories($event)"></app-categories-list>
+    <div class="categories-list">
+      <app-categories-list (categoriesOut)="filterByCategories($event)"></app-categories-list>
+      <app-file-type-list (typesOut)="filterByTypes($event)"></app-file-type-list>
+    </div>
   </div>
   <div class="col 12 col-md-9 detail-col">
     <div class="col-12 col-md-12 search-container">

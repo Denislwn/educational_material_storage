@@ -33,9 +33,9 @@ export class MaterialsService extends BaseApi {
     return this.post(`materials/`, finalData);
   }
 
-  getFilterMaterials(text: string): Observable<MaterialPage> {
-    return this.get(`materials/search/?text=${text}`);
-  }
+  // getFilterMaterials(text: string): Observable<MaterialPage> {
+  //   return this.get(`materials/search/?text=${text}`);
+  // }
 
   addToFavorites(materialId: number): Observable<Object> {
     return this.post(`materials/${materialId.toString()}/add/`);
@@ -49,8 +49,8 @@ export class MaterialsService extends BaseApi {
     return this.delete(`materials/${materialId.toString()}/`);
   }
 
-  getUserMaterials(userId: string): Observable<MaterialPage> {
-    return this.get(`materials/?user=${userId}`);
+  getUserMaterials(userId: number): Observable<MaterialPage> {
+    return this.get(`materials/?user=${userId.toString()}`);
   }
 
   addToQuickToolBar(materialId: number): Observable<Object> {
@@ -59,5 +59,9 @@ export class MaterialsService extends BaseApi {
 
   removeFromQuickToolBar(materialId: number): Observable<Object> {
     return this.post(`materials/${materialId.toString()}/remove_quick_toolbar/`);
+  }
+
+  getFilterMaterials(url: string): Observable<MaterialPage> {
+    return this.get(url);
   }
 }

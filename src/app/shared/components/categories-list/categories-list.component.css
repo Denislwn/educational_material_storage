@@ -5,10 +5,3 @@
 .form-check {
   margin-bottom: 0;
 }
-
-.categories-list {
-  height: calc(100vh - 56px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-right: 1px solid grey;
-}

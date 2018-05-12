@@ -21,6 +21,9 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
   materials: Material[] = [];
   categories: Category[];
   termMaterial$ = new Subject<string>();
+  searchText = '';
+  searchCategories = '';
+  searchFileTypes = '';
   page: number;
   isPhone = false;
   isLoad: boolean;
@@ -93,31 +96,43 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe((term) => {
-        this.search(term);
+        this.searchText = term;
+        const url = this.getUrlForFilterMaterials();
+        this.getFilterMaterials(url);
       });
   }
 
-  search(text: string) {
-    if (text !== '') {
-      this.page = 1;
-      this.isLoad = true;
-      this.lastPage = false;
-      this.materialsService.getFilterMaterials(text)
-        .subscribe((materialPage: MaterialPage) => {
-          this.materials = materialPage.results;
-          if (materialPage.next_page === null) {
-            this.lastPage = true;
-          }
-        });
-    } else {
-      this.getServerMaterials();
-    }
+  filterByCategories(categories: string) {
+    this.searchCategories = categories;
+    const url = this.getUrlForFilterMaterials();
+    this.getFilterMaterials(url);
   }
 
-  filterByCategories(categories: string) {
+  filterByTypes(types: string) {
+    this.searchFileTypes = types;
+    const url = this.getUrlForFilterMaterials();
+    this.getFilterMaterials(url);
+  }
+
+  getUrlForFilterMaterials() {
+    let url = 'materials/?';
+    if (this.searchText) {
+      url = `materials/search/?text=${this.searchText}&`;
+    }
+    if (this.searchCategories) {
+      url += `${this.searchCategories}`;
+    }
+    if (this.searchFileTypes) {
+      url += this.searchFileTypes;
+    }
+    return url;
+  }
+
+  getFilterMaterials(url: string) {
     this.isLoad = true;
     this.page = 1;
-    this.categoryService.getFilterMaterialsByCategories(categories)
+    this.lastPage = false;
+    this.materialsService.getFilterMaterials(url)
       .subscribe((materialPage: MaterialPage) => {
         this.materials = materialPage.results;
         if (materialPage.next_page === null) {
@@ -128,7 +143,11 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
   }
 
   onScroll() {
-    this.getNextMaterialPage();
+    if (this.searchFileTypes || this.searchFileTypes || this.searchCategories) {
+      this.getFilterNextMaterialPage();
+    } else {
+      this.getNextMaterialPage();
+    }
   }
 
   getNextMaterialPage() {
@@ -136,6 +155,22 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.isLoad = true;
       this.page += 1;
       this.materialsService.getMaterials(this.page)
+        .subscribe((materialPage: MaterialPage) => {
+          this.materials = this.materials.concat(materialPage.results);
+          if (materialPage.next_page === null) {
+            this.lastPage = true;
+          }
+          this.isLoad = false;
+        });
+    }
+  }
+
+  getFilterNextMaterialPage() {
+    if (!this.isLoad && !this.lastPage) {
+      this.isLoad = true;
+      this.page += 1;
+      const url = this.getUrlForFilterMaterials() + `page=${this.page}`;
+      this.materialsService.getFilterMaterials(url)
         .subscribe((materialPage: MaterialPage) => {
           this.materials = this.materials.concat(materialPage.results);
           if (materialPage.next_page === null) {

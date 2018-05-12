@@ -1,0 +1,15 @@
+<h4 class="important-text">Тип файла</h4>
+<form #checkBoxForm="ngForm">
+  <div *ngFor="let type of fileTypes; let i = index"
+       class="form-group form-check">
+    <input type="checkbox"
+           class="form-check-input"
+           [name]="(i+1).toString()"
+           id="{{type}}"
+           (change)="filterByTypes(checkBoxForm)"
+           ngModel>
+    <label class="form-check-label"
+           for="{{type}}">{{type}}
+    </label>
+  </div>
+</form>

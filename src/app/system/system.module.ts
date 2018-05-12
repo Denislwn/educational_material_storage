@@ -28,6 +28,7 @@ import {AddCategoryComponent} from './categories/add-category/add-category.compo
 import {EditCategoryDialogComponent} from './categories/edit-category-dialog/edit-category-dialog.component';
 import {SearchFieldComponent} from '../shared/components/search-field/search-field.component';
 import {CategoriesListComponent} from '../shared/components/categories-list/categories-list.component';
+import {FileTypeListComponent} from '../shared/components/file-type-list/file-type-list.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {CategoriesListComponent} from '../shared/components/categories-list/cate
     AddCategoryComponent,
     EditCategoryDialogComponent,
     SearchFieldComponent,
-    CategoriesListComponent
+    CategoriesListComponent,
+    FileTypeListComponent
   ]
 })
 export class SystemModule {
