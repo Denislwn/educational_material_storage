@@ -61,7 +61,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     if (this.storeService.materials) {
       this.getServiceMaterials();
     } else {
-      this.getServerMaterial();
+      this.getServerMaterials();
     }
     this.storeService.storeReset();
   }
@@ -74,7 +74,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getServerMaterial() {
+  getServerMaterials() {
     this.page = 1;
     this.lastPage = false;
     this.materialsService.getMaterials(this.page)
@@ -119,7 +119,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
           }
         });
     } else {
-      this.getServerMaterial();
+      this.getServerMaterials();
     }
   }
 

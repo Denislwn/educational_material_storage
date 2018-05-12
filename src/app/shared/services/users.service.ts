@@ -8,7 +8,7 @@ import {MaterialPage} from '../models/book/material-page.model';
 
 @Injectable()
 export class UsersService extends BaseApi {
-  baseUrl = '/api/';
+  baseUrl = 'http://46.229.213.200/api/';
 
   constructor(public http: HttpClient) {
     super(http);

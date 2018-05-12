@@ -34,7 +34,7 @@ export class MaterialsService extends BaseApi {
   }
 
   getFilterMaterials(text: string): Observable<MaterialPage> {
-    return this.get(`books/search/?text=${text}`);
+    return this.get(`materials/search/?text=${text}`);
   }
 
   addToFavorites(materialId: number): Observable<Object> {

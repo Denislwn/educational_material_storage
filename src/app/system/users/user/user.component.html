@@ -3,6 +3,6 @@
   <div>Логин: {{user?.username}}</div>
   <div>E-mail: {{user?.email}}</div>
   <div>ФИО: {{user?.first_name}} {{user?.last_name}}</div>
-  <div>Роль: {{user?.role | userRole}}</div>
+  <div *ngIf="user?.role">Роль: {{user?.role | userRole}}</div>
   <div>Статус: {{user?.blocked | userBlocked}}</div>
 </div>

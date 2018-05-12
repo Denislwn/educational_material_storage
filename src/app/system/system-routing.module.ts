@@ -24,6 +24,7 @@ const routes: Routes = [
         {path: 'my_materials/:materialId', component: MaterialDetailComponent},
         {path: 'users', component: UsersComponent},
         {path: 'users/:userId', component: MyMaterialsComponent},
+        {path: 'users/:userId/:materialId', component: MaterialDetailComponent},
       ]
     }
   ];

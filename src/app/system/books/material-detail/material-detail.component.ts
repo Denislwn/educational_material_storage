@@ -15,7 +15,7 @@ export class MaterialDetailComponent implements OnInit {
   quickToolBarMessage = 'Добавить на панель быстрого доступа';
   deleteButton = false;
   showDeleteDialog = false;
-  deleteObj: {title: string, message: string};
+  deleteObj: { title: string, message: string };
   routeBack: string;
   messageBack: string;
   subOnToElected: Subscription;
@@ -27,10 +27,10 @@ export class MaterialDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBook();
+    this.getMaterial();
   }
 
-  getBook() {
+  getMaterial() {
     this.activatedRoute.params
       .subscribe((params) => {
         this.getBackUrl();
@@ -38,20 +38,21 @@ export class MaterialDetailComponent implements OnInit {
           .subscribe((book: Material) => {
             this.material = book;
             this.checkUserRights();
-            if (this.material.elected) {
-              this.electedMessage = 'Убрать из избранного';
-            }
-            if (this.material.quick_toolbar) {
-              this.quickToolBarMessage = 'Удалить из панели быстрого доступа';
-            }
+            this.checkButtonsState();
           });
       });
   }
 
-  getBackUrl () {
+  getBackUrl() {
     if (this.activatedRoute.snapshot.url[0].path === 'materials') {
       this.routeBack = '/system/materials';
       this.messageBack = 'Назад к книгам';
+    } else if (this.activatedRoute.snapshot.url[0].path === 'users') {
+      this.routeBack = `/system/users/${this.activatedRoute.snapshot.params['userId']}`;
+      this.messageBack = 'Назад к пользователю';
+    } else if (this.activatedRoute.snapshot.url[0].path === 'my_materials') {
+      this.routeBack = `/system/my_materials`;
+      this.messageBack = 'Назад к моим книгам';
     } else {
       this.routeBack = '/system/user_info';
       this.messageBack = 'Назад к профилю';
@@ -98,7 +99,7 @@ export class MaterialDetailComponent implements OnInit {
 
   removeBook() {
     this.subOnRemoveBook = this.materialsService.removeMaterial(this.material.id)
-      .subscribe(() =>  {
+      .subscribe(() => {
         alert('Книга успешно удалена!');
       }, (err) => {
         console.log(err);
@@ -112,6 +113,15 @@ export class MaterialDetailComponent implements OnInit {
     const userId = Number(localStorage.getItem('userId'));
     if (userRole === 4 || userId === this.material.owner.id) {
       this.deleteButton = true;
+    }
+  }
+
+  checkButtonsState() {
+    if (this.material.elected) {
+      this.electedMessage = 'Убрать из избранного';
+    }
+    if (this.material.quick_toolbar) {
+      this.quickToolBarMessage = 'Удалить из панели быстрого доступа';
     }
   }
 

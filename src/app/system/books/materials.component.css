@@ -13,6 +13,10 @@
   margin-top: 5px;
 }
 
+.form-check {
+  margin-bottom: 0;
+}
+
 .add-button {
   display: inline-block;
   height: 50px;
@@ -38,12 +42,13 @@
   height: calc(100vh - 56px);
   overflow-y: auto;
   overflow-x: hidden;
+  border-right: 1px solid grey;
 }
 
 .books-container {
   margin-top: 45px;
   height: calc(100vh - 101px);
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
