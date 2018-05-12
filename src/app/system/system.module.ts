@@ -20,7 +20,9 @@ import {MyMaterialsComponent} from './my-materials/my-materials.component';
 import {UsersComponent} from './users/users.component';
 import {UserComponent} from './users/user/user.component';
 import {UserBlockedPipe} from '../shared/pipes/user-blocked.pipe';
-import { UserBlockDialogComponent } from './users/user-block-dialog/user-block-dialog.component';
+import {UserBlockDialogComponent} from './users/user-block-dialog/user-block-dialog.component';
+import {AddMaterialButtonComponent} from '../shared/components/add-material-button/add-material-button.component';
+
 
 @NgModule({
   imports: [
@@ -47,7 +49,8 @@ import { UserBlockDialogComponent } from './users/user-block-dialog/user-block-d
     UsersComponent,
     UserComponent,
     UserBlockedPipe,
-    UserBlockDialogComponent
+    UserBlockDialogComponent,
+    AddMaterialButtonComponent
   ]
 })
 export class SystemModule {

@@ -21,6 +21,7 @@ const routes: Routes = [
         {path: 'materials/:materialId', component: MaterialDetailComponent},
         {path: 'admin_registration', component: AdminRegistrationComponent},
         {path: 'my_materials', component: MyMaterialsComponent},
+        {path: 'my_materials/add_material', component: AddMaterialComponent},
         {path: 'my_materials/:materialId', component: MaterialDetailComponent},
         {path: 'users', component: UsersComponent},
         {path: 'users/:userId', component: MyMaterialsComponent},
