@@ -13,7 +13,7 @@
     position: relative;
     top: 0;
   }
-  .categories-list {
+  .filters-list {
     height: 100%;
     overflow: auto;
   }

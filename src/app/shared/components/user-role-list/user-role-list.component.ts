@@ -12,15 +12,15 @@ export class UserRoleListComponent {
 
   filterByRoles(form: NgForm) {
     const dict = Object.entries(form.form.value);
-    let searchTypes = '';
+    let searchRoles = '';
     for (let i = 0; i < dict.length; i++) {
       if (dict[i][1] === true) {
-        searchTypes += 'type=' + dict[i][0];
+        searchRoles += 'role=' + dict[i][0];
         if (i !== dict.length - 1) {
-          searchTypes += '&';
+          searchRoles += '&';
         }
       }
     }
-    this.rolesOut.emit(searchTypes);
+    this.rolesOut.emit(searchRoles);
   }
 }

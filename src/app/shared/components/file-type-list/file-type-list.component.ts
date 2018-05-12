@@ -23,5 +23,4 @@ export class FileTypeListComponent {
     }
     this.typesOut.emit(searchTypes);
   }
-
 }

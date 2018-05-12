@@ -49,4 +49,8 @@ export class UsersService extends BaseApi {
   getUserQuickToolBar(): Observable<MaterialPage> {
     return this.get(`materials/quick_toolbar/`);
   }
+
+  getFilterUsers(url: string): Observable<UserPage> {
+    return this.get(url);
+  }
 }

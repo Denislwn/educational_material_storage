@@ -1,17 +1,29 @@
-<div class="page-without-navbar">
-  <h4 class="col-12">Все пользователи</h4>
-  <div class="row">
-    <div *ngFor="let user of users; let i = index"
-         class="col-sm-4 col-12">
-      <app-user [user]="user"></app-user>
-      <button *ngIf="user?.role !== 4"
-        type="button"
-              class="btn btn-secondary"
-              (click)="openBlockedDialog(i)">Заблокировать пользователя
-      </button>
+<div class="row page-without-navbar">
+  <div class="col-12 col-md-3">
+    <div class="filters-list">
+      <app-user-role-list (rolesOut)="filterByRoles($event)"></app-user-role-list>
     </div>
   </div>
-  <app-user-block-dialog [(visible)]="showUserBlockDialog"
-                         [user]="blockUser"
-                         (blocked)="userBlocked()"></app-user-block-dialog>
+  <div class="col 12 col-md-9 detail-col">
+    <div class="col-12 col-md-12 search-container">
+      <app-search-field [pageName]="'Все пользователи'"
+                        (out)="termMaterial$.next($event)"></app-search-field>
+    </div>
+    <div class="col 12 col-md-12">
+      <div class="row">
+        <div *ngFor="let user of users; let i = index"
+             class="col-sm-6 col-12">
+          <app-user [user]="user"></app-user>
+          <button *ngIf="user?.role !== 4"
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="openBlockedDialog(i)">Заблокировать пользователя
+          </button>
+        </div>
+      </div>
+      <app-user-block-dialog [(visible)]="showUserBlockDialog"
+                             [user]="blockUser"
+                             (blocked)="userBlocked()"></app-user-block-dialog>
+    </div>
+  </div>
 </div>
