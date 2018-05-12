@@ -5,7 +5,7 @@ import {UserInfoComponent} from './user-info/user-info.component';
 import {AddMaterialComponent} from './add-material/add-material.component';
 import {MaterialsComponent} from './materials/materials.component';
 import {MaterialDetailComponent} from './materials/material-detail/material-detail.component';
-import {AddCategoryComponent} from './add-category/add-category.component';
+import {CategoriesComponent} from './categories/categories.component';
 import {AdminRegistrationComponent} from './admin/admin-registration/admin-registration.component';
 import {MyMaterialsComponent} from './my-materials/my-materials.component';
 import {UsersComponent} from './users/users.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
       path: 'system', component: SystemComponent, children: [
         {path: 'user_info', component: UserInfoComponent},
         {path: 'user_info/:materialId', component: MaterialDetailComponent},
-        {path: 'add_category', component: AddCategoryComponent},
+        {path: 'categories', component: CategoriesComponent},
         {path: 'materials', component: MaterialsComponent},
         {path: 'materials/add_material', component: AddMaterialComponent},
         {path: 'materials/:materialId', component: MaterialDetailComponent},

@@ -1,0 +1,15 @@
+.page-without-navbar {
+  padding-top: 56px;
+}
+
+.category-container {
+  display: inline-block;
+}
+
+.edit-category {
+  opacity: 0;
+}
+
+.category-container:hover .edit-category {
+  opacity: 1;
+}

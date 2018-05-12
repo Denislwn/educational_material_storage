@@ -22,6 +22,10 @@ export class CategoryService extends BaseApi {
   }
 
   getFilterMaterialsByCategories(categories: string): Observable<MaterialPage> {
-    return this.get(`materials/?${categories}`);
+    return this.get(`materials/?${categories}/`);
+  }
+
+  editCategory(categoryId: number, name: string): Observable<Category> {
+    return this.patch(`categories/${categoryId.toString()}/`, {name});
   }
 }

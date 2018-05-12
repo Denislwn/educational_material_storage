@@ -1,0 +1,17 @@
+<div class="col-sm-12 page-without-navbar">
+  <h4 class="important-text">Список категорий:</h4>
+  <div *ngFor="let cateory of categories; let i = index">
+    <div class="category-container">
+      <span>{{cateory?.name}}</span>
+      <span *ngIf="getUserRole() !== 1"
+            (click)="openEditCategoryDialog(i)"
+            class="edit-category hover-element">Редактировать</span>
+    </div>
+  </div>
+  <app-add-category [(visible)]="showAddCategoryDialog"
+                    (newCategory)="addNewCategory($event)"></app-add-category>
+  <app-edit-category-dialog [(visible)]="showEditCategoryDialog"
+                            [category]="editCategory"
+                            (newCategory)="successEditCategory($event)"></app-edit-category-dialog>
+</div>
+<app-add-material-button (click)="openAddCategoryDialog()"></app-add-material-button>

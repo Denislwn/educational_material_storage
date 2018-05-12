@@ -1,0 +1,30 @@
+<div *ngIf="visible" class="modal-show">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Новая категория</h5>
+        <button type="button"
+                class="close"
+                (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #myForm="ngForm" (ngSubmit)="addCategory()">
+          <div class="row">
+            <input class="form-control add-input"
+                   type="text"
+                   placeholder="Название категории"
+                   ngModel
+                   name="categoryName"
+                   #categoryName="ngModel">
+            <button type="submit"
+                    class="btn btn-primary add-button">Добавить
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay-dialog" (click)="close()"></div>

@@ -7,16 +7,13 @@ import {AdminService} from '../../../shared/services/admin.service';
   templateUrl: './user-block-dialog.component.html',
   styleUrls: ['./user-block-dialog.component.css']
 })
-export class UserBlockDialogComponent implements OnInit {
+export class UserBlockDialogComponent {
   @Input() visible: boolean;
   @Input() user: User;
   @Output() blocked = new EventEmitter();
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private adminService: AdminService) {
-  }
-
-  ngOnInit() {
   }
 
   close() {
