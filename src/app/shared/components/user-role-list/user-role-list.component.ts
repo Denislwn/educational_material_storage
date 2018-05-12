@@ -2,15 +2,15 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-file-type-list',
-  templateUrl: './file-type-list.component.html',
-  styleUrls: ['./file-type-list.component.css']
+  selector: 'app-user-role-list',
+  templateUrl: './user-role-list.component.html',
+  styleUrls: ['./user-role-list.component.css']
 })
-export class FileTypeListComponent {
-  fileTypes = ['Документ', 'Аудио', 'Видео', 'Презентация', 'Фото', 'Другое'];
-  @Output() typesOut = new EventEmitter<string>();
+export class UserRoleListComponent {
+  userRoles = ['Студент', 'Преподаватель', 'Модератор', 'Админ'];
+  @Output() rolesOut = new EventEmitter<string>();
 
-  filterByTypes(form: NgForm) {
+  filterByRoles(form: NgForm) {
     const dict = Object.entries(form.form.value);
     let searchTypes = '';
     for (let i = 0; i < dict.length; i++) {
@@ -21,7 +21,6 @@ export class FileTypeListComponent {
         }
       }
     }
-    this.typesOut.emit(searchTypes);
+    this.rolesOut.emit(searchTypes);
   }
-
 }

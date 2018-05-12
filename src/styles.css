@@ -19,6 +19,7 @@
 }
 
 .important-text {
+  margin-top: 7px;
   color: red;
 }
 
@@ -28,6 +29,10 @@
 
 .materials-list {
   margin-top: 20px;
+}
+
+.form-check {
+  margin-bottom: 0;
 }
 
 /*----------Модалки--------------*/

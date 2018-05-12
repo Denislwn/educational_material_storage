@@ -1,0 +1,15 @@
+<h4 class="important-text">Тип пользователя</h4>
+<form #checkBoxForm="ngForm">
+  <div *ngFor="let role of userRoles; let i = index"
+       class="form-group form-check">
+    <input type="checkbox"
+           class="form-check-input"
+           [name]="(i+1).toString()"
+           id="{{role}}"
+           (change)="filterByRoles(checkBoxForm)"
+           ngModel>
+    <label class="form-check-label"
+           for="{{role}}">{{role}}
+    </label>
+  </div>
+</form>
