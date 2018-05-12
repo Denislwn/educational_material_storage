@@ -26,6 +26,8 @@ import {BlockedUsersComponent} from './admin/blocked-users/blocked-users.compone
 import {UserUnblockDialogComponent} from './admin/blocked-users/user-unblock-dialog/user-unblock-dialog.component';
 import {AddCategoryComponent} from './categories/add-category/add-category.component';
 import {EditCategoryDialogComponent} from './categories/edit-category-dialog/edit-category-dialog.component';
+import {SearchFieldComponent} from '../shared/components/search-field/search-field.component';
+import {CategoriesListComponent} from '../shared/components/categories-list/categories-list.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import {EditCategoryDialogComponent} from './categories/edit-category-dialog/edi
     UserUnblockDialogComponent,
     AddCategoryComponent,
     EditCategoryDialogComponent,
+    SearchFieldComponent,
+    CategoriesListComponent
   ]
 })
 export class SystemModule {

@@ -1,45 +1,29 @@
 <div class="row page-without-navbar">
   <div class="col-12 col-md-3">
-    <div class="categories-list">
-      <span class="important-text">Категории</span>
-      <form #checkBoxForm="ngForm">
-        <div *ngFor="let category of categories" class="form-group form-check">
-          <input type="checkbox"
-                 class="form-check-input" [name]="category.id"
-                 id="{{category.id}}"
-                 (change)="filterByCategories(checkBoxForm)"
-                 ngModel>
-          <label class="form-check-label"
-                 for="{{category.id}}">{{category.name}}
-          </label>
-        </div>
-      </form>
-    </div>
+    <app-categories-list (categoriesOut)="filterByCategories($event)"></app-categories-list>
   </div>
-  <div #materialsList
-       class="col 12 col-md-9 books-container"
-       infiniteScroll
-       [infiniteScrollDistance]="0.1"
-       [infiniteScrollThrottle]="200"
-       [scrollWindow]="isPhone"
-       (scrolled)="onScroll()">
-    <div class="col-sm-12 search-container">
-      <div class="row">
-        <input type="text"
-               placeholder="Поиск..."
-               class="form-control input-search col-sm-7"
-               (input)="termMaterial$.next($event.target.value)">
-      </div>
+  <div class="col 12 col-md-9 detail-col">
+    <div class="col-12 col-md-12 search-container">
+      <app-search-field [pageName]="'Все книги'"
+                        (out)="termMaterial$.next($event)"></app-search-field>
     </div>
-    <div class="row materials-list">
-      <div *ngFor="let material of materials" class="col-12 col-sm-6">
-        <app-material [material]="material"
-                      (clickOnBook)="clickOnMaterial()"></app-material>
+    <div #materialsList
+         class="col 12 col-md-12 books-container detail-col"
+         infiniteScroll
+         [infiniteScrollDistance]="0.1"
+         [infiniteScrollThrottle]="200"
+         [scrollWindow]="isPhone"
+         (scrolled)="onScroll()">
+      <div class="row materials-list">
+        <div *ngFor="let material of materials" class="col-12 col-sm-6">
+          <app-material [material]="material"
+                        (clickOnBook)="clickOnMaterial()"></app-material>
+        </div>
       </div>
-    </div>
-    <div [class.pre-loader-container]="materials.length===0"
-         *ngIf="!lastPage">
-      <app-preloader></app-preloader>
+      <div [class.pre-loader-container]="materials.length===0"
+           *ngIf="!lastPage">
+        <app-preloader></app-preloader>
+      </div>
     </div>
   </div>
 </div>

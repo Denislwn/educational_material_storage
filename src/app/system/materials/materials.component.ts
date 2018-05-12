@@ -41,7 +41,6 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.isPhone = false;
     }
     this.getMaterials();
-    this.getCategories();
     this.subOnInputSearchField();
   }
 
@@ -64,14 +63,6 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.getServerMaterials();
     }
     this.storeService.storeReset();
-  }
-
-  getCategories() {
-    if (this.categoryService.categories) {
-      this.categories = this.categoryService.categories;
-    } else {
-      this.getServerCategories();
-    }
   }
 
   getServerMaterials() {
@@ -123,30 +114,10 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getServerCategories() {
-    this.categoryService.getCategories()
-      .subscribe((categories: Category[]) => {
-        this.categories = categories;
-        this.categoryService.categories = this.categories;
-      }, (err) => {
-        console.log(err);
-      });
-  }
-
-  filterByCategories(form: NgForm) {
-    const dict = Object.entries(form.form.value);
-    let searchCategories = '';
-    for (let i = 0; i < dict.length; i++) {
-      if (dict[i][1] === true) {
-        searchCategories += 'category=' + dict[i][0];
-        if (i !== dict.length - 1) {
-          searchCategories += '&';
-        }
-      }
-    }
+  filterByCategories(categories: string) {
     this.isLoad = true;
     this.page = 1;
-    this.categoryService.getFilterMaterialsByCategories(searchCategories)
+    this.categoryService.getFilterMaterialsByCategories(categories)
       .subscribe((materialPage: MaterialPage) => {
         this.materials = materialPage.results;
         if (materialPage.next_page === null) {

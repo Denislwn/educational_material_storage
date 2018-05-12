@@ -1,0 +1,8 @@
+<div class="search-container">
+  <h4>{{pageName}}</h4>
+  <input type="text"
+         [(ngModel)]="text"
+         placeholder="Поиск..."
+         (input)="textOut()"
+         class="form-control col-sm-7">
+</div>

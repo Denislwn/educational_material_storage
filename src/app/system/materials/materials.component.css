@@ -2,31 +2,8 @@
   padding-right: 0;
 }
 
-.search-container {
-  height: 45px;
-  max-width: 600px;
-  position: fixed;
-  top: 56px;
-}
-
-.input-search {
-  margin-top: 5px;
-}
-
-.form-check {
-  margin-bottom: 0;
-}
-
-.categories-list {
-  height: calc(100vh - 56px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-right: 1px solid grey;
-}
-
 .books-container {
-  margin-top: 45px;
-  height: calc(100vh - 101px);
+  height: calc(100vh - 145px);
   overflow-y: auto;
   overflow-x: hidden;
 }
