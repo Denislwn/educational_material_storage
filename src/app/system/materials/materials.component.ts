@@ -70,14 +70,11 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
 
   getServerMaterials() {
     this.page = 1;
-    this.lastPage = false;
+    this.isLoad = true;
     this.materialsService.getMaterials(this.page)
       .subscribe((materialPage: MaterialPage) => {
         this.materials = materialPage.results;
-        if (materialPage.next_page === null) {
-          this.lastPage = true;
-        }
-        this.isLoad = false;
+        this.checkLastPage(materialPage.next_page);
       }, (err) => {
         console.log(err);
       });
@@ -135,15 +132,12 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     this.materialsService.getFilterMaterials(url)
       .subscribe((materialPage: MaterialPage) => {
         this.materials = materialPage.results;
-        if (materialPage.next_page === null) {
-          this.lastPage = true;
-        }
-        this.isLoad = false;
+        this.checkLastPage(materialPage.next_page);
       });
   }
 
   onScroll() {
-    if (this.searchFileTypes || this.searchFileTypes || this.searchCategories) {
+    if (this.searchText || this.searchFileTypes || this.searchCategories) {
       this.getFilterNextMaterialPage();
     } else {
       this.getNextMaterialPage();
@@ -157,10 +151,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.materialsService.getMaterials(this.page)
         .subscribe((materialPage: MaterialPage) => {
           this.materials = this.materials.concat(materialPage.results);
-          if (materialPage.next_page === null) {
-            this.lastPage = true;
-          }
-          this.isLoad = false;
+          this.checkLastPage(materialPage.next_page);
         });
     }
   }
@@ -173,10 +164,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
       this.materialsService.getFilterMaterials(url)
         .subscribe((materialPage: MaterialPage) => {
           this.materials = this.materials.concat(materialPage.results);
-          if (materialPage.next_page === null) {
-            this.lastPage = true;
-          }
-          this.isLoad = false;
+          this.checkLastPage(materialPage.next_page);
         });
     }
   }
@@ -190,5 +178,14 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     } else {
       this.storeService.materialsListScroll = document.getElementsByTagName('html')[0].scrollTop;
     }
+  }
+
+  checkLastPage(nextPage: string) {
+    if (nextPage === null) {
+      this.lastPage = true;
+    } else {
+      this.lastPage = false;
+    }
+    this.isLoad = false;
   }
 }

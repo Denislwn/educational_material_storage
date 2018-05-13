@@ -11,8 +11,12 @@ export class AdminService extends BaseApi {
     super(http);
   }
 
-  getBlockedUsers(): Observable<UserPage> {
-    return this.get(`users/?blocked=true`);
+  getBlockedUsers(page: number): Observable<UserPage> {
+    return this.get(`users/?page=${page.toString()}&blocked=true`);
+  }
+
+  getFilterBlockedUsers(page: number, text: string) {
+    return this.get(`users/search/?page=${page.toString()}&blocked=true&text=${text}`);
   }
 
   unBlockUser(userId: number): Observable<Object> {

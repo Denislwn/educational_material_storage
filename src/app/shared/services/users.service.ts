@@ -42,8 +42,8 @@ export class UsersService extends BaseApi {
     return this.post(`users/`, data);
   }
 
-  getUsers(): Observable<UserPage> {
-    return this.get(`users/`);
+  getUsers(page: number): Observable<UserPage> {
+    return this.get(`users/?page=${page.toString()}`);
   }
 
   getUserQuickToolBar(): Observable<MaterialPage> {

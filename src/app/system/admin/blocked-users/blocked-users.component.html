@@ -1,13 +1,24 @@
 <div class="page-without-navbar">
-  <h4 class="col-12">Все заблокированные полизователи</h4>
-  <div class="row">
-    <div *ngFor="let user of blockedUsers; let i = index"
-         class="col-sm-4 col-12">
-      <app-user [user]="user"></app-user>
-      <button type="button"
-              class="btn btn-secondary"
-              (click)="openUnblockedDialog(i)">Разблокировать пользователя
-      </button>
+  <div class="col-12 col-md-12 search-container">
+    <app-search-field [pageName]="'Все пользователи'"
+                      (out)="termUsers$.next($event)"></app-search-field>
+  </div>
+  <div #blockedUsersList
+       class="col 12 col-md-12 main-content-container detail-col"
+       infiniteScroll
+       [infiniteScrollDistance]="0.1"
+       [infiniteScrollThrottle]="200"
+       [scrollWindow]="false"
+       (scrolled)="onScroll()">
+    <div class="row">
+      <div *ngFor="let user of blockedUsers; let i = index"
+           class="col-sm-4 col-12">
+        <app-user [user]="user"></app-user>
+        <button type="button"
+                class="btn btn-secondary"
+                (click)="openUnblockedDialog(i)">Разблокировать пользователя
+        </button>
+      </div>
     </div>
   </div>
   <app-user-unblock-dialog [(visible)]="showUserUnblockDialog"

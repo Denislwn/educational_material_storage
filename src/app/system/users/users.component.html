@@ -9,7 +9,13 @@
       <app-search-field [pageName]="'Все пользователи'"
                         (out)="termUsers$.next($event)"></app-search-field>
     </div>
-    <div class="col 12 col-md-12">
+    <div #usersList
+         class="col 12 col-md-12 main-content-container detail-col"
+         infiniteScroll
+         [infiniteScrollDistance]="0.1"
+         [infiniteScrollThrottle]="200"
+         [scrollWindow]="false"
+         (scrolled)="onScroll()">
       <div class="row">
         <div *ngFor="let user of users; let i = index"
              class="col-sm-6 col-12">

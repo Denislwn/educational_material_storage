@@ -2,12 +2,6 @@
   padding-right: 0;
 }
 
-.books-container {
-  height: calc(100vh - 145px);
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 @media (max-width: 768px) {
   .search-container {
     position: relative;
@@ -17,7 +11,7 @@
     height: 100%;
     overflow: auto;
   }
-  .books-container {
+  .main-content-container {
     height: 100%;
     overflow-y: auto;
   }

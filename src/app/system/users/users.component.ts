@@ -3,6 +3,7 @@ import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user/user.model';
 import {UserPage} from '../../shared/models/user/user-page.model';
 import {Subject} from 'rxjs/Subject';
+import {MaterialPage} from '../../shared/models/material/material-page.model';
 
 @Component({
   selector: 'app-users',
@@ -30,9 +31,12 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.usersService.getUsers()
+    this.page = 1;
+    this.isLoad = true;
+    this.usersService.getUsers(this.page)
       .subscribe((userPage: UserPage) => {
         this.users = userPage.results;
+        this.checkLastPage(userPage.next_page);
       });
   }
 
@@ -67,15 +71,44 @@ export class UsersComponent implements OnInit {
   getFilterUsers(url) {
     this.isLoad = true;
     this.page = 1;
-    this.lastPage = false;
     this.usersService.getFilterUsers(url)
       .subscribe((userPage: UserPage) => {
         this.users = userPage.results;
-        if (userPage.next_page === null) {
-          this.lastPage = true;
-        }
-        this.isLoad = false;
+        this.checkLastPage(userPage.next_page);
       });
+  }
+
+  onScroll() {
+    if (this.searchByRoles || this.searchText) {
+      this.getFilterNextUserPage();
+    } else {
+      this.getNextUserPage();
+    }
+  }
+
+  getNextUserPage() {
+    if (!this.isLoad && !this.lastPage) {
+      this.isLoad = true;
+      this.page += 1;
+      this.usersService.getUsers(this.page)
+        .subscribe((userPage: UserPage) => {
+          this.users = this.users.concat(userPage.results);
+          this.checkLastPage(userPage.next_page);
+        });
+    }
+  }
+
+  getFilterNextUserPage() {
+    if (!this.isLoad && !this.lastPage) {
+      this.isLoad = true;
+      this.page += 1;
+      const url = this.getUrlForFilterUsers() + `page=${this.page}`;
+      this.usersService.getFilterUsers(url)
+        .subscribe((userPage: UserPage) => {
+          this.users = this.users.concat(userPage.results);
+          this.checkLastPage(userPage.next_page);
+        });
+    }
   }
 
   openBlockedDialog(blockedUserNumber: number) {
@@ -89,4 +122,12 @@ export class UsersComponent implements OnInit {
     this.showUserBlockDialog = false;
   }
 
+  checkLastPage(nextPage: string) {
+    if (nextPage === null) {
+      this.lastPage = true;
+    } else {
+      this.lastPage = false;
+    }
+    this.isLoad = false;
+  }
 }

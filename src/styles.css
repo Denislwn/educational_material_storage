@@ -57,7 +57,21 @@
 }
 
 /*-----------------------------*/
+/*------Разметка страницы------*/
+.filters-list {
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid grey;
+}
 
+.main-content-container {
+  height: calc(100vh - 145px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/*-----------------------------*/
+/*------Стрелочка "Назад"------*/
 .arrow-back-container {
   height: 25px;
   display: inline-block;
@@ -81,15 +95,9 @@
 .arrow-back-container:focus {
   outline: none;
 }
-
+/*-----------------------------*/
+/*------Обязательные поля------*/
 .required-area-dialog::after {
   color: red;
   content: ' *';
-}
-
-.filters-list {
-  height: calc(100vh - 56px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-right: 1px solid grey;
 }
