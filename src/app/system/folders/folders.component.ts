@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FoldersService} from '../../shared/services/folders.service';
 import {Folder} from '../../shared/models/folder/folder.name';
 import {FolderPage} from '../../shared/models/folder/folder-page.model';
@@ -21,6 +21,7 @@ export class FoldersComponent implements OnInit {
   showDeleteDialog = false;
   showEditFolderDialog = false;
   showAddFolderDialog = false;
+  @Input() userId: number;
   @Output() nestedMaterials = new EventEmitter<Material[]>();
   subOnRemoveFolder: Subscription;
 
@@ -32,7 +33,7 @@ export class FoldersComponent implements OnInit {
   }
 
   getFolders() {
-    this.foldersService.getFolders()
+    this.foldersService.getFolders(this.userId)
       .subscribe((folders: Folder[]) => {
         this.folders = folders;
         this.foldersPath = [];
@@ -116,6 +117,14 @@ export class FoldersComponent implements OnInit {
       }, () => {
         this.subOnRemoveFolder.unsubscribe();
       });
+  }
+
+  getShowButton() {
+    if (this.userId === Number(localStorage.getItem('userId'))) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

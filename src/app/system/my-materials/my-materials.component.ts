@@ -200,4 +200,12 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
     this.isLoad = false;
   }
 
+  getShowButton() {
+    if (this.userId === Number(localStorage.getItem('userId'))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

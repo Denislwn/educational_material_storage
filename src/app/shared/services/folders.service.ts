@@ -12,8 +12,8 @@ export class FoldersService extends BaseApi {
     super(http);
   }
 
-  getFolders(): Observable<Folder[]> {
-    return this.get(`folders/`);
+  getFolders(userId: number): Observable<Folder[]> {
+    return this.get(`folders/?user=${userId.toString()}`);
   }
 
   getNestedFolders(parentId: number): Observable<FolderPage> {

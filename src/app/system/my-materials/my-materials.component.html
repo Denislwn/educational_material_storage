@@ -29,7 +29,8 @@
       <div class="row materials-list">
         <div class="col-12">
           <div class="row">
-            <app-folders (nestedMaterials)="getNestedMaterials($event)"
+            <app-folders [userId]="userId"
+                         (nestedMaterials)="getNestedMaterials($event)"
                          class="col-12"></app-folders>
           </div>
         </div>
@@ -39,13 +40,14 @@
             <app-material [material]="material"
                           (clickOnBook)="clickOnBook()"></app-material>
           </div>
-          <h4 *ngIf="materials?.length === 0&&routeBack"
-              class="no-content">У этого пользователя нет материалов</h4>
-          <h4 *ngIf="materials?.length === 0&&!routeBack"
-              class="no-content">У вас нет материалов</h4>
         </div>
+        <h4 *ngIf="materials?.length === 0&&routeBack"
+            class="no-content">У этого пользователя нет материалов</h4>
+        <h4 *ngIf="materials?.length === 0&&!routeBack"
+            class="no-content">У вас нет материалов</h4>
       </div>
     </div>
   </div>
 </div>
-<app-add-material-button routerLink="add_material"></app-add-material-button>
+<app-add-material-button *ngIf=getShowButton()
+                         routerLink="add_material"></app-add-material-button>

@@ -10,7 +10,8 @@
       <span>/</span>
     </span>
     </span>
-    <button type="button"
+    <button *ngIf="getShowButton()"
+            type="button"
             class="btn btn-success"
             (click)="openAddFolderDialog()">Новая папка</button>
   </div>
