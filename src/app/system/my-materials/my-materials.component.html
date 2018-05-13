@@ -27,8 +27,11 @@
          [scrollWindow]="false"
          (scrolled)="onScroll()">
       <div class="row materials-list">
-        <div class="row">
-          <app-folders (nestedMaterials)="getNestedMaterials($event)"></app-folders>
+        <div class="col-12">
+          <div class="row">
+            <app-folders (nestedMaterials)="getNestedMaterials($event)"
+                         class="col-12"></app-folders>
+          </div>
         </div>
         <div class="row">
           <div *ngFor="let material of materials"

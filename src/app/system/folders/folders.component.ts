@@ -12,6 +12,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class FoldersComponent implements OnInit {
   folders: Folder[];
+  foldersPath: { folderId: number, folderName: string }[] = [];
   editFolder: Folder;
   folderParent: number = null;
   deleteObj: { title: string, message: string };
@@ -34,7 +35,45 @@ export class FoldersComponent implements OnInit {
     this.foldersService.getFolders()
       .subscribe((folders: Folder[]) => {
         this.folders = folders;
+        this.foldersPath = [];
+        this.nestedMaterials.emit(null);
       });
+  }
+
+  getNextFolder(folderId: number) {
+    if (this.folderParent === folderId) {
+      return;
+    } else {
+      this.openNestedFolders(folderId);
+    }
+  }
+
+  openNestedFolders(folderId: number) {
+    this.foldersService.getNestedFolders(folderId)
+      .subscribe((folderPage: FolderPage) => {
+        this.folders = folderPage.folders;
+        this.folderParent = folderPage.id;
+        const folderPath = {folderId: folderPage.id, folderName: folderPage.name};
+        this.getNewFoldersPath(folderPath);
+        this.nestedMaterials.emit(folderPage.materials);
+      });
+  }
+
+  getNewFoldersPath(folderPath: { folderId: number, folderName: string }) {
+    let clickNumberFolder = -1;
+    for (let i = 0; i < this.foldersPath.length; i++) {
+      if (folderPath.folderId === this.foldersPath[i].folderId) {
+        clickNumberFolder = i;
+        break;
+      }
+    }
+    if (clickNumberFolder !== -1) {
+      clickNumberFolder += 1;
+      this.foldersPath.splice(clickNumberFolder);
+    } else {
+      this.foldersPath.push(folderPath);
+    }
+    console.log(this.foldersPath);
   }
 
   openAddFolderDialog() {
@@ -47,16 +86,6 @@ export class FoldersComponent implements OnInit {
     } else {
       this.openNestedFolders(this.folderParent);
     }
-  }
-
-  openNestedFolders(folderNumber: number) {
-    this.foldersService.getNestedFolders(folderNumber)
-      .subscribe((folderPage: FolderPage) => {
-        this.folders = folderPage.folders;
-        this.folderParent = folderPage.id;
-        console.log(this.folderParent);
-        this.nestedMaterials.emit(folderPage.materials);
-      });
   }
 
   openEditFolderDialog(editFolderNumber: number) {

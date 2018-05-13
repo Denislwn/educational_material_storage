@@ -1,12 +1,31 @@
-<div>
-  <div *ngFor="let folder of folders; let i = index">
-    <div>
-      <span (dblclick)="openNestedFolders(folder.id)">{{folder.name}}</span>
+<div class="col-12">
+  <div class="path-container">
+    <span *ngIf="foldersPath.length > 0">
+    <span (click)="getFolders()"
+          class="path-element">Корень</span>
+      <span>/</span>
+      <span *ngFor="let path of foldersPath">
+      <span [ngClass]="path.folderId === folderParent ? 'selected-element' : 'path-element'"
+            (click)="getNextFolder(path.folderId)">{{path.folderName}}</span>
+      <span>/</span>
+    </span>
+    </span>
+    <button type="button"
+            class="btn btn-success"
+            (click)="openAddFolderDialog()">Новая папка</button>
+  </div>
+  <div class="row">
+    <div *ngFor="let folder of folders; let i = index"
+         class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div (dblclick)="openNestedFolders(folder.id)"
+           class="folder-container">
+        <img class="folder-img" src="../../../assets/images/folder.png"/>
+        <div class="folder-name">{{folder.name}}</div>
+      </div>
       <span (click)="openEditFolderDialog(i)">Редактировать</span>
       <span (click)="openDeleteDialog(i)">Удалить</span>
     </div>
   </div>
-  <button (click)="openAddFolderDialog()">Add folder</button>
   <app-add-new-folder-dialog [(visible)]="showAddFolderDialog"
                              [folderParent]="folderParent"
                              (newFolder)="addNewFolder($event)"></app-add-new-folder-dialog>

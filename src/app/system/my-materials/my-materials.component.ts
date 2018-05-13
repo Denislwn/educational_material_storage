@@ -183,7 +183,12 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   }
 
   getNestedMaterials(nestedMaterials: Material[]) {
-    this.materials = nestedMaterials;
+    if (nestedMaterials === null) {
+      this.getUserMaterials();
+    } else {
+      this.lastPage = true;
+      this.materials = nestedMaterials;
+    }
   }
 
   checkLastPage(nextPage: string) {
