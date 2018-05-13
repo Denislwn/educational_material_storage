@@ -29,6 +29,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
   isLoad: boolean;
   lastPage: boolean;
   scrollState = false;
+  pageState = 'MATERIALS';
   @ViewChild('materialsList') materialsList;
 
   constructor(private materialsService: MaterialsService,
@@ -65,7 +66,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
     } else {
       this.getServerMaterials();
     }
-    this.storeService.storeReset();
+    this.storeService.storeMaterialReset();
   }
 
   getServerMaterials() {
@@ -82,8 +83,11 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
 
   getServiceMaterials() {
     this.materials = this.storeService.materials;
-    this.page = this.storeService.page;
-    this.lastPage = this.storeService.lastPage;
+    this.page = this.storeService.materialPage;
+    this.lastPage = this.storeService.materialLastPage;
+    this.searchText = this.storeService.searchTextFilterMaterials;
+    this.searchFileTypes = this.storeService.materialFileTypes;
+    this.searchCategories = this.storeService.materialCategories;
     this.scrollState = true;
     this.isLoad = false;
   }
@@ -171,13 +175,18 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
 
   clickOnMaterial() {
     this.storeService.materials = this.materials;
-    this.storeService.lastPage = this.lastPage;
-    this.storeService.page = this.page;
-    if (!this.isPhone) {
-      this.storeService.materialsListScroll = this.materialsList.nativeElement.scrollTop;
-    } else {
-      this.storeService.materialsListScroll = document.getElementsByTagName('html')[0].scrollTop;
-    }
+    this.storeService.materialLastPage = this.lastPage;
+    this.storeService.materialPage = this.page;
+    this.storeService.searchTextFilterMaterials = this.searchText;
+    this.storeService.pageState = this.pageState;
+    this.storeService.materialsListScroll = this.materialsList.nativeElement.scrollTop;
+    this.storeService.materialFileTypes = this.searchFileTypes;
+    this.storeService.materialCategories = this.searchCategories;
+    // if (!this.isPhone) {
+    //   this.storeService.materialsListScroll = this.materialsList.nativeElement.scrollTop;
+    // } else {
+    //   this.storeService.materialsListScroll = document.getElementsByTagName('html')[0].scrollTop;
+    // }
   }
 
   checkLastPage(nextPage: string) {

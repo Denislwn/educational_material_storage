@@ -12,6 +12,7 @@ import {CategoryService} from './shared/services/category.service';
 import {MaterialsService} from './shared/services/materials.service';
 import {StoreService} from './shared/services/store.service';
 import {AdminService} from './shared/services/admin.service';
+import {UtilsService} from './shared/services/utils.service';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {AdminService} from './shared/services/admin.service';
     CategoryService,
     MaterialsService,
     StoreService,
-    AdminService
+    AdminService,
+    UtilsService
   ],
   bootstrap: [AppComponent]
 })

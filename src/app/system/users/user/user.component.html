@@ -1,4 +1,5 @@
 <div class="col-12 user-card"
+     (click)="userClick()"
      routerLink="{{user?.id}}">
   <div>Логин: {{user?.username}}</div>
   <div>E-mail: {{user?.email}}</div>

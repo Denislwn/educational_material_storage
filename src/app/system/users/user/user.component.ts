@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {User} from '../../../shared/models/user/user.model';
 
 @Component({
@@ -6,12 +6,14 @@ import {User} from '../../../shared/models/user/user.model';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
   @Input() user: User;
+  @Output() clickOnUser = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
+  userClick() {
+    this.clickOnUser.emit();
   }
 
 }

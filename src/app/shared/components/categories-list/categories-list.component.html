@@ -1,12 +1,13 @@
 <h4 class="important-text">Категории</h4>
 <form #checkBoxForm="ngForm">
-  <div *ngFor="let category of categories" class="form-group form-check">
+  <div *ngFor="let category of categories; let i = index"
+       class="form-group form-check">
     <input type="checkbox"
            class="form-check-input"
            [name]="category.id"
            id="{{category.id}}"
            (change)="filterByCategories(checkBoxForm)"
-           ngModel>
+           [ngModel]="saveCategories[i]">
     <label class="form-check-label"
            for="{{category.id}}">{{category.name}}
     </label>

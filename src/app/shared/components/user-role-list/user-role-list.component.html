@@ -7,7 +7,7 @@
            [name]="(i+1).toString()"
            id="{{role}}"
            (change)="filterByRoles(checkBoxForm)"
-           ngModel>
+           [ngModel]="savesUserRoles[i]">
     <label class="form-check-label"
            for="{{role}}">{{role}}
     </label>

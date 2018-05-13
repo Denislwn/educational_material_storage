@@ -7,7 +7,7 @@
            [name]="(i+1).toString()"
            id="{{type}}"
            (change)="filterByTypes(checkBoxForm)"
-           ngModel>
+           [ngModel]="savesFileTypes[i]">
     <label class="form-check-label"
            for="{{type}}">{{type}}
     </label>

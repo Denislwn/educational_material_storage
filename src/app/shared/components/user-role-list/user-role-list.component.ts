@@ -1,26 +1,37 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {StoreService} from '../../services/store.service';
+import {UtilsService} from '../../services/utils.service';
 
 @Component({
   selector: 'app-user-role-list',
   templateUrl: './user-role-list.component.html',
   styleUrls: ['./user-role-list.component.css']
 })
-export class UserRoleListComponent {
+export class UserRoleListComponent implements OnInit {
   userRoles = ['Студент', 'Преподаватель', 'Модератор', 'Админ'];
+  savesUserRoles = [false, false, false, false];
   @Output() rolesOut = new EventEmitter<string>();
 
-  filterByRoles(form: NgForm) {
-    const dict = Object.entries(form.form.value);
-    let searchRoles = '';
-    for (let i = 0; i < dict.length; i++) {
-      if (dict[i][1] === true) {
-        searchRoles += 'role=' + dict[i][0];
-        if (i !== dict.length - 1) {
-          searchRoles += '&';
+  constructor(private storeService: StoreService,
+              private utils: UtilsService) {
+  }
+
+  ngOnInit(): void {
+    if (this.storeService.userRolesFilter) {
+      const arr = this.utils.parseParams(this.storeService.userRolesFilter);
+      for (const i of arr) {
+        if (i !== 0) {
+          this.savesUserRoles[i - 1] = true;
         }
       }
+      this.storeService.userRolesFilter = null;
     }
+  }
+
+  filterByRoles(form: NgForm) {
+    const param = 'role=';
+    const searchRoles = this.utils.formationParams(form.form.value, param);
     this.rolesOut.emit(searchRoles);
   }
 }

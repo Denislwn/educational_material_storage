@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user/user.model';
 import {UserPage} from '../../shared/models/user/user-page.model';
 import {Subject} from 'rxjs/Subject';
-import {MaterialPage} from '../../shared/models/material/material-page.model';
+import {StoreService} from '../../shared/services/store.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, AfterViewInit {
   users: User[];
   blockUser: User;
   termUsers$ = new Subject<string>();
@@ -21,8 +21,12 @@ export class UsersComponent implements OnInit {
   isLoad: boolean;
   lastPage: boolean;
   showUserBlockDialog = false;
+  scrollState = false;
+  USERS = 'USERS';
+  @ViewChild('usersList') usersList;
 
-  constructor(public usersService: UsersService) {
+  constructor(private usersService: UsersService,
+              private storeService: StoreService) {
   }
 
   ngOnInit() {
@@ -30,7 +34,32 @@ export class UsersComponent implements OnInit {
     this.subOnInputSearchField();
   }
 
+  ngAfterViewInit(): void {
+    if (this.scrollState) {
+      this.usersList.nativeElement.scrollTop = this.storeService.usersListScroll;
+    }
+    this.scrollState = false;
+  }
+
   getUsers() {
+    if (this.storeService.users) {
+      this.getUsersFromService();
+    } else {
+      this.getUsersFromServer();
+    }
+  }
+
+  getUsersFromService() {
+    this.users = this.storeService.users;
+    this.page = this.storeService.userPage;
+    this.lastPage = this.storeService.userLastPage;
+    this.searchByRoles = this.storeService.userRolesFilter;
+    this.searchText = this.storeService.searchTextFilterUsers;
+    this.scrollState = true;
+    this.storeService.storeUserReset();
+  }
+
+  getUsersFromServer() {
     this.page = 1;
     this.isLoad = true;
     this.usersService.getUsers(this.page)
@@ -80,8 +109,10 @@ export class UsersComponent implements OnInit {
 
   onScroll() {
     if (this.searchByRoles || this.searchText) {
+      console.log('SCROLL');
       this.getFilterNextUserPage();
     } else {
+      console.log('SCROLLLLLLLLLLl');
       this.getNextUserPage();
     }
   }
@@ -129,5 +160,15 @@ export class UsersComponent implements OnInit {
       this.lastPage = false;
     }
     this.isLoad = false;
+  }
+
+  clickOnUser() {
+    this.storeService.users = this.users;
+    this.storeService.userLastPage = this.lastPage;
+    this.storeService.userPage = this.page;
+    this.storeService.searchTextFilterUsers = this.searchText;
+    this.storeService.pageState = this.USERS;
+    this.storeService.userRolesFilter = this.searchByRoles;
+    this.storeService.usersListScroll = this.usersList.nativeElement.scrollTop;
   }
 }

@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Category} from '../../models/category/category.model';
 import {CategoryService} from '../../services/category.service';
-import {MaterialPage} from '../../models/material/material-page.model';
 import {NgForm} from '@angular/forms';
+import {UtilsService} from '../../services/utils.service';
+import {StoreService} from '../../services/store.service';
 
 @Component({
   selector: 'app-categories-list',
@@ -11,44 +12,59 @@ import {NgForm} from '@angular/forms';
 })
 export class CategoriesListComponent implements OnInit {
   categories: Category[];
+  saveCategories = [];
+  @Input() categoriesListState: string;
   @Output() categoriesOut = new EventEmitter<string>();
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+              private storeService: StoreService,
+              private utils: UtilsService) {
+  }
 
   ngOnInit() {
     this.getCategories();
   }
 
   getCategories() {
-    if (this.categoryService.categories) {
-      this.categories = this.categoryService.categories;
-    } else {
-      this.getServerCategories();
-    }
-  }
-
-  getServerCategories() {
     this.categoryService.getCategories()
       .subscribe((categories: Category[]) => {
+        console.log(this.categories);
         this.categories = categories;
-        this.categoryService.categories = this.categories;
+        this.getSelectedCategories();
       }, (err) => {
         console.log(err);
       });
   }
 
+  getSelectedCategories() {
+    if (this.storeService.materialCategories && this.categoriesListState === 'MATERIALS') {
+      this.getParseSelectedCategories(this.storeService.materialCategories);
+      console.log(this.saveCategories);
+      this.storeService.materialCategories = null;
+    } else if (this.storeService.userMaterialCategories && this.categoriesListState === 'USER_MATERIALS') {
+      this.getParseSelectedCategories(this.storeService.materialCategories);
+      this.storeService.userMaterialCategories = null;
+    }
+  }
+
   filterByCategories(form: NgForm) {
-    const dict = Object.entries(form.form.value);
-    let searchCategories = '';
-    for (let i = 0; i < dict.length; i++) {
-      if (dict[i][1] === true) {
-        searchCategories += 'category=' + dict[i][0];
-        if (i !== dict.length - 1) {
-          searchCategories += '&';
+    const param = 'category=';
+    const searchCategories = this.utils.formationParams(form.form.value, param);
+    this.categoriesOut.emit(searchCategories);
+  }
+
+  getParseSelectedCategories(types: string) {
+    const arr = this.utils.parseParams(types);
+    for (const i of arr) {
+      if (i > 0) {
+        // this.saveCategories[i - 1] = true;
+        for (let j = 0; j < this.categories.length; j++) {
+          if (this.categories[j].id === Number(i)) {
+            this.saveCategories[j] = true;
+          }
         }
       }
     }
-    this.categoriesOut.emit(searchCategories);
   }
 
 }

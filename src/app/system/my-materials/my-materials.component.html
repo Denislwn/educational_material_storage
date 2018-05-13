@@ -1,24 +1,35 @@
 <div class="row page-without-navbar">
-  <div *ngIf="routeBack"
-       class="arrow-back-container hover-element"
-       routerLink="{{routeBack}}">
-    <img class="arrow-back" src="assets/images/arrow-back.png"/>
-    <span class="arrow-back-text">{{messageBack}}</span>
-  </div>
   <div class="col-12 col-md-3">
     <div class="filters-list">
+      <div *ngIf="routeBack"
+           class="arrow-back-container hover-element"
+           routerLink="{{routeBack}}">
+        <img class="arrow-back" src="assets/images/arrow-back.png"/>
+        <span class="arrow-back-text">{{messageBack}}</span>
+      </div>
       <app-categories-list></app-categories-list>
-      <app-file-type-list></app-file-type-list>
+      <app-file-type-list [fileTypesListState]="pageState"></app-file-type-list>
     </div>
   </div>
+
   <div class="col 12 col-md-9 detail-col">
     <div class="col-12 col-md-12 search-container">
-      <app-search-field [pageName]="materialsName"></app-search-field>
+      <app-search-field [pageName]="materialsName"
+                        [searchState]="pageState"></app-search-field>
     </div>
-    <div class="row materials-list">
-      <div *ngFor="let material of materials"
-           class="col-12 col-sm-6">
-        <app-material [material]="material"></app-material>
+    <div #materialsList
+         class="col 12 col-md-12 main-content-container detail-col"
+         infiniteScroll
+         [infiniteScrollDistance]="0.1"
+         [infiniteScrollThrottle]="200"
+         [scrollWindow]="false"
+         (scrolled)="onScroll()">
+      <div class="row materials-list">
+        <div *ngFor="let material of materials"
+             class="col-12 col-sm-6">
+          <app-material [material]="material"
+                        (clickOnBook)="clickOnBook()"></app-material>
+        </div>
       </div>
     </div>
   </div>
