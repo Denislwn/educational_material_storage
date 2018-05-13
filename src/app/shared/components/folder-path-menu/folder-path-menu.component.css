@@ -1,0 +1,13 @@
+.selected-element {
+  color: black;
+  font-weight: bold;
+}
+
+.path-element {
+  cursor: pointer;
+  color: blue;
+}
+
+.path-element:hover {
+  border-bottom: 1px solid black;
+}

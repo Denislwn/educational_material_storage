@@ -1,0 +1,10 @@
+<span *ngIf="foldersPath.length > 0">
+    <span (click)="rootFolder.emit()"
+          class="path-element">Корень</span>
+      <span>/</span>
+      <span *ngFor="let path of foldersPath">
+      <span [ngClass]="path.folderId === folderParent ? 'selected-element' : 'path-element'"
+            (click)="nextFolder.emit(path.folderId)">{{path.folderName}}</span>
+      <span>/</span>
+    </span>
+</span>

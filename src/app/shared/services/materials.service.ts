@@ -24,7 +24,7 @@ export class MaterialsService extends BaseApi {
     let finalData;
     const formData = new FormData();
     formData.append('name', material.name);
-    formData.append('type', '1');
+    formData.append('type', material.type);
     formData.append('author', material.author);
     formData.append('categories', material.categories);
     formData.append('file', material.file[0]);
@@ -32,10 +32,6 @@ export class MaterialsService extends BaseApi {
     finalData = formData;
     return this.post(`materials/`, finalData);
   }
-
-  // getFilterMaterials(text: string): Observable<MaterialPage> {
-  //   return this.get(`materials/search/?text=${text}`);
-  // }
 
   addToFavorites(materialId: number): Observable<Object> {
     return this.post(`materials/${materialId.toString()}/add/`);

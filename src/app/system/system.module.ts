@@ -34,6 +34,8 @@ import {ChangePassworDialogComponent} from './user-info/change-passwor-dialog/ch
 import { FoldersComponent } from './folders/folders.component';
 import { AddNewFolderDialogComponent } from './folders/add-new-folder-dialog/add-new-folder-dialog.component';
 import { EditFolderDialogComponent } from './folders/edit-folder-dialog/edit-folder-dialog.component';
+import { AddFolderPathComponent } from './materials/material-detail/add-folder-path/add-folder-path.component';
+import {FolderPathMenuComponent} from '../shared/components/folder-path-menu/folder-path-menu.component';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import { EditFolderDialogComponent } from './folders/edit-folder-dialog/edit-fol
     ChangePassworDialogComponent,
     FoldersComponent,
     AddNewFolderDialogComponent,
-    EditFolderDialogComponent
+    EditFolderDialogComponent,
+    AddFolderPathComponent,
+    FolderPathMenuComponent
   ]
 })
 export class SystemModule {

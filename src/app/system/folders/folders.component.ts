@@ -50,7 +50,7 @@ export class FoldersComponent implements OnInit {
   }
 
   openNestedFolders(folderId: number) {
-    this.foldersService.getNestedFolders(folderId)
+    this.foldersService.getNestedFolders(folderId, this.userId)
       .subscribe((folderPage: FolderPage) => {
         this.folders = folderPage.folders;
         this.folderParent = folderPage.id;

@@ -29,9 +29,16 @@
           class="btn btn-primary add-button"
           (click)="toQuickToolbarButton()">{{quickToolBarMessage}}
   </button>
+  <button *ngIf="material.elected"
+          class="btn btn-primary add-button"
+          (click)="openAddToFolderDialog()">Добавить в папку
+  </button>
   <app-delete-dialog [(visible)]="showDeleteDialog"
                      [deleteObj]="deleteObj"
                      (remove)="removeBook()"></app-delete-dialog>
+  <app-add-folder-path *ngIf="showAddToFolderDialog"
+                       [(visible)]="showAddToFolderDialog"
+                       [material]="material"></app-add-folder-path>
 </div>
 <div *ngIf="!material" class="pre-loader-container">
   <app-preloader></app-preloader>

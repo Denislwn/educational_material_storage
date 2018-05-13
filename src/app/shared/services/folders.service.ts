@@ -16,8 +16,8 @@ export class FoldersService extends BaseApi {
     return this.get(`folders/?user=${userId.toString()}`);
   }
 
-  getNestedFolders(parentId: number): Observable<FolderPage> {
-    return this.get(`folders/${parentId.toString()}/`);
+  getNestedFolders(parentId: number, userId: number): Observable<FolderPage> {
+    return this.get(`folders/${parentId.toString()}/?user=${userId.toString()}`);
   }
 
   addNewFolder(url: string, newFolder: Object): Observable<Folder> {
@@ -30,5 +30,9 @@ export class FoldersService extends BaseApi {
 
   removeFolder(folderId: number): Observable<Object> {
     return this.delete(`folders/${folderId.toString()}/`);
+  }
+
+  addMaterialToTheFolder(materialId: number, data: Object) {
+    return this.post(`materials/${materialId.toString()}/folders/`, data);
   }
 }

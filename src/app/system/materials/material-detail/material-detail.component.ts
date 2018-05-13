@@ -13,6 +13,7 @@ export class MaterialDetailComponent implements OnInit {
   material: Material;
   electedMessage = 'Добавить в избранное';
   quickToolBarMessage = 'Добавить на панель быстрого доступа';
+  showAddToFolderDialog = false;
   deleteButton = false;
   showDeleteDialog = false;
   deleteObj: { title: string, message: string };
@@ -147,5 +148,9 @@ export class MaterialDetailComponent implements OnInit {
         this.material.quick_toolbar = false;
         this.quickToolBarMessage = 'Добавить на панель быстрого доступа';
       });
+  }
+
+  openAddToFolderDialog() {
+    this.showAddToFolderDialog = true;
   }
 }

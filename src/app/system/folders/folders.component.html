@@ -1,19 +1,14 @@
 <div class="col-12">
   <div class="path-container">
-    <span *ngIf="foldersPath.length > 0">
-    <span (click)="getFolders()"
-          class="path-element">Корень</span>
-      <span>/</span>
-      <span *ngFor="let path of foldersPath">
-      <span [ngClass]="path.folderId === folderParent ? 'selected-element' : 'path-element'"
-            (click)="getNextFolder(path.folderId)">{{path.folderName}}</span>
-      <span>/</span>
-    </span>
-    </span>
+    <app-folder-path-menu [foldersPath]="foldersPath"
+                          [folderParent]="folderParent"
+                          (rootFolder)="getFolders()"
+                          (nextFolder)="getNextFolder($event)"></app-folder-path-menu>
     <button *ngIf="getShowButton()"
             type="button"
             class="btn btn-success"
-            (click)="openAddFolderDialog()">Новая папка</button>
+            (click)="openAddFolderDialog()">Новая папка
+    </button>
   </div>
   <div class="row">
     <div *ngFor="let folder of folders; let i = index"
