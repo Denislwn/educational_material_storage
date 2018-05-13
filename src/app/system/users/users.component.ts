@@ -109,10 +109,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   onScroll() {
     if (this.searchByRoles || this.searchText) {
-      console.log('SCROLL');
       this.getFilterNextUserPage();
     } else {
-      console.log('SCROLLLLLLLLLLl');
       this.getNextUserPage();
     }
   }
@@ -162,7 +160,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.isLoad = false;
   }
 
-  clickOnUser() {
+  clickOnUser(userName: string) {
     this.storeService.users = this.users;
     this.storeService.userLastPage = this.lastPage;
     this.storeService.userPage = this.page;
@@ -170,5 +168,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.storeService.pageState = this.USERS;
     this.storeService.userRolesFilter = this.searchByRoles;
     this.storeService.usersListScroll = this.usersList.nativeElement.scrollTop;
+    this.storeService.userName = userName;
   }
 }

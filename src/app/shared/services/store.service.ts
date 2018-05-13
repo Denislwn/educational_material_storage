@@ -19,6 +19,7 @@ export class StoreService {
   userSearchTextFilterMaterials: string;
   userMaterialFileTypes: string;
   userMaterialCategories: string;
+  userName: string;
 
   users: User[];
   usersListScroll: number;

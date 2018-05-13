@@ -21,7 +21,7 @@
         <div *ngFor="let user of users; let i = index"
              class="col-sm-6 col-12">
           <app-user [user]="user"
-                    (clickOnUser)="clickOnUser()"></app-user>
+                    (clickOnUser)="clickOnUser($event)"></app-user>
           <button *ngIf="user?.role !== 4"
                   type="button"
                   class="btn btn-secondary"

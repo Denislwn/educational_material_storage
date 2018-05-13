@@ -4,6 +4,7 @@ import {MaterialsService} from '../../shared/services/materials.service';
 import {MaterialPage} from '../../shared/models/material/material-page.model';
 import {ActivatedRoute} from '@angular/router';
 import {StoreService} from '../../shared/services/store.service';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-my-materials',
@@ -13,7 +14,9 @@ import {StoreService} from '../../shared/services/store.service';
 export class MyMaterialsComponent implements OnInit, AfterViewInit {
   materials: Material[];
   userId: number;
+  headerMaterials: string;
   page: number;
+  termMaterial$ = new Subject<string>();
   searchText = '';
   searchCategories = '';
   searchFileTypes = '';
@@ -22,7 +25,6 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   scrollState = false;
   routeBack: string;
   messageBack: string;
-  materialsName: string;
   @ViewChild('materialsList') materialsList;
   pageState = 'USER_MATERIALS';
 
@@ -33,6 +35,7 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getUserMaterials();
+    this.subOnInputSearchField();
   }
 
   ngAfterViewInit(): void {
@@ -51,6 +54,7 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
         } else {
           this.getUserMaterialsFromServer();
         }
+        this.storeService.storeUserMaterialReset();
       });
   }
 
@@ -59,10 +63,10 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
       this.userId = Number(userId);
       this.routeBack = `/system/users`;
       this.messageBack = 'Назад к пользователям';
-      this.materialsName = 'Материалы пользователя';
+      this.headerMaterials = `Материалы пользователя ${this.storeService.userName}`;
     } else {
       this.userId = Number(localStorage.getItem('userId'));
-      this.materialsName = 'Мои материалы';
+      this.headerMaterials = 'Мои материалы';
     }
   }
 
@@ -84,11 +88,87 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
     this.searchCategories = this.storeService.materialCategories;
     this.searchFileTypes = this.storeService.materialFileTypes;
     this.scrollState = true;
-    this.storeService.storeUserMaterialReset();
+  }
+
+  subOnInputSearchField() {
+    this.termMaterial$
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe((term) => {
+        this.searchText = term;
+        const url = this.getUrlForFilterMaterials();
+        this.getFilterMaterials(url);
+      });
+  }
+
+  filterByCategories(categories: string) {
+    this.searchCategories = categories;
+    const url = this.getUrlForFilterMaterials();
+    this.getFilterMaterials(url);
+  }
+
+  filterByTypes(types: string) {
+    this.searchFileTypes = types;
+    const url = this.getUrlForFilterMaterials();
+    this.getFilterMaterials(url);
+  }
+
+  getUrlForFilterMaterials() {
+    let url = `materials/?user=${this.userId}&`;
+    if (this.searchText) {
+      url = `materials/search/?user=${this.userId}&text=${this.searchText}&`;
+    }
+    if (this.searchCategories) {
+      url += `${this.searchCategories}`;
+    }
+    if (this.searchFileTypes) {
+      url += this.searchFileTypes;
+    }
+    return url;
+  }
+
+  getFilterMaterials(url: string) {
+    this.isLoad = true;
+    this.page = 1;
+    this.lastPage = false;
+    this.materialsService.getFilterMaterials(url)
+      .subscribe((materialPage: MaterialPage) => {
+        this.materials = materialPage.results;
+        this.checkLastPage(materialPage.next_page);
+      });
   }
 
   onScroll() {
+    if (this.searchText || this.searchFileTypes || this.searchCategories) {
+      this.getFilterNextMaterialPage();
+    } else {
+      this.getNextMaterialPage();
+    }
+  }
 
+  getNextMaterialPage() {
+    if (!this.isLoad && !this.lastPage) {
+      this.isLoad = true;
+      this.page += 1;
+      this.materialsService.getMaterials(this.page)
+        .subscribe((materialPage: MaterialPage) => {
+          this.materials = this.materials.concat(materialPage.results);
+          this.checkLastPage(materialPage.next_page);
+        });
+    }
+  }
+
+  getFilterNextMaterialPage() {
+    if (!this.isLoad && !this.lastPage) {
+      this.isLoad = true;
+      this.page += 1;
+      const url = this.getUrlForFilterMaterials() + `page=${this.page}`;
+      this.materialsService.getFilterMaterials(url)
+        .subscribe((materialPage: MaterialPage) => {
+          this.materials = this.materials.concat(materialPage.results);
+          this.checkLastPage(materialPage.next_page);
+        });
+    }
   }
 
   clickOnBook() {

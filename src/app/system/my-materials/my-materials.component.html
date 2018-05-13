@@ -7,14 +7,17 @@
         <img class="arrow-back" src="assets/images/arrow-back.png"/>
         <span class="arrow-back-text">{{messageBack}}</span>
       </div>
-      <app-categories-list></app-categories-list>
-      <app-file-type-list [fileTypesListState]="pageState"></app-file-type-list>
+      <app-categories-list (categoriesOut)="filterByCategories($event)"
+                           [categoriesListState]="pageState"></app-categories-list>
+      <app-file-type-list (typesOut)="filterByTypes($event)"
+                          [fileTypesListState]="pageState"></app-file-type-list>
     </div>
   </div>
   <div class="col 12 col-md-9 detail-col">
     <div class="col-12 col-md-12 search-container">
-      <app-search-field [pageName]="materialsName"
-                        [searchState]="pageState"></app-search-field>
+      <app-search-field [pageName]="headerMaterials"
+                        [searchState]="pageState"
+                        (out)="termMaterial$.next($event)"></app-search-field>
     </div>
     <div #materialsList
          class="col 12 col-md-12 main-content-container detail-col"

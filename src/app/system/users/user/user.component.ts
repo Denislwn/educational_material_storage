@@ -8,12 +8,12 @@ import {User} from '../../../shared/models/user/user.model';
 })
 export class UserComponent {
   @Input() user: User;
-  @Output() clickOnUser = new EventEmitter();
+  @Output() clickOnUser = new EventEmitter<string>();
 
   constructor() { }
 
   userClick() {
-    this.clickOnUser.emit();
+    this.clickOnUser.emit(this.user.username);
   }
 
 }
