@@ -3,6 +3,7 @@
     <div>
       <span (dblclick)="openNestedFolders(folder.id)">{{folder.name}}</span>
       <span (click)="openEditFolderDialog(i)">Редактировать</span>
+      <span (click)="openDeleteDialog(i)">Удалить</span>
     </div>
   </div>
   <button (click)="openAddFolderDialog()">Add folder</button>
@@ -12,4 +13,7 @@
   <app-edit-folder-dialog [(visible)]="showEditFolderDialog"
                           [folder]="editFolder"
                           (newFolder)="successEditFolder($event)"></app-edit-folder-dialog>
+  <app-delete-dialog [(visible)]="showDeleteDialog"
+                     [deleteObj]="deleteObj"
+                     (remove)="removeFolder()"></app-delete-dialog>
 </div>

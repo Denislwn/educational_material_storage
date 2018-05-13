@@ -27,4 +27,8 @@ export class FoldersService extends BaseApi {
   editFolder(folderId: number, folder: Object): Observable<Folder> {
     return this.patch(`folders/${folderId.toString()}/`, folder);
   }
+
+  removeFolder(folderId: number): Observable<Object> {
+    return this.delete(`folders/${folderId.toString()}/`);
+  }
 }

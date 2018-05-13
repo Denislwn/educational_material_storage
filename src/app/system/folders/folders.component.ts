@@ -3,6 +3,7 @@ import {FoldersService} from '../../shared/services/folders.service';
 import {Folder} from '../../shared/models/folder/folder.name';
 import {FolderPage} from '../../shared/models/folder/folder-page.model';
 import {Material} from '../../shared/models/material/material.model';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-folders',
@@ -13,10 +14,14 @@ export class FoldersComponent implements OnInit {
   folders: Folder[];
   editFolder: Folder;
   folderParent: number = null;
+  deleteObj: { title: string, message: string };
   editFolderNumber: number;
+  deleteFolderNumber: number;
+  showDeleteDialog = false;
   showEditFolderDialog = false;
   showAddFolderDialog = false;
   @Output() nestedMaterials = new EventEmitter<Material[]>();
+  subOnRemoveFolder: Subscription;
 
   constructor(private foldersService: FoldersService) {
   }
@@ -64,6 +69,24 @@ export class FoldersComponent implements OnInit {
     this.folders[this.editFolderNumber] = folder;
     this.editFolder = null;
     this.showEditFolderDialog = false;
+  }
+
+  openDeleteDialog(folderNumber: number) {
+    this.deleteFolderNumber = folderNumber;
+    const message = `папку "${this.folders[folderNumber].name}"`;
+    this.deleteObj = {title: 'папки', message: message};
+    this.showDeleteDialog = true;
+  }
+
+  removeFolder() {
+    this.subOnRemoveFolder = this.foldersService.removeFolder(this.folders[this.deleteFolderNumber].id)
+      .subscribe(() => {
+        this.folders.splice(this.deleteFolderNumber, 1);
+      }, (err) => {
+        console.log(err);
+      }, () => {
+        this.subOnRemoveFolder.unsubscribe();
+      });
   }
 
 }
