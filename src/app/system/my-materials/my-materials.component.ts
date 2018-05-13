@@ -182,6 +182,10 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
     this.storeService.materialFileTypes = this.searchFileTypes;
   }
 
+  getNestedMaterials(nestedMaterials: Material[]) {
+    this.materials = nestedMaterials;
+  }
+
   checkLastPage(nextPage: string) {
     if (nextPage === null) {
       this.lastPage = true;

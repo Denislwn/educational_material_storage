@@ -1,0 +1,15 @@
+<div>
+  <div *ngFor="let folder of folders; let i = index">
+    <div>
+      <span (dblclick)="openNestedFolders(folder.id)">{{folder.name}}</span>
+      <span (click)="openEditFolderDialog(i)">Редактировать</span>
+    </div>
+  </div>
+  <button (click)="openAddFolderDialog()">Add folder</button>
+  <app-add-new-folder-dialog [(visible)]="showAddFolderDialog"
+                             [folderParent]="folderParent"
+                             (newFolder)="addNewFolder($event)"></app-add-new-folder-dialog>
+  <app-edit-folder-dialog [(visible)]="showEditFolderDialog"
+                          [folder]="editFolder"
+                          (newFolder)="successEditFolder($event)"></app-edit-folder-dialog>
+</div>

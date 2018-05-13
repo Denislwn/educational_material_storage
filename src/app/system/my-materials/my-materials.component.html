@@ -27,15 +27,20 @@
          [scrollWindow]="false"
          (scrolled)="onScroll()">
       <div class="row materials-list">
-        <div *ngFor="let material of materials"
-             class="col-12 col-sm-6">
-          <app-material [material]="material"
-                        (clickOnBook)="clickOnBook()"></app-material>
+        <div class="row">
+          <app-folders (nestedMaterials)="getNestedMaterials($event)"></app-folders>
         </div>
-        <h4 *ngIf="materials?.length === 0&&routeBack"
-            class="no-content">У этого пользователя нет материалов</h4>
-        <h4 *ngIf="materials?.length === 0&&!routeBack"
-            class="no-content">У вас нет материалов</h4>
+        <div class="row">
+          <div *ngFor="let material of materials"
+               class="col-12 col-sm-6">
+            <app-material [material]="material"
+                          (clickOnBook)="clickOnBook()"></app-material>
+          </div>
+          <h4 *ngIf="materials?.length === 0&&routeBack"
+              class="no-content">У этого пользователя нет материалов</h4>
+          <h4 *ngIf="materials?.length === 0&&!routeBack"
+              class="no-content">У вас нет материалов</h4>
+        </div>
       </div>
     </div>
   </div>

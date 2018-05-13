@@ -1,0 +1,13 @@
+.modal-show {
+  top: calc(50vh - 116px);
+  left: calc(50vw - 250px);
+}
+
+.add-input {
+  width: 250px;
+}
+
+.add-button {
+  margin-left: 15px;
+  width: 100px;
+}

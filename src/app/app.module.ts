@@ -13,6 +13,7 @@ import {MaterialsService} from './shared/services/materials.service';
 import {StoreService} from './shared/services/store.service';
 import {AdminService} from './shared/services/admin.service';
 import {UtilsService} from './shared/services/utils.service';
+import {FoldersService} from './shared/services/folders.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {UtilsService} from './shared/services/utils.service';
     MaterialsService,
     StoreService,
     AdminService,
-    UtilsService
+    UtilsService,
+    FoldersService
   ],
   bootstrap: [AppComponent]
 })

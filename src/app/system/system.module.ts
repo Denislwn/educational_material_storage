@@ -31,6 +31,9 @@ import {CategoriesListComponent} from '../shared/components/categories-list/cate
 import {FileTypeListComponent} from '../shared/components/file-type-list/file-type-list.component';
 import {UserRoleListComponent} from '../shared/components/user-role-list/user-role-list.component';
 import {ChangePassworDialogComponent} from './user-info/change-passwor-dialog/change-passwor-dialog.component';
+import { FoldersComponent } from './folders/folders.component';
+import { AddNewFolderDialogComponent } from './folders/add-new-folder-dialog/add-new-folder-dialog.component';
+import { EditFolderDialogComponent } from './folders/edit-folder-dialog/edit-folder-dialog.component';
 
 
 @NgModule({
@@ -68,7 +71,10 @@ import {ChangePassworDialogComponent} from './user-info/change-passwor-dialog/ch
     CategoriesListComponent,
     FileTypeListComponent,
     UserRoleListComponent,
-    ChangePassworDialogComponent
+    ChangePassworDialogComponent,
+    FoldersComponent,
+    AddNewFolderDialogComponent,
+    EditFolderDialogComponent
   ]
 })
 export class SystemModule {
