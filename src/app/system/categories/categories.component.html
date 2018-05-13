@@ -12,7 +12,10 @@
               class="edit-category hover-element">Редактировать</span>
       </div>
     </div>
-    <div *ngIf="searchText&&categories.length === 0">По вашему запросу ничего не найдено</div>
+    <h4 *ngIf="!searchText&&categories?.length === 0"
+        class="no-content">Нет категорий</h4>
+    <h4 *ngIf="searchText&&categories.length === 0"
+         class="no-content">По вашему запросу ничего не найдено</h4>
   </div>
   <app-add-category [(visible)]="showAddCategoryDialog"
                     (newCategory)="addNewCategory($event)"></app-add-category>

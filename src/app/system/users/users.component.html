@@ -28,6 +28,10 @@
                   (click)="openBlockedDialog(i)">Заблокировать пользователя
           </button>
         </div>
+        <h4 *ngIf="!searchText&&!searchByRoles&&users?.length === 0"
+            class="no-content">Нет пользователей</h4>
+        <h4 *ngIf="(searchText||searchByRoles)&&users?.length === 0"
+            class="no-content">По вашему запросу ничего не найдено</h4>
       </div>
       <app-user-block-dialog [(visible)]="showUserBlockDialog"
                              [user]="blockUser"

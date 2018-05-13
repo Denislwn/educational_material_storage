@@ -6,17 +6,19 @@ import {User} from '../models/user/user.model';
 export class StoreService {
   pageState: string;
 
-  materials: Material[];
-  userMaterials: Material[];
   materialPage: number;
   materialLastPage: boolean;
   materialsListScroll: number;
+
+  materials: Material[];
   searchTextFilterMaterials: string;
-  userSearchTextFilterMaterials: string
   materialFileTypes: string;
+  materialCategories: string;
+
+  userMaterials: Material[];
+  userSearchTextFilterMaterials: string;
   userMaterialFileTypes: string;
   userMaterialCategories: string;
-  materialCategories: string;
 
   users: User[];
   usersListScroll: number;

@@ -101,3 +101,7 @@
   color: red;
   content: ' *';
 }
+
+.no-content {
+  margin: 30px auto;
+}

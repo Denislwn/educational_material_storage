@@ -1,6 +1,6 @@
 <div class="page-without-navbar">
   <div class="col-12 col-md-12 search-container">
-    <app-search-field [pageName]="'Все пользователи'"
+    <app-search-field [pageName]="'Все заблокированные пользователи'"
                       (out)="termUsers$.next($event)"></app-search-field>
   </div>
   <div #blockedUsersList
@@ -19,6 +19,10 @@
                 (click)="openUnblockedDialog(i)">Разблокировать пользователя
         </button>
       </div>
+      <h4 *ngIf="!searchText&&blockedUsers?.length === 0"
+          class="no-content">Нет заблокированных пользователей</h4>
+      <h4 *ngIf="searchText&&blockedUsers?.length === 0"
+          class="no-content">По вашему запросу ничего не найдено</h4>
     </div>
   </div>
   <app-user-unblock-dialog [(visible)]="showUserUnblockDialog"

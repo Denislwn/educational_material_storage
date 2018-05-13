@@ -26,6 +26,11 @@
   display: none;
 }
 
+.exit {
+  position: absolute;
+  right: 10px;
+}
+
 @media (max-width: 768px) {
 
   .nav-phone-button {
@@ -41,6 +46,10 @@
 
   ul {
     display: none;
+  }
+
+  .exit {
+    position: inherit;
   }
 
 }

@@ -25,6 +25,10 @@
           <app-material [material]="material"
                         (clickOnBook)="clickOnMaterial()"></app-material>
         </div>
+        <h4 *ngIf="!searchText&&!searchCategories&&!searchFileTypes&&materials?.length === 0"
+            class="no-content">Нет материалов</h4>
+        <h4 *ngIf="(searchText||searchCategories||searchFileTypes)&&materials?.length === 0"
+            class="no-content">По вашему запросу ничего не найдено</h4>
       </div>
       <div [class.pre-loader-container]="materials.length===0"
            *ngIf="!lastPage">

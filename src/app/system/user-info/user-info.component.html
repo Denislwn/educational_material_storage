@@ -7,12 +7,14 @@
     <button class="btn btn-primary add-button"
             (click)="openChangePasswordDialog()">Сменить пароль
     </button>
-    <span class="important-text">Мои книги:</span>
+    <h4 class="important-text">Мои материалы:</h4>
     <div class="row">
       <div *ngFor="let material of materials"
            class="col-12 col-sm-6">
         <app-material [material]="material"></app-material>
       </div>
+      <h4 *ngIf="materials?.length === 0"
+          class="no-content">У вас нет материалов</h4>
     </div>
     <app-change-passwor-dialog [(visible)]="showChangePasswordDialog"></app-change-passwor-dialog>
     <!--<div [class.pre-loader-container]="!user"-->

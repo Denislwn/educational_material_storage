@@ -11,7 +11,6 @@
       <app-file-type-list [fileTypesListState]="pageState"></app-file-type-list>
     </div>
   </div>
-
   <div class="col 12 col-md-9 detail-col">
     <div class="col-12 col-md-12 search-container">
       <app-search-field [pageName]="materialsName"
@@ -30,6 +29,10 @@
           <app-material [material]="material"
                         (clickOnBook)="clickOnBook()"></app-material>
         </div>
+        <h4 *ngIf="materials?.length === 0&&routeBack"
+            class="no-content">У этого пользователя нет материалов</h4>
+        <h4 *ngIf="materials?.length === 0&&!routeBack"
+            class="no-content">У вас нет материалов</h4>
       </div>
     </div>
   </div>
