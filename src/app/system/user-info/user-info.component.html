@@ -1,12 +1,21 @@
 <div class="row page-without-navbar">
   <div class="col-sm-12">
-    <div>{{user?.username}}</div>
-    <div>{{user?.last_name}} {{user?.first_name}}</div>
-    <div>{{user?.email}}</div>
-    <div>{{user?.role | userRole}}</div>
-    <button class="btn btn-primary add-button"
-            (click)="openChangePasswordDialog()">Сменить пароль
-    </button>
+    <div class="user-container">
+      <div class="user-info-container">
+        <div><img src="../../../assets/images/username.png"
+                  class="person-icon">{{user?.username}} ({{user?.role | userRole}})
+        </div>
+        <div><img src="../../../assets/images/person.png"
+                  class="person-icon">{{user?.last_name}} {{user?.first_name}}</div>
+        <div><img src="../../../assets/images/email.png"
+                  class="person-icon email-icon">{{user?.email}}</div>
+      </div>
+      <button class="btn btn-primary add-button"
+              (click)="openChangePasswordDialog()">
+        <img src="../../../assets/images/password.png"
+             class="change-password-img">
+      </button>
+    </div>
     <h4 class="important-text">Мои материалы:</h4>
     <div class="row">
       <div *ngFor="let material of materials"
@@ -18,8 +27,8 @@
     </div>
     <app-change-passwor-dialog [(visible)]="showChangePasswordDialog"></app-change-passwor-dialog>
     <!--<div [class.pre-loader-container]="!user"-->
-         <!--*ngIf="!lastPage">-->
-      <!--<app-preloader></app-preloader>-->
+    <!--*ngIf="!lastPage">-->
+    <!--<app-preloader></app-preloader>-->
     <!--</div>-->
   </div>
 </div>

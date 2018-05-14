@@ -6,8 +6,10 @@
                           (nextFolder)="getNextFolder($event)"></app-folder-path-menu>
     <button *ngIf="getShowButton()"
             type="button"
-            class="btn btn-success"
-            (click)="openAddFolderDialog()">Новая папка
+            class="btn btn-primary"
+            (click)="openAddFolderDialog()">
+      <img src="../../../assets/images/new-folder.png"
+           class="new-folder-img">
     </button>
   </div>
   <div class="row">
@@ -16,10 +18,15 @@
       <div (dblclick)="openNestedFolders(folder.id)"
            class="folder-container">
         <img class="folder-img" src="../../../assets/images/folder.png"/>
-        <div class="folder-name">{{folder.name}}</div>
+        <div class="folder-name">{{folder.name}}
+          <img src="../../../assets/images/edit.png"
+               class="icon-img"
+               (click)="openEditFolderDialog(i)">
+          <img src="../../../assets/images/remove.png"
+               class="icon-img remove-icon-img"
+               (click)="openDeleteDialog(i)">
+        </div>
       </div>
-      <span (click)="openEditFolderDialog(i)">Редактировать</span>
-      <span (click)="openDeleteDialog(i)">Удалить</span>
     </div>
   </div>
   <app-add-new-folder-dialog [(visible)]="showAddFolderDialog"

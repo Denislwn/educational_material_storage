@@ -5,17 +5,18 @@
   </div>
   <div class="col 12 detail-col categories-container">
     <div *ngFor="let cateory of categories; let i = index">
-      <div class="category-container">
+      <div class="row category-container">
         <span>{{cateory?.name}}</span>
-        <span *ngIf="getUserRole() !== 1"
-              (click)="openEditCategoryDialog(i)"
-              class="edit-category hover-element">Редактировать</span>
+        <img *ngIf="getUserRole() !== 1"
+             src="../../../assets/images/edit.png"
+             (click)="openEditCategoryDialog(i)"
+             class="icon-img">
       </div>
     </div>
     <h4 *ngIf="!searchText&&categories?.length === 0"
         class="no-content">Нет категорий</h4>
     <h4 *ngIf="searchText&&categories.length === 0"
-         class="no-content">По вашему запросу ничего не найдено</h4>
+        class="no-content">По вашему запросу ничего не найдено</h4>
   </div>
   <app-add-category [(visible)]="showAddCategoryDialog"
                     (newCategory)="addNewCategory($event)"></app-add-category>

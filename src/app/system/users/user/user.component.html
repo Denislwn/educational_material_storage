@@ -1,9 +1,13 @@
 <div class="col-12 user-card"
      (click)="userClick()"
      routerLink="{{user?.id}}">
-  <div>Логин: {{user?.username}}</div>
-  <div>E-mail: {{user?.email}}</div>
-  <div>ФИО: {{user?.first_name}} {{user?.last_name}}</div>
-  <div *ngIf="user?.role">Роль: {{user?.role | userRole}}</div>
-  <div>Статус: {{user?.blocked | userBlocked}}</div>
+  <img src="../../../../assets/images/username.png"
+       class="person-icon">{{user?.username}}
+  <span *ngIf="user?.role">({{user?.role | userRole}})</span>
+  <div><img src="../../../../assets/images/email.png"
+            class="person-icon email-icon">{{user?.email}}
+  </div>
+  <div><img src="../../../../assets/images/person.png"
+            class="person-icon">{{user?.last_name}} {{user?.first_name}}
+  </div>
 </div>
