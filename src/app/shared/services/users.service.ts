@@ -57,4 +57,8 @@ export class UsersService extends BaseApi {
   changeUserPassword(userId: string, password): Observable<Object> {
     return this.post(`users/${userId}/change_password/`, {password});
   }
+
+  rejectUserRegistration(userId: number) {
+    return this.delete(`registration/${userId.toString()}/`);
+  }
 }

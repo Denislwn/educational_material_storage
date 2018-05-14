@@ -1,6 +1,5 @@
 <div class="col-12 user-card"
-     (click)="userClick()"
-     routerLink="{{user?.id}}">
+     (click)="userClick()">
   <img src="../../../../assets/images/username.png"
        class="person-icon">{{user?.username}}
   <span *ngIf="user?.role">({{user?.role | userRole}})</span>

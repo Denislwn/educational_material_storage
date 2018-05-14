@@ -16,6 +16,7 @@ export class AdminRegistrationComponent implements OnInit {
   isLoading: boolean;
   page: number;
   showRegisterDialog = false;
+  showRejectRegisterDialog = false;
 
   constructor(public usersService: UsersService) {
   }
@@ -43,10 +44,22 @@ export class AdminRegistrationComponent implements OnInit {
     this.showRegisterDialog = true;
   }
 
+  openRejectRegisterDialog(userNumber) {
+    this.userNumber = userNumber;
+    this.user = this.users[userNumber];
+    this.showRejectRegisterDialog = true;
+  }
+
   registerUser() {
     this.users.splice(this.userNumber, 1);
     this.user = null;
     this.showRegisterDialog = false;
+  }
+
+  rejectRegisterUser() {
+    this.users.splice(this.userNumber, 1);
+    this.user = null;
+    this.showRejectRegisterDialog = false;
   }
 
 }

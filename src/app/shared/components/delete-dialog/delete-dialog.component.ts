@@ -17,8 +17,7 @@ export class DeleteDialogComponent {
   }
 
   removeElement() {
-    this.visible = !this.visible;
-    this.visibleChange.emit();
+    this.close();
     this.remove.emit();
   }
 

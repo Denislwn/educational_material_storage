@@ -1,0 +1,28 @@
+<div *ngIf="visible" class="modal-show">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Отклонение регистрации</h5>
+        <button type="button"
+                class="close"
+                (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Вы уверены, что хотите отказать пользователю "{{user?.username}}" в регистрации аккаунта?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                (click)="close()"
+                class="btn btn-secondary">Отмена
+        </button>
+        <button type="button"
+                (click)="rejectUser()"
+                class="btn btn-primary">Отклонить
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay-dialog" (click)="close()"></div>

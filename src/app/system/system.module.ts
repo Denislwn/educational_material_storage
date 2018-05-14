@@ -36,6 +36,7 @@ import { AddNewFolderDialogComponent } from './folders/add-new-folder-dialog/add
 import { EditFolderDialogComponent } from './folders/edit-folder-dialog/edit-folder-dialog.component';
 import { AddFolderPathComponent } from './materials/material-detail/add-folder-path/add-folder-path.component';
 import {FolderPathMenuComponent} from '../shared/components/folder-path-menu/folder-path-menu.component';
+import { RejectRegistrationDialogComponent } from './admin/admin-registration/reject-registration-dialog/reject-registration-dialog.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import {FolderPathMenuComponent} from '../shared/components/folder-path-menu/fol
     AddNewFolderDialogComponent,
     EditFolderDialogComponent,
     AddFolderPathComponent,
-    FolderPathMenuComponent
+    FolderPathMenuComponent,
+    RejectRegistrationDialogComponent
   ]
 })
 export class SystemModule {

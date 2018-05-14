@@ -21,6 +21,8 @@
         <div *ngFor="let user of users; let i = index"
              class="col-sm-6 col-12">
           <app-user [user]="user"
+                    class="hover-element"
+                    routerLink="{{user?.id}}"
                     (clickOnUser)="clickOnUser($event)"></app-user>
           <button *ngIf="user?.role !== 4"
                   type="button"

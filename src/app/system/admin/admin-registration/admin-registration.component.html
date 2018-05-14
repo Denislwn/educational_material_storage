@@ -9,6 +9,10 @@
                 class="btn btn-secondary"
                 (click)="openRegisterDialog(i)">Разрешить регистрацию
         </button>
+        <button type="button"
+                class="btn btn-secondary"
+                (click)="openRejectRegisterDialog(i)">Отклонить
+        </button>
       </div>
       <h4 *ngIf="users?.length === 0"
           class="no-content">Нет пользователей</h4>
@@ -18,3 +22,6 @@
 <app-register-user-dialog [(visible)]="showRegisterDialog"
                           [user]="user"
                           (successRegisterUser)="registerUser()"></app-register-user-dialog>
+<app-reject-registration-dialog [(visible)]="showRejectRegisterDialog"
+                                [user]="user"
+                                (reject)="rejectRegisterUser()"></app-reject-registration-dialog>
