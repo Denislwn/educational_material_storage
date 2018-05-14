@@ -1,4 +1,37 @@
 .modal-show {
-  top: calc(50vh - 116px);
+  height: 700px;
+  top: calc(50vh - 350px);
   left: calc(50vw - 250px);
+}
+
+.modal-content {
+  height: 500px;
+}
+
+.modal-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.folder-path-container {
+  height: 25px;
+}
+
+.folder-container {
+  cursor: default;
+}
+
+.folder-container:hover {
+  background-color: beige;
+}
+
+.folder-img {
+  height: 20px;
+  width: 25px;
+  margin: 5px;
+}
+
+.no-dialog-content {
+  text-align: center;
+  margin-top: 15px;
 }

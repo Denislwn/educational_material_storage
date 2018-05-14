@@ -19,6 +19,7 @@ export class AddFolderPathComponent implements OnInit {
   folderParent: number;
   foldersPath: { folderId: number, folderName: string }[] = [];
   userId = Number(localStorage.getItem('userId'));
+  uniqueValid: boolean;
 
   constructor(private foldersService: FoldersService) {
   }
@@ -32,6 +33,8 @@ export class AddFolderPathComponent implements OnInit {
       .subscribe((folders: Folder[]) => {
         this.folders = folders;
         this.foldersPath = [];
+        this.folderParent = null;
+        this.uniqueValid = false;
       });
   }
 
@@ -48,6 +51,7 @@ export class AddFolderPathComponent implements OnInit {
       .subscribe((folderPage: FolderPage) => {
         this.folders = folderPage.folders;
         this.materials = folderPage.materials;
+        this.checkUniquenessMaterial();
         this.folderParent = folderPage.id;
         const folderPath = {folderId: folderPage.id, folderName: folderPage.name};
         this.getNewFoldersPath(folderPath);
@@ -83,6 +87,15 @@ export class AddFolderPathComponent implements OnInit {
         this.addMaterialToFolder.emit();
         this.close();
       });
+  }
+
+  checkUniquenessMaterial() {
+    this.uniqueValid = true;
+    this.materials.map((material) => {
+      if (this.material.id === material.id) {
+        this.uniqueValid = false;
+      }
+    });
   }
 
 }

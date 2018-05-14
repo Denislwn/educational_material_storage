@@ -10,18 +10,25 @@
         </button>
       </div>
       <div class="modal-body">
-        <div>
+        <div class="folder-path-container">
           <app-folder-path-menu [foldersPath]="foldersPath"
                                 [folderParent]="folderParent"
                                 (rootFolder)="getFolders()"
                                 (nextFolder)="getNextFolder($event)"></app-folder-path-menu>
         </div>
         <div *ngFor="let folder of folders">
-          <div (dblclick)="getNextFolder(folder.id)">{{folder.name}}</div>
+            <div (dblclick)="getNextFolder(folder.id)" class="row folder-container">
+              <img class="folder-img" src="../../../../../assets/images/folder.png">
+            {{folder.name}}
+            </div>
         </div>
+        <div *ngIf="materials?.length > 0"
+              class="important-text">Материалы этой папки: </div>
         <div *ngFor="let material of materials">
           <div>{{material.name}}</div>
         </div>
+        <div *ngIf="materials?.length === 0"
+              class="no-dialog-content">В этой папке ничего нет</div>
       </div>
       <div class="modal-footer">
         <button type="button"
@@ -29,6 +36,7 @@
                 class="btn btn-secondary">Отмена
         </button>
         <button type="button"
+                [disabled]="!uniqueValid"
                 (click)="putInFolder()"
                 class="btn btn-primary">Добавить
         </button>
