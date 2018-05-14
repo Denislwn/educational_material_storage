@@ -1,8 +1,19 @@
 a {
   color: white;
+  margin: 10px;
 }
 
 a:hover {
   text-decoration: none;
   color: white;
+}
+
+.folder-img {
+  height: 20px;
+  width: 25px;
+  margin: 3px 5px 0;
+}
+
+.save-btn {
+  padding: 0;
 }

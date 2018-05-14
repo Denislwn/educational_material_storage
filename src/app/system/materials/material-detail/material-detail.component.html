@@ -17,7 +17,8 @@
   <button class="btn btn-primary add-button"
           (click)="toElectedButton()">{{electedMessage}}
   </button>
-  <button class="btn btn-primary add-button">
+  <button *ngIf="!material?.deleted"
+          class="btn btn-primary save-btn">
     <a href="{{material?.file}}"
        target="_blank">Скачать</a>
   </button>
@@ -25,20 +26,28 @@
           class="btn btn-primary add-button"
           (click)="openDeleteDialog()">Удалить
   </button>
-  <button *ngIf="material.elected"
+  <button *ngIf="material?.elected"
           class="btn btn-primary add-button"
           (click)="toQuickToolbarButton()">{{quickToolBarMessage}}
   </button>
-  <button *ngIf="material.elected"
+  <button *ngIf="material?.elected"
           class="btn btn-primary add-button"
           (click)="openAddToFolderDialog()">Добавить в папку
   </button>
+  <div *ngIf="folders?.length!==0">Папки в которых хранится книга</div>
+  <div *ngFor="let folder of folders">
+    <div class="row folder-container">
+      <img class="folder-img" src="../../../../../assets/images/folder.png">
+      {{folder.name}}
+    </div>
+  </div>
   <app-delete-dialog [(visible)]="showDeleteDialog"
                      [deleteObj]="deleteObj"
                      (remove)="removeBook()"></app-delete-dialog>
   <app-add-folder-path *ngIf="showAddToFolderDialog"
                        [(visible)]="showAddToFolderDialog"
-                       [material]="material"></app-add-folder-path>
+                       [material]="material"
+                       (addMaterialToFolder)="addMaterialToFolder()"></app-add-folder-path>
 </div>
 <div *ngIf="!material" class="pre-loader-container">
   <app-preloader></app-preloader>

@@ -21,6 +21,12 @@
   content: 'Просмотр';
 }
 
-.btn {
+.btn-add-category {
+  float: right;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.btn-add-file {
   margin: 50px 0;
 }

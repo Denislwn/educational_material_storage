@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {MaterialPage} from '../models/material/material-page.model';
 import {NewMaterial} from '../models/material/new-material.model';
+import {Folder} from '../models/folder/folder.name';
 
 @Injectable()
 export class MaterialsService extends BaseApi {
@@ -59,5 +60,9 @@ export class MaterialsService extends BaseApi {
 
   getFilterMaterials(url: string): Observable<MaterialPage> {
     return this.get(url);
+  }
+
+  getMaterialFolders(materialId: number): Observable<Folder[]> {
+    return this.get(`materials/${materialId.toString()}/folders/`);
   }
 }

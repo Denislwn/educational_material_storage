@@ -37,6 +37,7 @@ export class FoldersComponent implements OnInit {
       .subscribe((folders: Folder[]) => {
         this.folders = folders;
         this.foldersPath = [];
+        this.folderParent = null;
         this.nestedMaterials.emit(null);
       });
   }

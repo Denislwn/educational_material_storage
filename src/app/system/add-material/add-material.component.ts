@@ -17,6 +17,7 @@ export class AddMaterialComponent implements OnInit {
   file: FileList;
   categoriesList = [];
   categoriesVisibleList = [];
+  fileType = '1';
   fileInputValue = 'Выберите файл';
   fileValid = false;
   categoriesValid = true;
@@ -45,7 +46,7 @@ export class AddMaterialComponent implements OnInit {
     this.isRequest = true;
     const name = form.form.value.materialName;
     const author = form.form.value.author;
-    const type = form.form.value.materialType;
+    const type = this.fileType;
     const isOpen = form.form.value.materialIsOpen.toString();
     const newMaterial = new NewMaterial(name, author, type, isOpen, this.file, this.categoriesList);
     this.bookService.createMaterial(newMaterial)
@@ -124,6 +125,10 @@ export class AddMaterialComponent implements OnInit {
     }
   }
 
+  changeFileType(fileTypeValue: string) {
+    this.fileType = fileTypeValue;
+  }
+
   resetForm(form: NgForm) {
     form.reset();
     this.fileValid = false;
@@ -135,5 +140,4 @@ export class AddMaterialComponent implements OnInit {
     this.file = null;
     this.fileInputValue = 'Выберите файл';
   }
-
 }

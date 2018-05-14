@@ -3,6 +3,7 @@ import {Material} from '../../../shared/models/material/material.model';
 import {MaterialsService} from '../../../shared/services/materials.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {Folder} from '../../../shared/models/folder/folder.name';
 
 @Component({
   selector: 'app-material-detail',
@@ -11,6 +12,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class MaterialDetailComponent implements OnInit {
   material: Material;
+  folders: Folder[];
   electedMessage = 'Добавить в избранное';
   quickToolBarMessage = 'Добавить на панель быстрого доступа';
   showAddToFolderDialog = false;
@@ -38,10 +40,20 @@ export class MaterialDetailComponent implements OnInit {
         this.materialsService.getMaterialById(params['materialId'])
           .subscribe((book: Material) => {
             this.material = book;
+            this.getFoldersThisMaterial();
             this.checkUserRights();
             this.checkButtonsState();
           });
       });
+  }
+
+  getFoldersThisMaterial() {
+    if (this.material.elected) {
+      this.materialsService.getMaterialFolders(this.material.id)
+        .subscribe((folders: Folder[]) => {
+          this.folders = folders;
+        });
+    }
   }
 
   getBackUrl() {
@@ -152,5 +164,9 @@ export class MaterialDetailComponent implements OnInit {
 
   openAddToFolderDialog() {
     this.showAddToFolderDialog = true;
+  }
+
+  addMaterialToFolder() {
+    this.getFoldersThisMaterial();
   }
 }
