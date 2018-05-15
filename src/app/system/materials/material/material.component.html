@@ -2,7 +2,7 @@
      (click)="materialClick()"
      class="col-sm-12 hover-element book-container">
   <div class="img-container">
-    <img class="book-img" src="../../../../assets/images/presentation.png">
+    <img class="book-img" src="../../../../assets/images/{{getImage()}}">
     <div class="book-date">{{material?.auto_date | dateFormat}}</div>
   </div>
   <div class="book-info">

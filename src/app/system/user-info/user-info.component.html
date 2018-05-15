@@ -1,6 +1,9 @@
 <div class="row page-without-navbar">
   <div class="col-sm-12">
     <div class="user-container">
+      <div *ngIf="user" class="img-container">
+        <img src="../../../assets/images/{{getUserImage(user?.role)}}">
+      </div>
       <div class="user-info-container">
         <div><img src="../../../assets/images/username.png"
                   class="person-icon">{{user?.username}} ({{user?.role | userRole}})
@@ -10,7 +13,7 @@
         <div><img src="../../../assets/images/email.png"
                   class="person-icon email-icon">{{user?.email}}</div>
       </div>
-      <button class="btn btn-primary add-button"
+      <button class="btn btn-primary change-password-button"
               (click)="openChangePasswordDialog()">
         <img src="../../../assets/images/password.png"
              class="change-password-img">

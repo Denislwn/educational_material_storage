@@ -22,4 +22,21 @@ export class UtilsService {
     }
     return searchStr;
   }
+
+  getUserImage(userRole: number) {
+    switch (userRole) {
+      case 1: {
+        return 'user.png';
+      }
+      case 2: {
+        return 'user.png';
+      }
+      case 3: {
+        return 'admin.png';
+      }
+      case 4: {
+        return 'admin.png';
+      }
+    }
+  }
 }

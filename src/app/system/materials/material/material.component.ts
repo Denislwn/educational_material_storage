@@ -17,4 +17,27 @@ export class BookComponent {
     this.clickOnBook.emit();
   }
 
+  getImage() {
+    switch (this.material.type) {
+      case 1: {
+        return 'document.png';
+      }
+      case 2: {
+        return 'audio.png';
+      }
+      case 3: {
+        return 'video.png';
+      }
+      case 4: {
+        return 'presentation.png';
+      }
+      case 5: {
+        return 'foto.png';
+      }
+      default: {
+        return 'other.png';
+      }
+    }
+  }
+
 }

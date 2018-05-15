@@ -1,12 +1,18 @@
 <div class="col-12 user-card"
      (click)="userClick()">
-  <img src="../../../../assets/images/username.png"
-       class="person-icon">{{user?.username}}
-  <span *ngIf="user?.role">({{user?.role | userRole}})</span>
-  <div><img src="../../../../assets/images/email.png"
-            class="person-icon email-icon">{{user?.email}}
+  <div class="image-container">
+    <img class="user-image"
+         src="../../../../assets/images/{{getUserImage()}}">
   </div>
-  <div><img src="../../../../assets/images/person.png"
-            class="person-icon">{{user?.last_name}} {{user?.first_name}}
+  <div class="user-info-container">
+    <img src="../../../../assets/images/username.png"
+         class="person-icon">{{user?.username}}
+    <span *ngIf="user?.role">({{user?.role | userRole}})</span>
+    <div><img src="../../../../assets/images/email.png"
+              class="person-icon email-icon">{{user?.email}}
+    </div>
+    <div><img src="../../../../assets/images/person.png"
+              class="person-icon">{{user?.last_name}} {{user?.first_name}}
+    </div>
   </div>
 </div>
