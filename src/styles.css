@@ -70,6 +70,7 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 /*-----------------------------*/
 /*------Стрелочка "Назад"------*/
 .arrow-back-container {
@@ -95,6 +96,7 @@
 .arrow-back-container:focus {
   outline: none;
 }
+
 /*-----------------------------*/
 /*------Обязательные поля------*/
 .required-area-dialog::after {
@@ -135,5 +137,11 @@
 
 .email-icon {
   margin-bottom: 2px;
+}
+
+@media (min-width: 1400px) {
+  body {
+    font-size: 18px;
+  }
 }
 
