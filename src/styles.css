@@ -145,6 +145,16 @@
   margin-bottom: 2px;
 }
 
+.delete-img {
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+
+.delete-img:hover {
+  transform: scale(1.2, 1.2);
+}
+
 @media (min-width: 1400px) {
   body {
     font-size: 18px;

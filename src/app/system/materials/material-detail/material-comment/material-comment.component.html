@@ -6,12 +6,16 @@
         <div class="comment-name">
           {{comment?.user.first_name}} {{comment?.user.last_name}}({{comment?.user.username}})
         </div>
-        <div  class="comment-date">{{comment?.auto_date | dateFormat}}</div>
+        <div class="comment-date">{{comment?.auto_date | dateFormat}}</div>
       </div>
       <pre>{{comment?.text}}</pre>
     </div>
-    <button *ngIf="getUserRights()"
-            (click)="removeComment()"
-            class="col-1">Delete</button>
+    <div class="col-1 ">
+      <img *ngIf="getUserRights()"
+           (click)="removeComment()"
+           class="delete-img"
+           src="../../../../../assets/images/delete.png"
+           title="Удалить">
+    </div>
   </div>
 </div>
