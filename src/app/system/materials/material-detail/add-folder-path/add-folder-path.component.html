@@ -16,7 +16,7 @@
                                 (rootFolder)="getFolders()"
                                 (nextFolder)="getNextFolder($event)"></app-folder-path-menu>
         </div>
-        <div *ngFor="let folder of folders">
+        <div *ngFor="let folder of folders" class="folders">
             <div (dblclick)="getNextFolder(folder.id)" class="row folder-container">
               <img class="folder-img" src="../../../../../assets/images/folder.png">
             {{folder.name}}

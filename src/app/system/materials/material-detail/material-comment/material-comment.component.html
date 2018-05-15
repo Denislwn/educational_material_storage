@@ -1,0 +1,10 @@
+<div class="col s12">
+  <img class="image" src="../../../../../assets/images/presentation.png"/>
+  <div class="col s8">
+    <div class="comment-content">
+      <div class="comment-name">{{comment?.user.first_name}} {{comment?.user.last_name}}</div>
+      <div  class="comment-date">{{comment?.auto_date | dateFormat}}</div>
+    </div>
+    <pre>{{comment?.text}}</pre>
+  </div>
+</div>

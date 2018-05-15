@@ -123,9 +123,8 @@ export class FoldersComponent implements OnInit {
   getShowButton() {
     if (this.userId === Number(localStorage.getItem('userId'))) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
 }

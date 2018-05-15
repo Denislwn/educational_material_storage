@@ -1,0 +1,40 @@
+textarea {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 0;
+  border: 1px solid #c4c4c4;
+  height: 40px;
+  resize: none;
+  font-size: 16px;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+textarea:focus {
+  margin-top: 15px;
+  height: 50px;
+}
+
+textarea::-webkit-scrollbar {
+  width: 0;
+}
+
+textarea {
+  -ms-overflow-style: none;
+}
+
+textarea {
+  overflow: -moz-scrollbars-none;
+}
+
+.send {
+  margin-left: 20px;
+  margin-top: 20px;
+  line-height: normal;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+textarea:focus + .send {
+  margin-top: 15px;
+}

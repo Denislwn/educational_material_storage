@@ -1,6 +1,16 @@
+.material-detail-page {
+  height: calc(100vh - 136px);
+  margin-top: 56px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.deleted-material {
+  color: red;
+}
+
 a {
   color: white;
-  margin: 10px;
 }
 
 a:hover {
@@ -14,6 +24,20 @@ a:hover {
   margin: 3px 5px 0;
 }
 
-.save-btn {
-  padding: 0;
+.btn {
+  padding: 0 10px;
+  margin-top: 5px;
 }
+
+.comments-container {
+  margin-top: 20px;
+}
+
+.material-comment-content {
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  background-color: #e8e8e8;
+  border: 1px solid #c4c4c4;
+}
+

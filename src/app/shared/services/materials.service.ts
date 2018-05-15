@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {MaterialPage} from '../models/material/material-page.model';
 import {NewMaterial} from '../models/material/new-material.model';
 import {Folder} from '../models/folder/folder.name';
+import {MaterialComment} from '../models/comment/material-comment.model';
 
 @Injectable()
 export class MaterialsService extends BaseApi {
@@ -64,5 +65,13 @@ export class MaterialsService extends BaseApi {
 
   getMaterialFolders(materialId: number): Observable<Folder[]> {
     return this.get(`materials/${materialId.toString()}/folders/`);
+  }
+
+  getMaterialComments(materialId: number): Observable<MaterialComment[> {
+    return this.get(`materials/${materialId.toString()}/comments/`);
+  }
+
+  sendComment(materialId: number, data: Object): Observable<MaterialComment> {
+    return this.post(`materials/${materialId.toString()}/comments/`, data);
   }
 }

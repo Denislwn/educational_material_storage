@@ -52,7 +52,7 @@ export class AddMaterialComponent implements OnInit {
     this.bookService.createMaterial(newMaterial)
       .subscribe((material: Material) => {
         this.resetForm(form);
-        this.router.navigate([`/system/materials`]);
+        this.router.navigate([`/system/my_materials/${material.id}]`]);
       }, (err) => {
         console.log(err);
       }, () => {

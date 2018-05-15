@@ -36,7 +36,7 @@
         </div>
         <div class="row">
           <div *ngFor="let material of materials"
-               class="col-12 col-sm-6">
+               class="col-12 col-lg-6 col-xl-4">
             <app-material [material]="material"
                           (clickOnBook)="clickOnBook()"></app-material>
           </div>
@@ -49,5 +49,5 @@
     </div>
   </div>
 </div>
-<app-add-material-button *ngIf=getShowButton()
+<app-add-material-button *ngIf="getShowButton()"
                          routerLink="add_material"></app-add-material-button>

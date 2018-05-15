@@ -1,45 +1,87 @@
-<div *ngIf="material" class="page-without-navbar">
+<div *ngIf="material" class="material-detail-page">
   <div class="arrow-back-container hover-element"
        routerLink="{{routeBack}}">
     <img class="arrow-back" src="assets/images/arrow-back.png"/>
     <span class="arrow-back-text">{{messageBack}}</span>
   </div>
-  <div>Название: {{material?.name}}</div>
-  <div>Автор: {{material?.author}}</div>
-  <div>Дата: {{material?.auto_date | dateFormat}}</div>
-  <div>Формат: {{material?.extension}}</div>
-  <div>Книгу добавил: {{material?.owner?.username}}({{material?.owner?.role | userRole}})</div>
-  <div *ngIf="material.deleted">Книга была удалена</div>
-  <div class="important-text">Категории:</div>
-  <div *ngFor="let category of material?.categories">
-    <div>{{category.name}}</div>
-  </div>
-  <button class="btn btn-primary add-button"
-          (click)="toElectedButton()">{{electedMessage}}
-  </button>
-  <button *ngIf="!material?.deleted"
-          class="btn btn-primary save-btn">
-    <a href="{{material?.file}}"
-       target="_blank">Скачать</a>
-  </button>
-  <button *ngIf="deleteButton&&!material.deleted"
-          class="btn btn-primary add-button"
-          (click)="openDeleteDialog()">Удалить
-  </button>
-  <button *ngIf="material?.elected"
-          class="btn btn-primary add-button"
-          (click)="toQuickToolbarButton()">{{quickToolBarMessage}}
-  </button>
-  <button *ngIf="material?.elected"
-          class="btn btn-primary add-button"
-          (click)="openAddToFolderDialog()">Добавить в папку
-  </button>
-  <div *ngIf="folders?.length!==0">Папки в которых хранится книга</div>
-  <div *ngFor="let folder of folders">
-    <div class="row folder-container">
-      <img class="folder-img" src="../../../../../assets/images/folder.png">
-      {{folder.name}}
+  <div class="container">
+    <div class="row">
+      <h5 class="deleted-material"
+          *ngIf="material?.deleted">Материал был удален его владельцем</h5>
+      <table class="col-9 table table-striped">
+        <tr>
+          <td>Название</td>
+          <td>{{material?.name}}</td>
+        </tr>
+        <tr>
+          <td>Автор</td>
+          <td>{{material?.author}}</td>
+        </tr>
+        <tr>
+          <td>Формат</td>
+          <td>{{material?.extension}}</td>
+        </tr>
+        <tr>
+          <td>Материал добавил</td>
+          <td>{{material?.owner?.username}}({{material?.owner?.role | userRole}})</td>
+        </tr>
+        <tr>
+          <td>Дата</td>
+          <td>{{material?.auto_date | dateFormat}}</td>
+        </tr>
+      </table>
+      <div class="col-3">
+        <div class="row" *ngIf="!material?.deleted">
+          <button class="btn btn-primary save-btn">
+            <a href="{{material?.file}}"
+               target="_blank">Скачать</a>
+          </button>
+        </div>
+        <div class="row" *ngIf="deleteButton&&!material.deleted">
+          <button class="row btn btn-danger add-button"
+                  (click)="openDeleteDialog()">Удалить
+          </button>
+        </div>
+        <div class="row">
+          <button class="row btn btn-primary add-button"
+                  (click)="toElectedButton()">{{electedMessage}}
+          </button>
+        </div>
+        <div class="row" *ngIf="material?.elected">
+          <button class="row btn btn-primary add-button"
+                  (click)="toQuickToolbarButton()">{{quickToolBarMessage}}
+          </button>
+        </div>
+        <div class="row" *ngIf="material?.elected">
+          <button class="row btn btn-primary add-button"
+                  (click)="openAddToFolderDialog()">Добавить в папку
+          </button>
+        </div>
+      </div>
+      <div class="important-text">Категории:</div>
+      <div *ngFor="let category of material?.categories" class="col-12">
+        <span>{{category.name}} </span>
+      </div>
     </div>
+    <div *ngIf="folders?.length!==0"
+         class="important-text">Папки в которых хранится книга
+    </div>
+    <div *ngFor="let folder of folders" class="col-12">
+      <div class="row folder-container">
+        <img class="folder-img" src="../../../../../assets/images/folder.png">
+        {{folder.name}}
+      </div>
+    </div>
+    <div *ngIf="comments?.length!==0" class="row comments-container">
+      <div *ngFor="let comment of comments"
+           class="col-12">
+        <app-material-comment [comment]="comment"></app-material-comment>
+      </div>
+    </div>
+    <h4 *ngIf="comments?.length===0" class="no-content">Комментариев нет</h4>
+  </div>
+  <div class="col-12 material-comment-content">
+    <app-comment-field (comment)="sendComment($event)"></app-comment-field>
   </div>
   <app-delete-dialog [(visible)]="showDeleteDialog"
                      [deleteObj]="deleteObj"

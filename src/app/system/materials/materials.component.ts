@@ -5,7 +5,6 @@ import {MaterialPage} from '../../shared/models/material/material-page.model';
 import {Subject} from 'rxjs/Subject';
 import {CategoryService} from '../../shared/services/category.service';
 import {Category} from '../../shared/models/category/category.model';
-import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {StoreService} from '../../shared/services/store.service';
 

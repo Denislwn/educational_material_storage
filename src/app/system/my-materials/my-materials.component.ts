@@ -59,11 +59,14 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   }
 
   getUserId(userId: string) {
-    if (userId) {
+    if (userId && Number(localStorage.getItem('userId') !== userId)) {
       this.userId = Number(userId);
       this.routeBack = `/system/users`;
       this.messageBack = 'Назад к пользователям';
-      this.headerMaterials = `Материалы пользователя ${this.storeService.userName}`;
+      this.headerMaterials = `Материалы пользователя `;
+      if (this.storeService.userName) {
+        this.headerMaterials += this.storeService.userName;
+      }
     } else {
       this.userId = Number(localStorage.getItem('userId'));
       this.headerMaterials = 'Мои материалы';

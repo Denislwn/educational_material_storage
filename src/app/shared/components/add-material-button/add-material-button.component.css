@@ -1,20 +1,20 @@
 .add-button {
-  display: inline-block;
-  height: 50px;
-  width: 50px;
   border-radius: 50%;
-  text-align: center;
-  line-height: 36px;
-  background-color: orange;
-  color: white;
-  font-size: 60px;
+  height: 60px;
+  width: 60px;
   position: fixed;
   cursor: pointer;
-  bottom: 20px;
+  bottom: 30px;
   right: 40px;
 }
 
 .add-button:hover {
   transform: scale(1.1, 1.1);
-  box-shadow: 0 0 5px 2px red;
+}
+
+@media(min-width: 1400px) {
+  .add-button {
+    height: 85px;
+    width: 85px;
+  }
 }

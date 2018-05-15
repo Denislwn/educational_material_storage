@@ -4,6 +4,7 @@ import {MaterialsService} from '../../../shared/services/materials.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Folder} from '../../../shared/models/folder/folder.name';
+import {MaterialComment} from '../../../shared/models/comment/material-comment.model';
 
 @Component({
   selector: 'app-material-detail',
@@ -12,7 +13,8 @@ import {Folder} from '../../../shared/models/folder/folder.name';
 })
 export class MaterialDetailComponent implements OnInit {
   material: Material;
-  folders: Folder[];
+  folders: Folder[] = [];
+  comments: MaterialComment[];
   electedMessage = 'Добавить в избранное';
   quickToolBarMessage = 'Добавить на панель быстрого доступа';
   showAddToFolderDialog = false;
@@ -41,6 +43,7 @@ export class MaterialDetailComponent implements OnInit {
           .subscribe((book: Material) => {
             this.material = book;
             this.getFoldersThisMaterial();
+            this.getCommentsThisMaterial();
             this.checkUserRights();
             this.checkButtonsState();
           });
@@ -54,6 +57,13 @@ export class MaterialDetailComponent implements OnInit {
           this.folders = folders;
         });
     }
+  }
+
+  getCommentsThisMaterial() {
+    this.materialsService.getMaterialComments(this.material.id)
+      .subscribe((commentPage: MaterialComment[]) => {
+        this.comments = commentPage;
+      });
   }
 
   getBackUrl() {
@@ -113,7 +123,7 @@ export class MaterialDetailComponent implements OnInit {
   removeBook() {
     this.subOnRemoveBook = this.materialsService.removeMaterial(this.material.id)
       .subscribe(() => {
-        alert('Книга успешно удалена!');
+        this.material.deleted = true;
       }, (err) => {
         console.log(err);
       }, () => {
@@ -168,5 +178,13 @@ export class MaterialDetailComponent implements OnInit {
 
   addMaterialToFolder() {
     this.getFoldersThisMaterial();
+  }
+
+  sendComment(comment: string) {
+    console.log(comment);
+    this.materialsService.sendComment(this.material.id, {text: comment})
+      .subscribe((requestComment: MaterialComment) => {
+        this.comments.push(requestComment);
+      });
   }
 }

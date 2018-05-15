@@ -19,12 +19,12 @@
          (scrolled)="onScroll()">
       <div class="row">
         <div *ngFor="let user of users; let i = index"
-             class="col-sm-6 col-12">
+             class="col-12 col-sm-6 col-lg-4">
           <app-user [user]="user"
                     class="hover-element"
                     routerLink="{{user?.id}}"
                     (clickOnUser)="clickOnUser($event)"></app-user>
-          <button *ngIf="user?.role !== 4"
+          <button *ngIf="user?.role !== 4 && getUserRole()"
                   type="button"
                   class="btn btn-secondary"
                   (click)="openBlockedDialog(i)">Заблокировать пользователя

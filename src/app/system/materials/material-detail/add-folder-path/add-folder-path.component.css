@@ -14,11 +14,12 @@
 }
 
 .folder-path-container {
-  height: 25px;
+  margin-bottom: 10px;
 }
 
 .folder-container {
   cursor: default;
+  margin-bottom: 10px;
 }
 
 .folder-container:hover {

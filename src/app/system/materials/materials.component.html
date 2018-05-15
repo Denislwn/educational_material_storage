@@ -21,7 +21,7 @@
          [scrollWindow]="isPhone"
          (scrolled)="onScroll()">
       <div class="row materials-list">
-        <div *ngFor="let material of materials" class="col-12 col-sm-6">
+        <div *ngFor="let material of materials" class="col-12 col-lg-6 col-xl-4">
           <app-material [material]="material"
                         (clickOnBook)="clickOnMaterial()"></app-material>
         </div>

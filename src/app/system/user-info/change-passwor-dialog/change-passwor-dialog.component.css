@@ -1,10 +1,10 @@
 .modal-show {
   top: calc(50vh - 132px);
-  left: calc(50vw - 141px);
+  left: calc(50vw - 200px);
 }
 
 form {
-  min-width: 280px;
+  width: 400px;
 }
 
 .form-control {

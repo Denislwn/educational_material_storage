@@ -170,4 +170,11 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.storeService.usersListScroll = this.usersList.nativeElement.scrollTop;
     this.storeService.userName = userName;
   }
+
+  getUserRole() {
+    if (localStorage.getItem('userRole') === '4') {
+      return true;
+    }
+    return false;
+  }
 }

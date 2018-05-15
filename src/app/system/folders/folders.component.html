@@ -19,10 +19,12 @@
            class="folder-container">
         <img class="folder-img" src="../../../assets/images/folder.png"/>
         <div class="folder-name">{{folder.name}}
-          <img src="../../../assets/images/edit.png"
+          <img *ngIf="getShowButton()"
+               src="../../../assets/images/edit.png"
                class="icon-img"
                (click)="openEditFolderDialog(i)">
-          <img src="../../../assets/images/remove.png"
+          <img *ngIf="getShowButton()"
+               src="../../../assets/images/remove.png"
                class="icon-img remove-icon-img"
                (click)="openDeleteDialog(i)">
         </div>
