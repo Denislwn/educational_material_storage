@@ -17,18 +17,20 @@
                                 (nextFolder)="getNextFolder($event)"></app-folder-path-menu>
         </div>
         <div *ngFor="let folder of folders" class="folders">
-            <div (dblclick)="getNextFolder(folder.id)" class="row folder-container">
-              <img class="folder-img" src="../../../../../assets/images/folder.png">
+          <div (dblclick)="getNextFolder(folder.id)" class="row folder-container">
+            <img class="folder-img" src="../../../../../assets/images/folder.png">
             {{folder.name}}
-            </div>
+          </div>
         </div>
         <div *ngIf="materials?.length > 0"
-              class="important-text">Материалы этой папки: </div>
+             class="important-text">Материалы этой папки:
+        </div>
         <div *ngFor="let material of materials">
           <div>{{material.name}}</div>
         </div>
-        <div *ngIf="materials?.length === 0"
-              class="no-dialog-content">В этой папке ничего нет</div>
+        <div *ngIf="materials?.length === 0&& folders?.length===0"
+             class="no-dialog-content">Папка пуста
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button"

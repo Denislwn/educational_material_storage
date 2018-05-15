@@ -24,4 +24,5 @@
                             [category]="editCategory"
                             (newCategory)="successEditCategory($event)"></app-edit-category-dialog>
 </div>
-<app-add-material-button (click)="openAddCategoryDialog()"></app-add-material-button>
+<app-add-material-button *ngIf="getUserRole() !== 1"
+                         (click)="openAddCategoryDialog()"></app-add-material-button>

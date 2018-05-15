@@ -15,7 +15,7 @@ export class MaterialDetailComponent implements OnInit {
   material: Material;
   folders: Folder[] = [];
   comments: MaterialComment[];
-  electedMessage = 'Добавить в избранное';
+  electedMessage = 'Добавить в мои материалы';
   quickToolBarMessage = 'Добавить на панель быстрого доступа';
   showAddToFolderDialog = false;
   deleteButton = false;
@@ -69,13 +69,13 @@ export class MaterialDetailComponent implements OnInit {
   getBackUrl() {
     if (this.activatedRoute.snapshot.url[0].path === 'materials') {
       this.routeBack = '/system/materials';
-      this.messageBack = 'Назад к книгам';
+      this.messageBack = 'Назад к материалам';
     } else if (this.activatedRoute.snapshot.url[0].path === 'users') {
       this.routeBack = `/system/users/${this.activatedRoute.snapshot.params['userId']}`;
       this.messageBack = 'Назад к пользователю';
     } else if (this.activatedRoute.snapshot.url[0].path === 'my_materials') {
       this.routeBack = `/system/my_materials`;
-      this.messageBack = 'Назад к моим книгам';
+      this.messageBack = 'Назад к моим материалам';
     } else {
       this.routeBack = '/system/user_info';
       this.messageBack = 'Назад к профилю';
@@ -94,7 +94,7 @@ export class MaterialDetailComponent implements OnInit {
     this.subOnToElected = this.materialsService.addToFavorites(this.material.id)
       .subscribe((responce) => {
         this.material.elected = true;
-        this.electedMessage = 'Убрать из избранного';
+        this.electedMessage = 'Убрать из моих материалов';
       }, (err) => {
         console.log(err);
       }, () => {
@@ -106,7 +106,7 @@ export class MaterialDetailComponent implements OnInit {
     this.subOnFromElected = this.materialsService.removeFromFavorites(this.material.id)
       .subscribe((responce) => {
         this.material.elected = false;
-        this.electedMessage = 'Добавить в избранное';
+        this.electedMessage = 'Добавить в мои материалы';
       }, (err) => {
         console.log(err);
       }, () => {
@@ -134,14 +134,14 @@ export class MaterialDetailComponent implements OnInit {
   checkUserRights() {
     const userRole = Number(localStorage.getItem('userRole'));
     const userId = Number(localStorage.getItem('userId'));
-    if (userRole === 4 || userId === this.material.owner.id) {
+    if (userRole === 4 || userRole === 3 || userId === this.material.owner.id) {
       this.deleteButton = true;
     }
   }
 
   checkButtonsState() {
     if (this.material.elected) {
-      this.electedMessage = 'Убрать из избранного';
+      this.electedMessage = 'Убрать из моих материалов';
     }
     if (this.material.quick_toolbar) {
       this.quickToolBarMessage = 'Удалить из панели быстрого доступа';

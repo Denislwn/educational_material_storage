@@ -34,17 +34,21 @@
                          class="col-12"></app-folders>
           </div>
         </div>
-        <div class="row">
-          <div *ngFor="let material of materials"
-               class="col-12 col-lg-6 col-xl-4">
-            <app-material [material]="material"
-                          (clickOnBook)="clickOnBook()"></app-material>
+        <div class="col-12">
+          <div class="row">
+            <div *ngFor="let material of materials"
+                 class="col-12 col-lg-6 col-xl-4">
+              <app-material [material]="material"
+                            (clickOnBook)="clickOnBook()"></app-material>
+            </div>
           </div>
         </div>
-        <h4 *ngIf="materials?.length === 0&&routeBack"
+        <h4 *ngIf="(!searchText&&!searchCategories&&!searchFileTypes)&&materials?.length === 0&&routeBack"
             class="no-content">У этого пользователя нет материалов</h4>
-        <h4 *ngIf="materials?.length === 0&&!routeBack"
+        <h4 *ngIf="(!searchText&&!searchCategories&&!searchFileTypes)&&materials?.length === 0&&!routeBack"
             class="no-content">У вас нет материалов</h4>
+        <h4 *ngIf="(searchText||searchCategories||searchFileTypes)&&materials?.length === 0"
+            class="no-content">По вашему запросу ничего не найдено</h4>
       </div>
     </div>
   </div>
