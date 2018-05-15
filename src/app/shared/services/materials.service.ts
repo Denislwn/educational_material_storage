@@ -67,7 +67,7 @@ export class MaterialsService extends BaseApi {
     return this.get(`materials/${materialId.toString()}/folders/`);
   }
 
-  getMaterialComments(materialId: number): Observable<MaterialComment[> {
+  getMaterialComments(materialId: number): Observable<MaterialComment> {
     return this.get(`materials/${materialId.toString()}/comments/`);
   }
 

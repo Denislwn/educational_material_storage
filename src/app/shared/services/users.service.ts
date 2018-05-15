@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {BaseApi} from '../base/base-api';
 import {UserPage} from '../models/user/user-page.model';
-import {User} from '../models/user/user.model';
 import {MaterialPage} from '../models/material/material-page.model';
 
 @Injectable()
