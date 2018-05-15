@@ -181,10 +181,16 @@ export class MaterialDetailComponent implements OnInit {
   }
 
   sendComment(comment: string) {
-    console.log(comment);
     this.materialsService.sendComment(this.material.id, {text: comment})
       .subscribe((requestComment: MaterialComment) => {
         this.comments.push(requestComment);
+      });
+  }
+
+  removeComment(commentId: number) {
+    this.materialsService.removeComment(this.material.id, commentId)
+      .subscribe(() => {
+        this.getCommentsThisMaterial();
       });
   }
 }

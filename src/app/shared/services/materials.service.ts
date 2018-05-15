@@ -74,4 +74,8 @@ export class MaterialsService extends BaseApi {
   sendComment(materialId: number, data: Object): Observable<MaterialComment> {
     return this.post(`materials/${materialId.toString()}/comments/`, data);
   }
+
+  removeComment(materialId: number, commentId: number): Observable<Object> {
+    return this.delete(`materials/${materialId.toString()}/comments/${commentId.toString()}/`);
+  }
 }

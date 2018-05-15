@@ -1,10 +1,17 @@
-<div class="col s12">
+<div class="col-12">
   <img class="image" src="../../../../../assets/images/{{getUserImage()}}"/>
-  <div class="col s8">
-    <div class="comment-content">
-      <div class="comment-name">{{comment?.user.first_name}} {{comment?.user.last_name}}</div>
-      <div  class="comment-date">{{comment?.auto_date | dateFormat}}</div>
+  <div class="row">
+    <div class="col-8">
+      <div class="comment-content">
+        <div class="comment-name">
+          {{comment?.user.first_name}} {{comment?.user.last_name}}({{comment?.user.username}})
+        </div>
+        <div  class="comment-date">{{comment?.auto_date | dateFormat}}</div>
+      </div>
+      <pre>{{comment?.text}}</pre>
     </div>
-    <pre>{{comment?.text}}</pre>
+    <button *ngIf="getUserRights()"
+            (click)="removeComment()"
+            class="col-1">Delete</button>
   </div>
 </div>

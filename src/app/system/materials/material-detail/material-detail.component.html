@@ -1,10 +1,10 @@
-<div *ngIf="material" class="material-detail-page">
+<div class="material-detail-page">
   <div class="arrow-back-container hover-element"
        routerLink="{{routeBack}}">
     <img class="arrow-back" src="assets/images/arrow-back.png"/>
     <span class="arrow-back-text">{{messageBack}}</span>
   </div>
-  <div class="container">
+  <div *ngIf="material" class="container">
     <div class="row">
       <h5 class="deleted-material"
           *ngIf="material?.deleted">Материал был удален его владельцем</h5>
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div *ngIf="folders?.length!==0"
-         class="important-text">Папки в которых хранится книга
+         class="important-text">Папки, в которых хранится книга
     </div>
     <div *ngFor="let folder of folders" class="col-12">
       <div class="row folder-container">
@@ -75,7 +75,8 @@
     <div *ngIf="comments?.length!==0" class="row comments-container">
       <div *ngFor="let comment of comments"
            class="col-12">
-        <app-material-comment [comment]="comment"></app-material-comment>
+        <app-material-comment [comment]="comment"
+                              (remove)="removeComment($event)"></app-material-comment>
       </div>
     </div>
     <h4 *ngIf="comments?.length===0" class="no-content">Комментариев нет</h4>
@@ -90,7 +91,7 @@
                        [(visible)]="showAddToFolderDialog"
                        [material]="material"
                        (addMaterialToFolder)="addMaterialToFolder()"></app-add-folder-path>
-</div>
-<div *ngIf="!material" class="pre-loader-container">
-  <app-preloader></app-preloader>
+  <div *ngIf="!material" class="pre-loader-container">
+    <app-preloader></app-preloader>
+  </div>
 </div>
