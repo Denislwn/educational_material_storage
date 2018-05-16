@@ -42,6 +42,7 @@
           <img *ngIf="categoriesList?.length !== 1"
                class="delete-img"
                src="../../../assets/images/delete.png"
+               title="Удалить"
                (click)="removeCategory(i)">
         </div>
       </div>
@@ -49,6 +50,7 @@
     <div class="col-sm-10">
       <img src="../../../assets/images/add.png"
            (click)="addCategory()"
+           title="Категория"
            class="add-img">
     </div>
     <div class="col-sm-12">

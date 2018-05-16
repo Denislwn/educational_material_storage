@@ -1,0 +1,55 @@
+<div *ngIf="visible" class="modal-show">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Редактирование материала "{{material?.name}}"</h5>
+        <button type="button"
+                class="close"
+                (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #myForm="ngForm">
+        <div class="modal-body">
+          <input class="form-control input-field"
+                 type="text"
+                 placeholder="Название материала"
+                 [ngModel]="material.name"
+                 name="materialName"
+                 #materialName="ngModel"
+                 required>
+          <input class="form-control input-field"
+                 type="text"
+                 placeholder="Автор"
+                 [ngModel]="material.author"
+                 name="author"
+                 #author="ngModel"
+                 required>
+          <div class="check-box-container">
+            <input type="checkbox"
+                   class="form-check-input"
+                   id="exampleCheck1"
+                   [ngModel]="material.is_open"
+                   name="materialIsOpen"
+                   #materialIsOpen="ngModel">
+            <label class="form-check-label"
+                   for="exampleCheck1">Видно всем
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"
+                  (click)="close()"
+                  class="btn btn-secondary">Отмена
+          </button>
+          <button type="submit"
+                  [disabled]="!myForm.valid"
+                  (click)="editMaterial()"
+                  class="btn btn-primary">Изменить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="visible" class="overlay-dialog" (click)="close()"></div>

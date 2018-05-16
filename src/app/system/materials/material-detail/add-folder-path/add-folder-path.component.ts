@@ -72,7 +72,6 @@ export class AddFolderPathComponent implements OnInit {
     } else {
       this.foldersPath.push(folderPath);
     }
-    console.log(this.foldersPath);
   }
 
   close() {

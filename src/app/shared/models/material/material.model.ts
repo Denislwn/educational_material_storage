@@ -9,6 +9,7 @@ export class Material {
   author: string;
   file: string;
   type: number;
+  is_open: boolean;
   extension: string;
   deleted: boolean;
   categories: Category[];

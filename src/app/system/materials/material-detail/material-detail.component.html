@@ -57,6 +57,11 @@
                   (click)="openAddToFolderDialog()">Добавить в папку
           </button>
         </div>
+        <div class="row" *ngIf="editButton">
+          <button class="row btn btn-primary add-button"
+                  (click)="openEditDialog()">Редактировать
+          </button>
+        </div>
       </div>
       <div class="important-text">Категории:</div>
       <div *ngFor="let category of material?.categories" class="col-12">
@@ -87,6 +92,9 @@
   <app-delete-dialog [(visible)]="showDeleteDialog"
                      [deleteObj]="deleteObj"
                      (remove)="removeBook()"></app-delete-dialog>
+  <app-edit-material-dialog [(visible)]="showEditDialog"
+                            [material]="material"
+                            (successEditMaterial)="successEditMaterial($event)"></app-edit-material-dialog>
   <app-add-folder-path *ngIf="showAddToFolderDialog"
                        [(visible)]="showAddToFolderDialog"
                        [material]="material"

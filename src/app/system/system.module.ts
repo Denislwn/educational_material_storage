@@ -39,6 +39,7 @@ import {FolderPathMenuComponent} from '../shared/components/folder-path-menu/fol
 import { RejectRegistrationDialogComponent } from './admin/admin-registration/reject-registration-dialog/reject-registration-dialog.component';
 import { CommentFieldComponent } from './materials/material-detail/comment-field/comment-field.component';
 import { MaterialCommentComponent } from './materials/material-detail/material-comment/material-comment.component';
+import { EditMaterialDialogComponent } from './materials/material-detail/edit-material-dialog/edit-material-dialog.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { MaterialCommentComponent } from './materials/material-detail/material-c
     FolderPathMenuComponent,
     RejectRegistrationDialogComponent,
     CommentFieldComponent,
-    MaterialCommentComponent
+    MaterialCommentComponent,
+    EditMaterialDialogComponent
   ]
 })
 export class SystemModule {

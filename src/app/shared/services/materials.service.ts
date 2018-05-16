@@ -6,6 +6,7 @@ import {MaterialPage} from '../models/material/material-page.model';
 import {NewMaterial} from '../models/material/new-material.model';
 import {Folder} from '../models/folder/folder.name';
 import {MaterialComment} from '../models/comment/material-comment.model';
+import {Material} from '../models/material/material.model';
 
 @Injectable()
 export class MaterialsService extends BaseApi {
@@ -77,5 +78,9 @@ export class MaterialsService extends BaseApi {
 
   removeComment(materialId: number, commentId: number): Observable<Object> {
     return this.delete(`materials/${materialId.toString()}/comments/${commentId.toString()}/`);
+  }
+
+  editMaterial(materialId: number, data: Object): Observable<Material> {
+    return this.patch(`materials/${materialId.toString()}/`, data);
   }
 }

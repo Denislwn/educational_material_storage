@@ -19,6 +19,8 @@ export class MaterialDetailComponent implements OnInit {
   quickToolBarMessage = 'Добавить на панель быстрого доступа';
   showAddToFolderDialog = false;
   deleteButton = false;
+  editButton = false;
+  showEditDialog = false;
   showDeleteDialog = false;
   deleteObj: { title: string, message: string };
   routeBack: string;
@@ -137,6 +139,9 @@ export class MaterialDetailComponent implements OnInit {
     if (userRole === 4 || userRole === 3 || userId === this.material.owner.id) {
       this.deleteButton = true;
     }
+    if (userId === this.material.owner.id) {
+      this.editButton = true;
+    }
   }
 
   checkButtonsState() {
@@ -192,5 +197,14 @@ export class MaterialDetailComponent implements OnInit {
       .subscribe(() => {
         this.getCommentsThisMaterial();
       });
+  }
+
+  openEditDialog() {
+    this.showEditDialog = true;
+  }
+
+  successEditMaterial(editMaterial: Material) {
+    this.material = editMaterial;
+    this.showEditDialog = false;
   }
 }

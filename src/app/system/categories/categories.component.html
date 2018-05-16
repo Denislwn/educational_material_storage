@@ -9,6 +9,7 @@
         <span>{{cateory?.name}}</span>
         <img *ngIf="getUserRole() !== 1"
              src="../../../assets/images/edit.png"
+             title="Редактировать"
              (click)="openEditCategoryDialog(i)"
              class="icon-img">
       </div>
@@ -25,4 +26,5 @@
                             (newCategory)="successEditCategory($event)"></app-edit-category-dialog>
 </div>
 <app-add-material-button *ngIf="getUserRole() !== 1"
+                         title="Новая категория"
                          (click)="openAddCategoryDialog()"></app-add-material-button>
