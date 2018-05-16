@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {BaseApi} from '../base/base-api';
 import {UserPage} from '../models/user/user-page.model';
 import {MaterialPage} from '../models/material/material-page.model';
+import {User} from '../models/user/user.model';
 
 @Injectable()
 export class UsersService extends BaseApi {
@@ -57,7 +58,11 @@ export class UsersService extends BaseApi {
     return this.post(`users/${userId}/change_password/`, {password});
   }
 
-  rejectUserRegistration(userId: number) {
+  rejectUserRegistration(userId: number): Observable<Object> {
     return this.delete(`registration/${userId.toString()}/`);
+  }
+
+  editUser(userId: number, data: Object): Observable<User> {
+    return this.patch(`users/${userId.toString()}/`, data);
   }
 }

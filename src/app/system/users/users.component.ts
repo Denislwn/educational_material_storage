@@ -13,14 +13,17 @@ import {StoreService} from '../../shared/services/store.service';
 export class UsersComponent implements OnInit, AfterViewInit {
   users: User[];
   blockUser: User;
+  editUser: User;
   termUsers$ = new Subject<string>();
   searchText = '';
   searchByRoles = '';
   blockUserNumber: number;
+  editUserNumber: number;
   page: number;
   isLoad: boolean;
   lastPage: boolean;
   showUserBlockDialog = false;
+  showUserEditDialog = false;
   scrollState = false;
   USERS = 'USERS';
   @ViewChild('usersList') usersList;
@@ -149,6 +152,18 @@ export class UsersComponent implements OnInit, AfterViewInit {
   userBlocked() {
     this.users.splice(this.blockUserNumber, 1);
     this.showUserBlockDialog = false;
+  }
+
+  openEditDialog(userNumber: number) {
+    this.editUserNumber = userNumber;
+    this.editUser = this.users[userNumber];
+    this.showUserEditDialog = true;
+  }
+
+  successEditUser(user: User) {
+    this.users[this.editUserNumber] = user;
+    this.editUser = null;
+    this.showUserEditDialog = false;
   }
 
   checkLastPage(nextPage: string) {

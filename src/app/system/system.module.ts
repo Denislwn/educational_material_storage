@@ -40,6 +40,7 @@ import { RejectRegistrationDialogComponent } from './admin/admin-registration/re
 import { CommentFieldComponent } from './materials/material-detail/comment-field/comment-field.component';
 import { MaterialCommentComponent } from './materials/material-detail/material-comment/material-comment.component';
 import { EditMaterialDialogComponent } from './materials/material-detail/edit-material-dialog/edit-material-dialog.component';
+import { EditUserDialogComponent } from './users/edit-user-dialog/edit-user-dialog.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { EditMaterialDialogComponent } from './materials/material-detail/edit-ma
     RejectRegistrationDialogComponent,
     CommentFieldComponent,
     MaterialCommentComponent,
-    EditMaterialDialogComponent
+    EditMaterialDialogComponent,
+    EditUserDialogComponent
   ]
 })
 export class SystemModule {

@@ -29,6 +29,11 @@
                   class="btn btn-secondary"
                   (click)="openBlockedDialog(i)">Заблокировать пользователя
           </button>
+          <button *ngIf="user?.role !== 4 && getUserRole()"
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="openEditDialog(i)">Редактировать пользователя
+          </button>
         </div>
         <h4 *ngIf="!searchText&&!searchByRoles&&users?.length === 0"
             class="no-content">Нет пользователей</h4>
@@ -38,6 +43,9 @@
       <app-user-block-dialog [(visible)]="showUserBlockDialog"
                              [user]="blockUser"
                              (blocked)="userBlocked()"></app-user-block-dialog>
+      <app-edit-user-dialog [(visible)]="showUserEditDialog"
+                             [user]="editUser"
+                             (successEditUser)="successEditUser($event)"></app-edit-user-dialog>
     </div>
   </div>
 </div>

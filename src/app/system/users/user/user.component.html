@@ -1,6 +1,7 @@
 <div class="col-12 user-card"
      (click)="userClick()">
-  <div class="image-container">
+  <div *ngIf="user?.role"
+       class="image-container">
     <img class="user-image"
          src="../../../../assets/images/{{getUserImage()}}">
   </div>

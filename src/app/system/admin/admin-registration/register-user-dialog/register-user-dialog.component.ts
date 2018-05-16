@@ -27,8 +27,8 @@ export class RegisterUserDialogComponent implements OnInit {
     };
     this.usersService.createUser(user)
       .subscribe((response) => {
-        console.log(response);
         this.successRegisterUser.emit(response);
+        this.close();
       });
   }
 
