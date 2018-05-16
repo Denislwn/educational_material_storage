@@ -133,6 +133,17 @@ export class MaterialDetailComponent implements OnInit {
       });
   }
 
+  removeMaterialFromFolder(folderId: number) {
+    this.materialsService.removeMaterialFromFolder(this.material.id, folderId)
+      .subscribe(() => {
+        this.folders = this.folders.filter(folder => {
+          if (folder.id !== folderId) {
+            return folder;
+          }
+        });
+      });
+  }
+
   checkUserRights() {
     const userRole = Number(localStorage.getItem('userRole'));
     const userId = Number(localStorage.getItem('userId'));

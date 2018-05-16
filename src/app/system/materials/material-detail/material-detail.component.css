@@ -33,6 +33,12 @@ a:hover {
   margin-top: 20px;
 }
 
+.delete-img {
+  height: 15px;
+  width: 15px;
+  margin: 5px 0 0 10px;
+}
+
 .material-comment-content {
   height: 80px;
   position: fixed;

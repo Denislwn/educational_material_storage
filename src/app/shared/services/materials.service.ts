@@ -83,4 +83,8 @@ export class MaterialsService extends BaseApi {
   editMaterial(materialId: number, data: Object): Observable<Material> {
     return this.patch(`materials/${materialId.toString()}/`, data);
   }
+
+  removeMaterialFromFolder(materialId: number, folderId: number): Observable<Object> {
+    return this.delete(`materials/${materialId.toString()}/folders/${folderId.toString()}/`);
+  }
 }

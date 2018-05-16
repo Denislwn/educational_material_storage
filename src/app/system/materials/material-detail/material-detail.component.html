@@ -73,8 +73,12 @@
     </div>
     <div *ngFor="let folder of folders" class="col-12">
       <div class="row folder-container">
-        <img class="folder-img" src="../../../../../assets/images/folder.png">
+        <img class="folder-img" src="../../../../assets/images/folder.png">
         {{folder.name}}
+        <img src="../../../../assets/images/delete.png"
+             class="delete-img"
+             title="Удалить из папки"
+             (click)="removeMaterialFromFolder(folder.id)">
       </div>
     </div>
     <div *ngIf="comments?.length!==0" class="row comments-container">
