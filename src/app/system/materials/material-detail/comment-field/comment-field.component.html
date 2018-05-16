@@ -4,6 +4,9 @@
               placeholder="Введите комментарий"
               [(ngModel)]="text"
               (keyup)="buttonComment($event)"></textarea>
-    <button class="col-1 send" (click)="sendComment()">Send</button>
+    <img src="../../../../../assets/images/send.png"
+         class="col-1 send"
+         title="Отправить"
+         (click)="sendComment()">
   </div>
 </div>

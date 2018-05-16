@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Folder} from '../../../shared/models/folder/folder.name';
 import {MaterialComment} from '../../../shared/models/comment/material-comment.model';
+import {StoreService} from '../../../shared/services/store.service';
 
 @Component({
   selector: 'app-material-detail',
@@ -30,7 +31,8 @@ export class MaterialDetailComponent implements OnInit {
   subOnRemoveBook: Subscription;
 
   constructor(private materialsService: MaterialsService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private storeService: StoreService) {
   }
 
   ngOnInit() {
@@ -107,6 +109,7 @@ export class MaterialDetailComponent implements OnInit {
   fromElected() {
     this.subOnFromElected = this.materialsService.removeFromFavorites(this.material.id)
       .subscribe((responce) => {
+        this.getFoldersThisMaterial();
         this.material.elected = false;
         this.electedMessage = 'Добавить в мои материалы';
       }, (err) => {
@@ -125,12 +128,26 @@ export class MaterialDetailComponent implements OnInit {
   removeBook() {
     this.subOnRemoveBook = this.materialsService.removeMaterial(this.material.id)
       .subscribe(() => {
+        this.material.elected = false;
         this.material.deleted = true;
+        if (this.storeService.materials) {
+          this.storeService.materials = this.getNewMaterialsList(this.storeService.materials);
+        } else if (this.storeService.userMaterials) {
+          this.storeService.userMaterials = this.getNewMaterialsList(this.storeService.userMaterials);
+        }
       }, (err) => {
         console.log(err);
       }, () => {
         this.subOnRemoveBook.unsubscribe();
       });
+  }
+
+  getNewMaterialsList(arr: Material[]) {
+    return arr.filter((storeMaterial) => {
+      if (this.material.id !== storeMaterial.id) {
+        return storeMaterial;
+      }
+    });
   }
 
   removeMaterialFromFolder(folderId: number) {

@@ -75,7 +75,6 @@ export class FoldersComponent implements OnInit {
     } else {
       this.foldersPath.push(folderPath);
     }
-    console.log(this.foldersPath);
   }
 
   openAddFolderDialog() {
@@ -91,13 +90,12 @@ export class FoldersComponent implements OnInit {
   }
 
   openEditFolderDialog(editFolderNumber: number) {
-    this.editFolderNumber = editFolderNumber;
     this.editFolder = this.folders[editFolderNumber];
     this.showEditFolderDialog = true;
   }
 
   successEditFolder(folder: Folder) {
-    this.folders[this.editFolderNumber] = folder;
+    this.getFolders();
     this.editFolder = null;
     this.showEditFolderDialog = false;
   }

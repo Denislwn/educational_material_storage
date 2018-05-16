@@ -43,7 +43,8 @@
           </button>
         </div>
         <div class="row">
-          <button class="row btn btn-primary add-button"
+          <button *ngIf="!material?.deleted&&material?.is_open"
+                  class="row btn btn-primary add-button"
                   (click)="toElectedButton()">{{electedMessage}}
           </button>
         </div>
@@ -57,7 +58,7 @@
                   (click)="openAddToFolderDialog()">Добавить в папку
           </button>
         </div>
-        <div class="row" *ngIf="editButton">
+        <div class="row" *ngIf="editButton&&!material?.deleted">
           <button class="row btn btn-primary add-button"
                   (click)="openEditDialog()">Редактировать
           </button>

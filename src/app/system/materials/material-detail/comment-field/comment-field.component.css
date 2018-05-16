@@ -28,11 +28,15 @@ textarea {
 }
 
 .send {
-  margin-left: 20px;
   margin-top: 20px;
   line-height: normal;
   display: inline-block;
   vertical-align: middle;
+  cursor: pointer;
+}
+
+.send:hover {
+  transform: scale(1.1, 1.1);
 }
 
 textarea:focus + .send {
