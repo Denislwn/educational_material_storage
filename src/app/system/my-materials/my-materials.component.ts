@@ -25,6 +25,8 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   scrollState = false;
   routeBack: string;
   messageBack: string;
+  refreshFolders = false;
+  inFolder = false;
   @ViewChild('materialsList') materialsList;
   pageState = 'USER_MATERIALS';
 
@@ -91,6 +93,7 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
     this.searchCategories = this.storeService.materialCategories;
     this.searchFileTypes = this.storeService.materialFileTypes;
     this.scrollState = true;
+    this.refreshFolders = true;
   }
 
   subOnInputSearchField() {
@@ -131,14 +134,18 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   }
 
   getFilterMaterials(url: string) {
-    this.isLoad = true;
-    this.page = 1;
-    this.lastPage = false;
-    this.materialsService.getFilterMaterials(url)
-      .subscribe((materialPage: MaterialPage) => {
-        this.materials = materialPage.results;
-        this.checkLastPage(materialPage.next_page);
-      });
+    if (!this.inFolder || (this.searchText || this.searchCategories || this.searchFileTypes)) {
+      this.isLoad = true;
+      this.page = 1;
+      this.lastPage = false;
+      this.materialsService.getFilterMaterials(url)
+        .subscribe((materialPage: MaterialPage) => {
+          this.materials = materialPage.results;
+          this.checkLastPage(materialPage.next_page);
+        });
+    } else {
+      this.refreshFolders = true;
+    }
   }
 
   onScroll() {
@@ -188,7 +195,10 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   getNestedMaterials(nestedMaterials: Material[]) {
     if (nestedMaterials === null) {
       this.getUserMaterials();
+      this.inFolder = false;
     } else {
+      this.refreshFolders = false;
+      this.inFolder = true;
       this.lastPage = true;
       this.materials = nestedMaterials;
     }

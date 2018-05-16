@@ -5,6 +5,7 @@ import {User} from '../models/user/user.model';
 @Injectable()
 export class StoreService {
   pageState: string;
+  folderId: number;
 
   materialPage: number;
   materialLastPage: boolean;

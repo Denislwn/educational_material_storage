@@ -1,35 +1,48 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FoldersService} from '../../shared/services/folders.service';
 import {Folder} from '../../shared/models/folder/folder.name';
 import {FolderPage} from '../../shared/models/folder/folder-page.model';
 import {Material} from '../../shared/models/material/material.model';
 import {Subscription} from 'rxjs/Subscription';
+import {StoreService} from '../../shared/services/store.service';
 
 @Component({
   selector: 'app-folders',
   templateUrl: './folders.component.html',
   styleUrls: ['./folders.component.css']
 })
-export class FoldersComponent implements OnInit {
+export class FoldersComponent implements OnInit, OnChanges {
   folders: Folder[];
   foldersPath: { folderId: number, folderName: string }[] = [];
   editFolder: Folder;
   folderParent: number = null;
   deleteObj: { title: string, message: string };
-  editFolderNumber: number;
   deleteFolderNumber: number;
   showDeleteDialog = false;
   showEditFolderDialog = false;
   showAddFolderDialog = false;
   @Input() userId: number;
+  @Input() refreshFolders: boolean;
   @Output() nestedMaterials = new EventEmitter<Material[]>();
   subOnRemoveFolder: Subscription;
 
-  constructor(private foldersService: FoldersService) {
+  constructor(private foldersService: FoldersService,
+              private storeService: StoreService) {
   }
 
   ngOnInit() {
     this.getFolders();
+  }
+
+  ngOnChanges(): void {
+    if (this.refreshFolders) {
+      this.folders = [];
+      if (this.storeService.folderId) {
+        this.openNestedFolders(this.storeService.folderId);
+      } else {
+        this.getFolders();
+      }
+    }
   }
 
   getFolders() {
@@ -38,6 +51,7 @@ export class FoldersComponent implements OnInit {
         this.folders = folders;
         this.foldersPath = [];
         this.folderParent = null;
+        this.storeService.folderId = null;
         this.nestedMaterials.emit(null);
       });
   }
@@ -58,6 +72,7 @@ export class FoldersComponent implements OnInit {
         const folderPath = {folderId: folderPage.id, folderName: folderPage.name};
         this.getNewFoldersPath(folderPath);
         this.nestedMaterials.emit(folderPage.materials);
+        this.storeService.folderId = folderId;
       });
   }
 
