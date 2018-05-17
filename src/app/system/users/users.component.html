@@ -24,16 +24,16 @@
                     class="hover-element"
                     routerLink="{{user?.id}}"
                     (clickOnUser)="clickOnUser($event)"></app-user>
-          <button *ngIf="user?.role !== 4 && getUserRole()"
-                  type="button"
-                  class="btn btn-secondary"
-                  (click)="openBlockedDialog(i)">Заблокировать пользователя
-          </button>
-          <button *ngIf="user?.role !== 4 && getUserRole()"
-                  type="button"
-                  class="btn btn-secondary"
-                  (click)="openEditDialog(i)">Редактировать пользователя
-          </button>
+          <img *ngIf="user?.role !== 4 && getUserRole()"
+               src="../../../assets/images/lock-user.png"
+               (click)="openBlockedDialog(i)"
+               class="delete-img"
+               title="Заблокировать пользователя">
+          <img *ngIf="user?.role !== 4 && getUserRole()"
+               src="../../../assets/images/edit.png"
+               (click)="openEditDialog(i)"
+               class="delete-img"
+               title="Редактировать пользователя">
         </div>
         <h4 *ngIf="!searchText&&!searchByRoles&&users?.length === 0"
             class="no-content">Нет пользователей</h4>
@@ -44,8 +44,8 @@
                              [user]="blockUser"
                              (blocked)="userBlocked()"></app-user-block-dialog>
       <app-edit-user-dialog [(visible)]="showUserEditDialog"
-                             [user]="editUser"
-                             (successEditUser)="successEditUser($event)"></app-edit-user-dialog>
+                            [user]="editUser"
+                            (successEditUser)="successEditUser($event)"></app-edit-user-dialog>
     </div>
   </div>
 </div>

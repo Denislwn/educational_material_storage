@@ -14,10 +14,10 @@
       <div *ngFor="let user of blockedUsers; let i = index"
            class="col-sm-4 col-12">
         <app-user [user]="user"></app-user>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="openUnblockedDialog(i)">Разблокировать пользователя
-        </button>
+        <img src="../../../../assets/images/unlock-user.png"
+             class="delete-img"
+             (click)="openUnblockedDialog(i)"
+             title="Разблокировать пользователя">
       </div>
       <h4 *ngIf="!searchText&&blockedUsers?.length === 0"
           class="no-content">Нет заблокированных пользователей</h4>

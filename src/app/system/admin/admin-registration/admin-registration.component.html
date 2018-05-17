@@ -5,14 +5,14 @@
       <div *ngFor="let user of users; let i = index"
            class="col-sm-4 col-12">
         <app-user [user]="user"></app-user>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="openRegisterDialog(i)">Зарегистрировать
-        </button>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="openRejectRegisterDialog(i)">Отклонить
-        </button>
+        <img src="../../../../assets/images/registration.png"
+             class="delete-img"
+             (click)="openRegisterDialog(i)"
+             title="Зарегистрировать">
+        <img src="../../../../assets/images/reject.png"
+             class="delete-img"
+             (click)="openRejectRegisterDialog(i)"
+             title="Отклонить">
       </div>
       <h4 *ngIf="users?.length === 0"
           class="no-content">Нет пользователей</h4>
