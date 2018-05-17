@@ -128,8 +128,9 @@ export class MaterialDetailComponent implements OnInit {
   removeBook() {
     this.subOnRemoveBook = this.materialsService.removeMaterial(this.material.id)
       .subscribe(() => {
-        this.material.elected = false;
         this.material.deleted = true;
+        this.getFoldersThisMaterial();
+        this.material.elected = false;
         if (this.storeService.materials) {
           this.storeService.materials = this.getNewMaterialsList(this.storeService.materials);
         } else if (this.storeService.userMaterials) {
