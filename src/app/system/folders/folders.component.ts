@@ -31,14 +31,17 @@ export class FoldersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.getFolders();
+    if (!this.storeService.folderId) {
+      this.getFolders();
+    }
   }
 
   ngOnChanges(): void {
     if (this.refreshFolders) {
       this.folders = [];
       if (this.storeService.folderId) {
-        this.openNestedFolders(this.storeService.folderId);
+        this.openNestedFolders(this.storeService.folderId[this.storeService.folderId.length - 1].folderId);
+        this.foldersPath = this.storeService.folderId;
       } else {
         this.getFolders();
       }
@@ -72,7 +75,7 @@ export class FoldersComponent implements OnInit, OnChanges {
         const folderPath = {folderId: folderPage.id, folderName: folderPage.name};
         this.getNewFoldersPath(folderPath);
         this.nestedMaterials.emit(folderPage.materials);
-        this.storeService.folderId = folderId;
+        this.storeService.folderId = this.foldersPath;
       });
   }
 

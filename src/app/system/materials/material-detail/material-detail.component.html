@@ -7,7 +7,7 @@
   <div *ngIf="material" class="container">
     <div class="row">
       <h5 class="deleted-material"
-          *ngIf="material?.deleted">Материал был удален его владельцем</h5>
+          *ngIf="material?.deleted">Материал был удален</h5>
       <table class="col-9 table table-striped">
         <tr>
           <td>Название</td>
@@ -43,7 +43,7 @@
           </button>
         </div>
         <div class="row">
-          <button *ngIf="!material?.deleted&&material?.is_open"
+          <button *ngIf="material?.elected||(!material?.deleted&&material?.is_open)"
                   class="row btn btn-primary add-button"
                   (click)="toElectedButton()">{{electedMessage}}
           </button>

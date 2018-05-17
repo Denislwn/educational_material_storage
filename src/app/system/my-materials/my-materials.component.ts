@@ -52,8 +52,10 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
       .subscribe((params) => {
         this.getUserId(params['userId']);
         if (this.storeService.userMaterials) {
+          console.log('userMaterials');
           this.getUserMaterialsFromService();
         } else {
+          console.log('server');
           this.getUserMaterialsFromServer();
         }
         this.storeService.storeUserMaterialReset();
@@ -86,6 +88,7 @@ export class MyMaterialsComponent implements OnInit, AfterViewInit {
   }
 
   getUserMaterialsFromService() {
+    console.log(this.storeService.userMaterials);
     this.materials = this.storeService.userMaterials;
     this.page = this.storeService.materialPage;
     this.lastPage = this.storeService.materialLastPage;
